@@ -1,0 +1,3 @@
+[
+  { "domain": "demo.myshopify.com", "plan": "demo", "vendors": ["prolite"], "features": ["builds", "catalog"] }
+]

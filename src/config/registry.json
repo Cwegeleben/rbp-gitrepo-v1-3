@@ -1,0 +1,9 @@
+{
+  "modules": {
+    "rbp-shell": {
+      "versions": {
+        "0.1.0": { "path": "/apps/rbp/modules/rbp-shell/0.1.0/index.js" }
+      }
+    }
+  }
+}

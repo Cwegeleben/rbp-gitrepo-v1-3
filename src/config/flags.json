@@ -1,0 +1,4 @@
+{
+  "modules": { "rbp-shell": { "v": "0.1.0", "enabled": true } },
+  "features": { "builds.saveLists": true, "checkout.packager": false }
+}
