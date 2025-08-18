@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:shopify": "shopify app dev --path=.shopify/app --store=rbp-dev.myshopify.com"
   },
   "keywords": [],
   "author": "",
