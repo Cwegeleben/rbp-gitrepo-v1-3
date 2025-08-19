@@ -1,5 +1,9 @@
 (() => {
-  const root = document.getElementById("rbp-root") || document.body;
+  const root = document.getElementById("rbp-root");
+  if (!root) {
+    console.warn("[RBP] #rbp-root not found");
+    return;
+  }
   const wrap = document.createElement("div");
   wrap.id = "rbp-shell";
   wrap.style.padding = "12px";
