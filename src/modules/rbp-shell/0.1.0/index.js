@@ -1,4 +1,4 @@
-(function(){
+(() => {
   const root = document.getElementById("rbp-root") || document.body;
   const wrap = document.createElement("div");
   wrap.id = "rbp-shell";
