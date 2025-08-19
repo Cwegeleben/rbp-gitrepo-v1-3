@@ -19,6 +19,5 @@ export async function loader({ request }) {
   const tenant = tenants.find(t => t.domain === domain);
   if (!tenant) return new Response("TENANT_NOT_FOUND", { status: 404 });
 
-  const ctx = { tenant, ts: new Date().toISOString(), flags };
-  return json(ctx);
+  return json({ tenant, ts: new Date().toISOString(), flags });
 }
