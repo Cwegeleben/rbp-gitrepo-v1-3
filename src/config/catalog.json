@@ -1,0 +1,50 @@
+{
+  "models": ["Trout Series", "Bass Series"],
+  "lengths": ["6'6\"", "7'0\"", "7'6\""],
+  "powers": ["UL", "L", "ML", "M", "MH", "H"],
+  "actions": ["Moderate", "Mod-Fast", "Fast", "X-Fast"],
+  "handles": ["Cork Split", "Full Cork", "EVA"],
+  "guides": ["SS316", "Titanium", "Ceramic"],
+  "collections": [
+    { "id": "c1", "handle": "trout", "title": "Trout Series", "productCount": 2 },
+    { "id": "c2", "handle": "bass", "title": "Bass Series", "productCount": 2 }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "title": "Trout Rod 6'6\" UL",
+      "handle": "trout-66-ul",
+      "vendor": "RBP",
+      "price": 129.99,
+      "collections": ["trout", "c1"],
+      "images": ["/images/trout-66-ul.jpg"]
+    },
+    {
+      "id": "p2",
+      "title": "Trout Rod 7'0\" ML",
+      "handle": "trout-70-ml",
+      "vendor": "RBP",
+      "price": 139.99,
+      "collections": ["trout", "c1"],
+      "images": ["/images/trout-70-ml.jpg"]
+    },
+    {
+      "id": "p3",
+      "title": "Bass Rod 7'0\" M",
+      "handle": "bass-70-m",
+      "vendor": "RBP",
+      "price": 149.99,
+      "collections": ["bass", "c2"],
+      "images": ["/images/bass-70-m.jpg"]
+    },
+    {
+      "id": "p4",
+      "title": "Bass Rod 7'6\" MH",
+      "handle": "bass-76-mh",
+      "vendor": "RBP",
+      "price": 159.99,
+      "collections": ["bass", "c2"],
+      "images": ["/images/bass-76-mh.jpg"]
+    }
+  ]
+}

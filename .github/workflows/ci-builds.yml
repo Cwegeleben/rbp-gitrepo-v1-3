@@ -1,0 +1,80 @@
+name: Builds v1 curl pack (PR)
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  curl-builds:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install deps (workspace root)
+        run: pnpm install
+
+      - name: Generate Prisma Client (app package)
+        run: pnpm -F rod-builder-pro prisma:generate
+
+      - name: Apply DB migrations (deploy existing)
+        run: pnpm -F rod-builder-pro prisma migrate deploy
+
+      - name: Start app server (background)
+        run: |
+          pnpm -F rod-builder-pro dev 2>&1 | tee server.log &
+          echo $! > server.pid
+
+      - name: Discover server port from logs
+        id: port
+        run: |
+          for i in {1..90}; do
+            PORT=$(grep -Eo 'http://localhost:[0-9]+' server.log | tail -1 | sed -E 's/.*:([0-9]+)/\1/')
+            if [ -n "$PORT" ]; then
+              echo "Detected PORT=$PORT"
+              echo "PORT=$PORT" >> $GITHUB_ENV
+              echo "port=$PORT" >> $GITHUB_OUTPUT
+              break
+            fi
+            sleep 1
+          done
+          if [ -z "${PORT:-}" ]; then
+            echo "Could not detect port from server.log"
+            exit 1
+          fi
+
+      - name: Wait for server to respond
+        run: npx wait-on "http://127.0.0.1:${{ env.PORT }}/apps/proxy/ping" --timeout 120000
+
+      - name: Ensure curl pack is executable
+        run: pnpm -F rod-builder-pro exec chmod +x scripts/curl-builds.sh
+
+      - name: Run curl-builds pack (dynamic port)
+        env:
+          PORT: ${{ env.PORT }}
+        run: pnpm -F rod-builder-pro run curl:builds
+
+      - name: Stop server
+        if: always()
+        run: |
+          if [ -f server.pid ]; then kill $(cat server.pid) || true; fi
+
+      - name: Print server logs on failure
+        if: failure()
+        run: |
+          echo "===== SERVER LOGS ====="
+          sed -n '1,400p' server.log || true

@@ -1,16 +1,6 @@
-(() => {
-  const root = document.getElementById("rbp-root");
-  if (!root) {
-    console.warn("[RBP] #rbp-root not found");
-    return;
+export default function init(ctx) {
+  console.log("[rbp-shell] v0.1.0 loaded", ctx);
+  if (typeof window !== "undefined") {
+    window.__RBP_SHELL_LOADED__ = true;
   }
-  const wrap = document.createElement("div");
-  wrap.id = "rbp-shell";
-  wrap.style.padding = "12px";
-  wrap.style.border = "1px solid #ddd";
-  wrap.style.borderRadius = "12px";
-  wrap.style.fontFamily = "system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
-  wrap.innerHTML = "<b>Rod Builder Pro</b> shell loaded (v0.1.0)";
-  root.appendChild(wrap);
-  console.log("[RBP] shell module loaded");
-})();
+}
