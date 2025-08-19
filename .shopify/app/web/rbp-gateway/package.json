@@ -4,13 +4,15 @@
   "type": "module",
   "scripts": {
     "build": "remix build",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "dev": "remix dev --port 3000"
   },
   "dependencies": {
     "@remix-run/dev": "^2.11.0",
     "@remix-run/node": "^2.11.0",
     "@remix-run/react": "^2.11.0",
     "@remix-run/serve": "^2.11.0",
+    "isbot": "^4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
