@@ -4,6 +4,9 @@ import { PrismaClient } from "@prisma/client";
 import { json } from "@remix-run/node";
 import { readCatalogJson } from "~/proxy/catalog.server";
 import { dbg, dbe } from "../../apps/rbp-shopify-app/rod-builder-pro/app/utils/debug.server";
+// <!-- BEGIN RBP GENERATED: package-phase1 -->
+import { buildCartPath, computeBOM, createSoftReservations, ensurePackagedSku, smartChoiceV1, upsertSourcingPlan } from "../../packages/builds/package/index";
+// <!-- END RBP GENERATED: package-phase1 -->
 
 const prisma = new PrismaClient();
 const HEADERS = { "content-type": "application/json", "cache-control": "no-store" } as const;
@@ -52,7 +55,7 @@ async function handlePack(request: Request) {
     let catalog: any = null;
     try { catalog = await readCatalogJson(); } catch {}
 
-    const normItems = (build.items ?? []).map(it => {
+  const normItems: Array<{ productId: string | null; title: string; quantity: number; variantId?: string }> = (build.items ?? []).map((it: any) => {
       const qty = Math.max(1, Math.min(999, Number(it.quantity ?? 1)));
       const title = (it as any).label ?? (it as any).productId ?? "Item";
       let variantId: string | undefined;
@@ -62,25 +65,42 @@ async function handlePack(request: Request) {
       }
       return { productId: it.productId ?? null, title: String(title), quantity: qty, ...(variantId ? { variantId } : {}) };
     });
-    const withVariants = normItems.filter(i => "variantId" in i).length;
+  const withVariants = normItems.filter((i) => "variantId" in i).length;
     dbg("packager:normalized", { total: normItems.length, withVariants });
 
     // Build cartPath if every item has variantId
-    const allHaveVariants = normItems.length > 0 && normItems.every(i => !!(i as any).variantId);
+  const allHaveVariants = normItems.length > 0 && normItems.every((i) => !!(i as any).variantId);
     const cartPath = allHaveVariants
-      ? `/cart/${normItems.map(i => `${(i as any).variantId}:${i.quantity}`).join(",")}`
+  ? `/cart/${normItems.map((i) => `${(i as any).variantId}:${i.quantity}`).join(",")}`
       : null;
     const addJsPayload = allHaveVariants
-      ? { items: normItems.map(i => ({ id: (i as any).variantId, quantity: i.quantity })) }
+  ? { items: normItems.map((i) => ({ id: (i as any).variantId, quantity: i.quantity })) }
       : null;
     dbg("packager:cart", { cartPath, addJsItems: addJsPayload?.items?.length ?? 0 });
+
+  // <!-- BEGIN RBP GENERATED: package-phase1 -->
+  const bom = await computeBOM(buildId);
+    const bomHash = Buffer.from(JSON.stringify(bom)).toString("base64");
+  const choice = await smartChoiceV1(bom);
+  const sp = await upsertSourcingPlan(buildId, choice.plan, "PLANNED");
+  const softReservationsFull = await createSoftReservations(buildId, choice.plan);
+  const softReservations = softReservationsFull.map((r: any) => ({ sku: r.sku, locationId: r.locationId, qty: r.qty, expiresAt: r.expiresAt }));
+    const packagedSku = await ensurePackagedSku(buildId, bomHash);
+    const upgradedCartPath = buildCartPath(packagedSku.variantId, 1);
+    // <!-- END RBP GENERATED: package-phase1 -->
 
     const payload = {
       buildId,
       totalItems: normItems.length,
       items: normItems,
       cart: { cartPath, addJsPayload },
-    };
+      // <!-- BEGIN RBP GENERATED: package-phase1 -->
+      cartPath: cartPath ?? upgradedCartPath,
+      packagedSku,
+  sourcingPlanId: sp?.id ?? null,
+      softReservations,
+      // <!-- END RBP GENERATED: package-phase1 -->
+    } as any;
 
     return json(payload, { headers: HEADERS });
   } catch (e: any) {

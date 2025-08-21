@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "fly:secrets:staging": "fly secrets set DATABASE_URL='file:/data/dev.sqlite'",
-    "fly:smoke": "bash ./scripts/fly/curl-smoke.sh"
+  "fly:smoke": "bash ./scripts/fly/curl-smoke.sh",
+  "db:migrate:inventory": "prisma migrate dev --name inventory_phase1",
+  "db:seed:inventory": "tsx src/packages/access/scripts/seed-inventory.ts",
+  "reservations:expire": "tsx src/packages/builds/workers/expire-soft-reservations.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,11 +27,15 @@
     "prisma": "^6.14.0",
     "toml": "^3.0.0",
     "ts-jest": "^29.4.1",
-    "tsx": "^4.20.4"
+    "tsx": "^4.20.4",
+    "@prisma/client": "^6.14.0"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "prisma": {
+    "schema": "./src/apps/rbp-shopify-app/rod-builder-pro/prisma/schema.prisma"
   },
   "pnpm": {
     "overrides": {
