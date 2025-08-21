@@ -9,7 +9,7 @@ async function addProductToActiveBuild(product, btn) {
     }
     const build = await apiGet(`/apps/proxy/api/builds/${buildId}`);
     const items = Array.isArray(build.items) ? build.items.slice() : [];
-    items.push({ slot: "Product", label: product.title, productId: product.id, quantity: 1 });
+  items.push({ slot: "Product", label: product.title, productId: product.handle, quantity: 1 });
     await apiSend(`/apps/proxy/api/builds/${buildId}`, "PATCH", { items });
     if (btn) {
       btn.textContent = '✓';

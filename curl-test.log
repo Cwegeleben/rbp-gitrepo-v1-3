@@ -1,0 +1,7 @@
+
+> rbp-gitrepo-v1-3@1.0.0 curl:builds /Users/cwegeleben/Projects/rbp-gitrepo-v1-3
+> bash scripts/curl-builds.sh
+
+✅ PASS Create build (ensure_build_and_id, id=cmeic8s45000p8oivvfm0tkmk)
+❌ FAIL Checkout package GET — code=400 body=
+❌ FAIL Cart path — expected seeded IDs, got ''

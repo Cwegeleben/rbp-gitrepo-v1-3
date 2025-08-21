@@ -1,0 +1,30 @@
+/* <!-- BEGIN RBP GENERATED: tsconfig-jest-confirm --> */
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "baseUrl": ".",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src",
+    "jest.setup.ts",
+    "**/__tests__/**/*.ts",
+    "**/__tests__/**/*.tsx",
+    "src/apps/rbp-shopify-app/**/*.ts",
+    "src/apps/rbp-shopify-app/**/*.tsx",
+    "src/test/types/**/*.d.ts"
+  ]
+}
+/* <!-- END RBP GENERATED: tsconfig-jest-confirm --> */

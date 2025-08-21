@@ -3,6 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 import { json } from "@remix-run/node";
 import { readCatalogJson } from "~/proxy/catalog.server";
+import { dbg, dbe } from "../../apps/rbp-shopify-app/rod-builder-pro/app/utils/debug.server";
 
 const prisma = new PrismaClient();
 const HEADERS = { "content-type": "application/json", "cache-control": "no-store" } as const;
@@ -30,7 +31,9 @@ export async function action({ request }: { request: Request }) {
 
 async function handlePack(request: Request) {
   try {
+    dbg("packager:start", { url: request.url, method: request.method });
     const buildId = await getBuildId(request);
+    dbg("packager:buildId", buildId);
     if (!buildId) {
       return json({ error: "BAD_REQUEST", message: "buildId required" }, { status: 400, headers: HEADERS });
     }
@@ -40,8 +43,10 @@ async function handlePack(request: Request) {
       include: { items: true },
     });
     if (!build) {
+      dbg("packager:not_found", { buildId });
       return json({ error: "NOT_FOUND", message: "build not found" }, { status: 404, headers: HEADERS });
     }
+    dbg("packager:build_loaded", { id: build.id, tenant: build.tenant, items: build.items?.length ?? 0 });
 
     // Optional variant mapping from catalog
     let catalog: any = null;
@@ -57,6 +62,8 @@ async function handlePack(request: Request) {
       }
       return { productId: it.productId ?? null, title: String(title), quantity: qty, ...(variantId ? { variantId } : {}) };
     });
+    const withVariants = normItems.filter(i => "variantId" in i).length;
+    dbg("packager:normalized", { total: normItems.length, withVariants });
 
     // Build cartPath if every item has variantId
     const allHaveVariants = normItems.length > 0 && normItems.every(i => !!(i as any).variantId);
@@ -66,6 +73,7 @@ async function handlePack(request: Request) {
     const addJsPayload = allHaveVariants
       ? { items: normItems.map(i => ({ id: (i as any).variantId, quantity: i.quantity })) }
       : null;
+    dbg("packager:cart", { cartPath, addJsItems: addJsPayload?.items?.length ?? 0 });
 
     const payload = {
       buildId,
@@ -76,7 +84,7 @@ async function handlePack(request: Request) {
 
     return json(payload, { headers: HEADERS });
   } catch (e: any) {
-    console.error("checkout.package error:", e);
+    dbe("packager:error", e?.message);
     return json({ error: "INTERNAL", message: e?.message ?? "unexpected" }, { status: 500, headers: HEADERS });
   }
 }

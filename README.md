@@ -1,3 +1,14 @@
+<!-- BEGIN RBP GENERATED: Fly-Deploy-Fix -->
+## Fly Deploy Quickstart
+```bash
+# one-time
+fly volumes create data --size 1 --region sea
+fly secrets set DATABASE_URL="file:/data/dev.sqlite" SHOPIFY_API_KEY="..." SHOPIFY_API_SECRET="..." SESSION_SECRET="$(openssl rand -hex 16)" NODE_ENV=production
+# deploy
+fly deploy --remote-only
+# verify
+./scripts/fly/curl-smoke.sh https://rbp-rod-builder-pro-staging.fly.dev
+<!-- END RBP GENERATED: Fly-Deploy-Fix -->
 # Rod Builder Pro v1-3
 
 ## Catalog endpoint checks

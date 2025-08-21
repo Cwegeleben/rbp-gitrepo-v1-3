@@ -28,6 +28,11 @@ jobs:
       - name: Install deps (workspace root)
         run: pnpm install
 
+      # BEGIN RBP GENERATED
+      - name: Preflight (strict)
+        run: pnpm preflight:strict
+      # END RBP GENERATED
+
       - name: Generate Prisma Client (app package)
         run: pnpm -F rod-builder-pro prisma:generate
 

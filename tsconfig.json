@@ -1,0 +1,30 @@
+{
+  // <!-- BEGIN RBP GENERATED: tsconfig-root -->
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "baseUrl": ".",
+    "noEmit": true,
+  "types": ["node", "jest"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/test/types/**/*.d.ts",
+    "jest.setup.ts",
+    "**/__tests__/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "build"]
+  // <!-- END RBP GENERATED: tsconfig-root -->
+}

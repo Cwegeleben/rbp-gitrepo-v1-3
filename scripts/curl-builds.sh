@@ -46,53 +46,48 @@ ensure_build_and_id() {
 	fi
 }
 
-# Helper: ensure at least one item on build
-ensure_item_on_build() {
+
+# Helper: seed demo items into build
+seed_demo_items_on_build() {
 	ensure_build_and_id || return 1
-	RESP=$(curl -s "$API/$ID")
-	COUNT=$(echo "$RESP" | jq '.items | length')
-	if [ "${COUNT:-0}" -lt 1 ]; then
-		ITEMS=$(echo "$RESP" | jq '.items + [{"slot":"Product","label":"CLI Item","productId":"p-demo","quantity":1}]')
-		CODE=$(curl -s -o /dev/null -w "%{http_code}" -X PATCH "$API/$ID" \
-			-H "content-type: application/json" \
-			--data "$(jq -nc --argjson items "$ITEMS" '{items: $items}')")
-		if [ "$CODE" != "200" ]; then
-			bad "Ensure item on build" "PATCH code=$CODE"; return 1
-		fi
-		ok "Added 1 item to build (ensure_item_on_build)"
-	fi
+	# Add seeded demo items to the build (1x seat, 2x guides)
+	CODE=$(curl -s -o /dev/null -w "%{http_code}" -X PATCH "$API/$ID" \
+		-H "content-type: application/json" \
+		--data '{"items":[
+		{"slot":"Product","label":"Demo Seat","productId":"rbp-demo-seat","quantity":1},
+		{"slot":"Product","label":"Demo Guides","productId":"rbp-demo-guides","quantity":2}
+		]}')
+	[ "$CODE" = "200" ] || bad "Seed items into build" "PATCH code=$CODE"
 }
 
+
 package_get() {
-	ensure_item_on_build
+	seed_demo_items_on_build
 	RESP=$(curl -s -w "\n%{http_code}" "$PKG_API?buildId=$ID")
 	BODY=$(echo "$RESP" | head -n1)
 	CODE=$(echo "$RESP" | tail -n1)
 	if [[ "$CODE" == "200" ]] && [[ "$(echo "$BODY" | jq 'has("items") and has("cart") and has("totalItems")')" == "true" ]]; then
-		echo "✅ Checkout package GET (basic shape)"
+		ok "Checkout package GET (200)"
 	else
-		echo "❌ FAIL Checkout package GET code=$CODE body=$(echo "$BODY" | jq -c . 2>/dev/null || echo "$BODY")"
+		bad "Checkout package GET" "code=$CODE body=$(echo "$BODY" | jq -c . 2>/dev/null || echo "$BODY")"
 	fi
 }
 
-package_cartpath_format() {
+
+package_cartpath_expected() {
 	PKG=$(curl -s "$PKG_API?buildId=$ID")
 	CARTPATH=$(echo "$PKG" | jq -r '.cart.cartPath // empty')
-	if [ -z "$CARTPATH" ]; then
-		echo "✅ Cart path optional (null when variantIds unavailable)"
+	if echo "$CARTPATH" | grep -Eq '^/cart/(1111111111:1,2222222222:2|2222222222:2,1111111111:1)$'; then
+		ok "Cart path matches seeded variantIds ($CARTPATH)"
 	else
-		# Very light format sanity: starts with /cart/ and contains colon-separated pairs
-		if echo "$CARTPATH" | grep -Eq '^/cart/[0-9]+:[0-9]+(,[0-9]+:[0-9]+)*$'; then
-			echo "✅ Cart path format looks valid ($CARTPATH)"
-		else
-			echo "❌ FAIL Cart path format got '$CARTPATH'"
-		fi
+		bad "Cart path" "expected seeded IDs, got '$CARTPATH'"
 	fi
 }
 
-# Guarantee we have a build id and at least one item before packaging
-ensure_item_on_build || true
+
+# Guarantee we have a build id and seeded demo items before packaging
+seed_demo_items_on_build || true
 
 # Run packager checks
 package_get
-package_cartpath_format
+package_cartpath_expected

@@ -1,6 +1,10 @@
 {
   "modules": {
     "rbp-shell": { "v": "0.1.0", "enabled": true },
-    "rbp-catalog": { "v": "0.1.0", "enabled": true }
+    "rbp-catalog": { "v": "0.1.0", "enabled": true },
+    "rbp-builds": { "v": "0.2.0", "enabled": true }
+  },
+  "flags": {
+    "builds.qol.v1": true
   }
 }

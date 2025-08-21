@@ -11,6 +11,26 @@
   ],
   "products": [
     {
+      "id": "rbp-demo-seat",
+      "handle": "rbp-demo-seat",
+      "title": "RBP Demo Reel Seat",
+      "vendor": "RBP",
+      "price": 29.99,
+      "collections": ["demo"],
+      "variantId": "1111111111",
+      "images": []
+    },
+    {
+      "id": "rbp-demo-guides",
+      "handle": "rbp-demo-guides",
+      "title": "RBP Demo Guides (10-pack)",
+      "vendor": "RBP",
+      "price": 14.50,
+      "collections": ["demo"],
+      "variantId": "2222222222",
+      "images": []
+    },
+    {
       "id": "p1",
       "title": "Trout Rod 6'6\" UL",
       "handle": "trout-66-ul",

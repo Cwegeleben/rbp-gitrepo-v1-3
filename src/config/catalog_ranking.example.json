@@ -1,0 +1,11 @@
+{
+  "collectionWeights": {
+    "salmon-steelhead": 3,
+    "albacore": 2
+  },
+  "vendorWeights": {
+    "Acme": 2,
+    "Northwest": 1
+  },
+  "tagBonus": 0.25
+}

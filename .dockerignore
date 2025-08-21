@@ -1,0 +1,40 @@
+# flyctl launch added from .gitignore
+**/node_modules
+**/.DS_Store
+**/.env
+**/dist
+**/build
+
+**/.shopify
+
+# flyctl launch added from src/apps/rbp-shopify-app/rod-builder-pro/.gitignore
+src/apps/rbp-shopify-app/rod-builder-pro/**/node_modules
+src/apps/rbp-shopify-app/rod-builder-pro/**/.DS_Store
+
+src/apps/rbp-shopify-app/rod-builder-pro/.cache
+src/apps/rbp-shopify-app/rod-builder-pro/build
+src/apps/rbp-shopify-app/rod-builder-pro/app/build
+src/apps/rbp-shopify-app/rod-builder-pro/public/build
+src/apps/rbp-shopify-app/rod-builder-pro/public/_dev
+src/apps/rbp-shopify-app/rod-builder-pro/app/public/build
+src/apps/rbp-shopify-app/rod-builder-pro/prisma/dev.sqlite
+src/apps/rbp-shopify-app/rod-builder-pro/prisma/dev.sqlite-journal
+src/apps/rbp-shopify-app/rod-builder-pro/**/database.sqlite
+
+src/apps/rbp-shopify-app/rod-builder-pro/**/.env
+src/apps/rbp-shopify-app/rod-builder-pro/**/.env.*
+
+
+
+
+
+src/apps/rbp-shopify-app/rod-builder-pro/extensions/*/dist
+
+# Ignore shopify files created during app dev
+src/apps/rbp-shopify-app/rod-builder-pro/**/.shopify/*
+src/apps/rbp-shopify-app/rod-builder-pro/**/.shopify.lock
+
+# flyctl launch added from src/apps/rbp-shopify-app/rod-builder-pro/.shopify/.gitignore
+# Ignore the entire .shopify directory
+src/apps/rbp-shopify-app/rod-builder-pro/.shopify/**/*
+fly.toml

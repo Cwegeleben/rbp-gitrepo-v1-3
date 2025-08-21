@@ -1,0 +1,7 @@
+
+> rbp-gitrepo-v1-3@1.0.0 curl:builds /Users/cwegeleben/Projects/rbp-gitrepo-v1-3
+> bash scripts/curl-builds.sh
+
+❌ FAIL Create build (ensure_build_and_id) — code=500
+❌ FAIL Create build (ensure_build_and_id) — code=500
+ ELIFECYCLE  Command failed with exit code 1.
