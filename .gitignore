@@ -4,4 +4,12 @@ node_modules
 dist
 build
 
+# <!-- BEGIN RBP GENERATED: mode-a -->
+# Ignore local sqlite/dev DBs and Prisma artifacts in nested app
+src/apps/rbp-shopify-app/rod-builder-pro/prisma/dev.sqlite*
+src/apps/rbp-shopify-app/rod-builder-pro/build/
+src/apps/rbp-shopify-app/rod-builder-pro/node_modules/
+src/apps/rbp-shopify-app/rod-builder-pro/.shopify
+# <!-- END RBP GENERATED: mode-a -->
+
 .shopify
