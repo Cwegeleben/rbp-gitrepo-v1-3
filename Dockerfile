@@ -39,5 +39,5 @@ COPY --from=builder /app /app
 EXPOSE 8080
 
 # On boot: apply migrations, then start server bound to 0.0.0.0:PORT
-CMD sh -lc 'pnpm exec prisma migrate deploy --schema ./prisma/schema.prisma && node build/server/index.js --host 0.0.0.0 --port ${PORT:-8080}'
+CMD sh -lc 'pnpm exec prisma migrate deploy --schema ./prisma/schema.prisma && pnpm exec remix-serve ./build/server/index.js --host 0.0.0.0 --port ${PORT:-8080}'
 ## <!-- END RBP GENERATED: Fly-MinDocker -->
