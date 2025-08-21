@@ -1,31 +1,43 @@
-# syntax=docker/dockerfile:1.7
-
-
-# --- builder ---
+## <!-- BEGIN RBP GENERATED: Fly-MinDocker -->
+# ---- builder ----
 FROM node:20-alpine AS builder
 WORKDIR /app
-ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-ENV PRISMA_SKIP_POSTINSTALL=1
-ENV CI=true
-RUN corepack enable && corepack prepare pnpm@10.14.0 --activate
-# Copy full source before install to ensure workspace packages are present in all build contexts
-COPY . .
-# Install workspace dependencies deterministically without running scripts
-RUN pnpm -r install --frozen-lockfile --ignore-scripts
-WORKDIR /app/src/apps/rbp-shopify-app/rod-builder-pro
-RUN pnpm db:generate && pnpm build
 
-# --- runner ---
-FROM node:20-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-ENV PORT=8080
-ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-ENV CI=true
-ENV DATABASE_URL=file:/data/dev.sqlite
-RUN apk add --no-cache openssl
-RUN corepack enable && corepack prepare pnpm@10.14.0 --activate
-COPY --from=builder /app /app
+# Non-interactive installs + skip prisma postinstall
+ENV CI=1 PNPM_SKIP_PROMPTS=true PRISMA_SKIP_POSTINSTALL=1
+
+RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
+
+# 1) Copy the minimal set first for a deterministic, cached install
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY src/apps/rbp-shopify-app/rod-builder-pro/package.json src/apps/rbp-shopify-app/rod-builder-pro/
+
+# 2) Install without running postinstall scripts
+RUN pnpm -r install --frozen-lockfile --ignore-scripts --yes
+
+# 3) Bring in the rest of the repo (incl. prisma/)
+COPY . .
+
+# 4) Generate Prisma client and build the subapp
 WORKDIR /app/src/apps/rbp-shopify-app/rod-builder-pro
+RUN pnpm exec prisma generate --schema ./prisma/schema.prisma
+RUN pnpm build
+
+# ---- runtime ----
+FROM node:20-alpine AS runner
+ENV NODE_ENV=production CI=1
+WORKDIR /app/src/apps/rbp-shopify-app/rod-builder-pro
+
+RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
+
+# Copy built app + workspace files
+COPY --from=builder /app /app
+
+# Install production deps only (still no scripts)
+RUN pnpm install --prod --no-optional --frozen-lockfile --ignore-scripts --yes
+
 EXPOSE 8080
-CMD sh -lc 'pnpm db:deploy && node build/server/index.js --host 0.0.0.0 --port ${PORT:-8080}'
+
+# On boot: apply migrations, then start server bound to 0.0.0.0:PORT
+CMD sh -lc 'pnpm exec prisma migrate deploy --schema ./prisma/schema.prisma && node build/server/index.js --host 0.0.0.0 --port ${PORT:-8080}'
+## <!-- END RBP GENERATED: Fly-MinDocker -->

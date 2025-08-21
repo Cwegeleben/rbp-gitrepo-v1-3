@@ -4,7 +4,9 @@
 #
 
 app = 'rbp-rod-builder-pro-staging'
+## <!-- BEGIN RBP GENERATED: Fly-MinDocker -->
 primary_region = "sea"
+## <!-- END RBP GENERATED: Fly-MinDocker -->
 
 [mounts]
   source="data"

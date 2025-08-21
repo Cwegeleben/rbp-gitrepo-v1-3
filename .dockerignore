@@ -38,3 +38,16 @@ src/apps/rbp-shopify-app/rod-builder-pro/**/.shopify.lock
 # Ignore the entire .shopify directory
 src/apps/rbp-shopify-app/rod-builder-pro/.shopify/**/*
 fly.toml
+
+## <!-- BEGIN RBP GENERATED: Fly-MinDocker -->
+node_modules
+**/node_modules
+**/.pnpm-store
+**/build
+**/dist
+**/.turbo
+**/.cache
+**/.vite
+Dockerfile.*
+!.dockerignore
+## <!-- END RBP GENERATED: Fly-MinDocker -->
