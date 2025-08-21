@@ -25,7 +25,7 @@ RUN pnpm build
 
 # ---- runtime ----
 FROM node:20-alpine AS runner
-ENV NODE_ENV=production CI=1
+ENV NODE_ENV=production CI=1 PORT=8080 HOST=0.0.0.0
 WORKDIR /app/src/apps/rbp-shopify-app/rod-builder-pro
 
 RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
@@ -39,5 +39,5 @@ COPY --from=builder /app /app
 EXPOSE 8080
 
 # On boot: apply migrations, then start server bound to 0.0.0.0:PORT
-CMD sh -lc 'pnpm exec prisma migrate deploy --schema ./prisma/schema.prisma && pnpm exec remix-serve ./build/server/index.js --host 0.0.0.0 --port ${PORT:-8080}'
+CMD sh -lc 'export PORT=${PORT:-8080}; pnpm exec prisma migrate deploy --schema ./prisma/schema.prisma && pnpm exec remix-serve ./build/server/index.js --host 0.0.0.0 --port ${PORT}'
 ## <!-- END RBP GENERATED: Fly-MinDocker -->
