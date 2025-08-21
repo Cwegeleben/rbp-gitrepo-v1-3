@@ -33,6 +33,10 @@ RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 # Copy built app + workspace files
 COPY --from=builder /app /app
 
+# Wire root config directory into app working dir so cfgDir resolves
+RUN rm -rf /app/src/apps/rbp-shopify-app/rod-builder-pro/config \
+	&& ln -s /app/config /app/src/apps/rbp-shopify-app/rod-builder-pro/config
+
 # Install production deps only (still no scripts)
 
 
