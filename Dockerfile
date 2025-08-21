@@ -13,7 +13,7 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY src/apps/rbp-shopify-app/rod-builder-pro/package.json src/apps/rbp-shopify-app/rod-builder-pro/
 
 # 2) Install without running postinstall scripts
-RUN pnpm -r install --frozen-lockfile --ignore-scripts --yes
+RUN pnpm -r install --frozen-lockfile --ignore-scripts
 
 # 3) Bring in the rest of the repo (incl. prisma/)
 COPY . .
@@ -34,7 +34,7 @@ RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 COPY --from=builder /app /app
 
 # Install production deps only (still no scripts)
-RUN pnpm install --prod --no-optional --frozen-lockfile --ignore-scripts --yes
+RUN pnpm install --prod --no-optional --frozen-lockfile --ignore-scripts
 
 EXPOSE 8080
 
