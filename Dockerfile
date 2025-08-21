@@ -34,7 +34,7 @@ RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 COPY --from=builder /app /app
 
 # Install production deps only (still no scripts)
-RUN pnpm install --prod --no-optional --frozen-lockfile --ignore-scripts
+
 
 EXPOSE 8080
 
