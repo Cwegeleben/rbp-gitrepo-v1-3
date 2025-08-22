@@ -26,6 +26,7 @@ const config: Config = {
     '^\\.\\./proxy/catalog\\.server$': '<rootDir>/src/test/mocks/catalog-server.ts',
     '^\\.\\./proxy/paths\\.server$': '<rootDir>/src/test/mocks/paths-server.ts',
     '^\\.\\./proxy/ranking\\.server$': '<rootDir>/src/test/mocks/ranking-server.ts',
+  '^\./paths\.server$': '<rootDir>/src/test/mocks/paths-server.ts',
     // If some routes import with two-dot segments:
     '^\\.\\.\\/\\.\\.\\/proxy/catalog\\.server$': '<rootDir>/src/test/mocks/catalog-server.ts',
     '^\\.\\.\\/\\.\\.\\/proxy/paths\\.server$': '<rootDir>/src/test/mocks/paths-server.ts',

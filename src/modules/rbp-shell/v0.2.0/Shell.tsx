@@ -40,7 +40,10 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
 
   useEffect(() => {
     // In this build, we assume data is ready when mounted from index.js
-    if (ctx && registry) setState({ view: "ready" });
+    if (registry) {
+      if (ctx && ctx.tenant && ctx.plan) setState({ view: "ready" });
+      else setState({ view: "error", error: new Error("ctx missing") });
+    }
   }, [ctx, registry]);
 
   const status = useMemo(() => ({
@@ -104,7 +107,7 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
             aria-label="Open Builder Panel"
           >Open Builder Panel</button>
         </div>
-        {state.view === 'error' && <ErrorBanner message="Failed to load context. Ensure the Theme Editor is using a signed HMAC URL." />}
+  {state.view === 'error' && <ErrorBanner message="Failed to load context. Ensure the Theme Editor is using a signed HMAC URL." />}
         {state.view === 'loading' && <LoadingBlock label="Loading storefront context…" />}
         {/* <!-- END RBP GENERATED: storefront-shell-v0-2 --> */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -112,7 +115,7 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
           <StatusPanel accessOk={status.accessOk} registryOk={status.registryOk} timestamp={status.at} />
         </div>
         {/* <!-- BEGIN RBP GENERATED: storefront-shell-v0-2 --> */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <ModuleList registry={registry} />
           <ActiveBuild />
         </div>
