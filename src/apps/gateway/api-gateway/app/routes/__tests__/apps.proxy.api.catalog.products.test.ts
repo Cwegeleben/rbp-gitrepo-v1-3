@@ -17,6 +17,11 @@ jest.mock("../proxy/ranking.server", () => ({
 }));
 
 describe("catalog products route", () => {
+  const OLD_ENV = { ...process.env } as any;
+  beforeAll(() => {
+    process.env = { ...process.env, RBP_PROXY_HMAC_BYPASS: "1" } as any;
+  });
+  afterAll(() => { process.env = OLD_ENV; });
   it("returns default list when no params", async () => {
     const mod = await import("../apps.proxy.api.catalog.products");
     const req = new Request("http://x/apps/proxy/api/catalog/products");

@@ -6,6 +6,9 @@
 // type-only import avoided for compat
 
 export async function loader({ request }: any) {
+  const { enforce } = await import("../proxy/verify.server");
+  const block = await enforce(request);
+  if (block) return block;
   const js = `
 (async function() {
   try {

@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 
 const config: Config = {
   preset: 'ts-jest/presets/default-esm',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'mjs', 'cjs', 'json'],
   transform: {
@@ -33,7 +33,12 @@ const config: Config = {
   },
   /* <!-- END RBP GENERATED: jest-config-mappers --> */
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testMatch: ['**/__tests__/**/*.test.ts', '**/__tests__/**/*.test.tsx'],
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2 --> */
+  // Ensure tests under src/**/__tests__ are discovered
+  testMatch: [
+    '<rootDir>/src/**/__tests__/**/*.{test,spec}.{ts,tsx}',
+  ],
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
   collectCoverageFrom: ['src/**/*.ts', '!**/node_modules/**', '!**/__tests__/**'],
 };
 export default config;

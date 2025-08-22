@@ -4,9 +4,11 @@ import { fetchInventoryLevels, fetchShopifyLocations, upsertInventoryLevels, ups
 // <!-- BEGIN RBP GENERATED: mode-a -->
 import { syncInventory } from "../../../../../packages/catalog/inventory/sync";
 // <!-- END RBP GENERATED: mode-a -->
-import { getTenantFromRequest } from "../proxy/verify.server";
+import { enforce, getTenantFromRequest } from "../proxy/verify.server";
 
 export const action = async ({ request }: { request: Request }) => {
+  const block = await enforce(request);
+  if (block) return block;
   if (request.method !== "POST") {
     return json({ ok: false, code: "METHOD_NOT_ALLOWED", message: "POST only" }, { status: 405, headers: { "content-type": "application/json", "cache-control": "no-store" } });
   }
@@ -23,5 +25,9 @@ export const action = async ({ request }: { request: Request }) => {
   }
 };
 
-export const loader = async () => json({ ok: false, code: "METHOD_NOT_ALLOWED" }, { status: 405 });
+export const loader = async ({ request }: { request: Request }) => {
+  const block = await enforce(request);
+  if (block) return block;
+  return json({ ok: false, code: "METHOD_NOT_ALLOWED" }, { status: 405 });
+};
 // <!-- END RBP GENERATED: inventory-sync -->

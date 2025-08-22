@@ -1,13 +1,15 @@
 import { json } from "@remix-run/node";
 // <!-- BEGIN RBP GENERATED: orders-commit-phase2 -->
-import { getTenantFromRequest } from "../proxy/verify.server";
+import { enforce, getTenantFromRequest } from "../proxy/verify.server";
 import { commitOrderForBuild } from "../../../../../packages/builds/commit";
 import { PrismaClient } from "@prisma/client";
 
 const prisma: any = new PrismaClient();
 
 export const action = async ({ request }: { request: Request }) => {
-  // Soft verification using existing tenant resolver; HMAC tighten later
+  const block = await enforce(request);
+  if (block) return block;
+  // Soft verification using existing tenant resolver; HMAC tightened via enforce()
   const { tenant } = getTenantFromRequest(request);
   try {
     const payload = await request.json();
@@ -35,7 +37,9 @@ export const action = async ({ request }: { request: Request }) => {
   }
 };
 
-export const loader = async () => {
+export const loader = async ({ request }: { request: Request }) => {
+  const block = await enforce(request);
+  if (block) return block;
   // <!-- BEGIN RBP GENERATED: no-store-headers -->
   return json({ ok: false, code: "METHOD_NOT_ALLOWED" }, { status: 405, headers: { "cache-control": "no-store" } });
   // <!-- END RBP GENERATED: no-store-headers -->

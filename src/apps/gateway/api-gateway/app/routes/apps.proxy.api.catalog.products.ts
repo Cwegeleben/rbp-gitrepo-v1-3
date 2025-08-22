@@ -1,7 +1,10 @@
 import { json } from "@remix-run/node";
+import { enforce } from "../proxy/verify.server";
 import { readCatalogJson } from "../proxy/catalog.server";
 import { loadRankingConfig, scoreProduct } from "../proxy/ranking.server";
 export const loader = async ({ request }: { request: Request }) => {
+	const block = await enforce(request);
+	if (block) return block;
 	// <!-- BEGIN RBP GENERATED: CatalogV2 -->
 	const url = new URL(request.url);
 	const qp = url.searchParams;

@@ -8,6 +8,9 @@ function makeArgs(url: string) { return { request: new Request(url) } as any; }
 async function jsonOf(r: any) { const txt = await r.text(); try { return JSON.parse(txt); } catch { throw new Error("Invalid JSON: "+txt); } }
 
 describe("Catalog v2", () => {
+  const OLD_ENV = { ...process.env } as any;
+  beforeAll(() => { process.env = { ...process.env, RBP_PROXY_HMAC_BYPASS: "1" } as any; });
+  afterAll(() => { process.env = OLD_ENV; });
   it("returns v1 array when no params provided", async () => {
   const res: any = await loader(makeArgs("http://localhost/apps/proxy/api/catalog/products"));
     const body = await jsonOf(res);
