@@ -1,4 +1,4 @@
-<!-- BEGIN RBP GENERATED -->
+<!-- BEGIN RBP GENERATED: structure -->
 # Project Structure
 
 ## Preflight
@@ -27,7 +27,9 @@ In strict mode, any WARN (⚠️) or ERROR (❌) will fail the script (exit code
 - **Ghost storefront theme path**: Remove or relocate `src/apps/storefront/rbp-theme` to the correct extension location
 
 Output is terse, one bullet per line. All checks passing yields only ✅ lines.
-<!-- BEGIN RBP GENERATED -->
-**Diagnostics:** `/apps/proxy/doctor` returns `{ ok, path, queryKeys, verified }` for quick proxy checks.  
+<!-- END RBP GENERATED: structure -->
+
+<!-- BEGIN RBP GENERATED: structure-diagnostics -->
+**Diagnostics:** `/apps/proxy/doctor` returns `{ ok, path, queryKeys, verified }` for quick proxy checks.
 HMAC is non-blocking here by design; harden the catch-all later.
-<!-- END RBP GENERATED -->
+<!-- END RBP GENERATED: structure-diagnostics -->
