@@ -12,7 +12,8 @@
     "db:migrate": "prisma migrate dev --name access_v2",
     "db:seed": "tsx src/apps/rbp-shopify-app/rod-builder-pro/prisma/seed.ts",
     "preflight:app-proxy": "tsx scripts/preflight/check-app-proxy.ts",
-    "proxy:sign": "tsx scripts/proxy/sign-url.ts /apps/proxy/ping",
+  "proxy:sign": "tsx scripts/proxy/sign-url.ts /apps/proxy/ping",
+  "proxy:sign:staging": "node -e \"(async()=>{const {execSync}=require('node:child_process');const path='/apps/proxy/ping';const signed=execSync('pnpm -s proxy:sign').toString().trim();const url='https://rbp-rod-builder-pro-staging.fly.dev'+signed;console.log(url);})();\"",
     "proxy:test": "node -e \"(async()=>{const {execSync}=require('node:child_process');const u=execSync('pnpm -s proxy:sign').toString().trim();console.log('[Signed]',u);console.log(execSync('curl -sS -w \\\"\\n[status:%{http_code}]\\\" '+u).toString().slice(0,1000));})();\"",
     "dev:shopify": "cross-env-shell PORT=${PORT:-51544} SHOPIFY_APP_URL=http://localhost:$PORT pnpm --filter ./src/apps/rbp-shopify-app/rod-builder-pro start",
     "dev:shopify-cli": "shopify app dev --path=src/apps/rbp-shopify-app/rod-builder-pro --store=rbp-dev.myshopify.com",
@@ -37,6 +38,14 @@
       "<!-- END RBP GENERATED: dev-scripts -->",
       "<!-- BEGIN RBP GENERATED: DevUX v1 -->",
       "<!-- END RBP GENERATED: DevUX v1 -->"
+    ],
+    "react-router-dom NavLink import fix": [
+      "<!-- BEGIN RBP GENERATED: react-router-dom NavLink import fix -->",
+      "<!-- END RBP GENERATED: react-router-dom NavLink import fix -->"
+    ],
+    "Fly staging proxy": [
+      "<!-- BEGIN RBP GENERATED: Fly staging proxy -->",
+      "<!-- END RBP GENERATED: Fly staging proxy -->"
     ]
   },
   "keywords": [],
@@ -81,7 +90,9 @@
       "@graphql-codegen/client-preset": "4.7.0",
       "@graphql-codegen/typescript-operations": "4.5.0",
       "minimatch": "9.0.5",
-      "vite": "^6.2.2"
+  "vite": "^6.2.2",
+  "react-router-dom": "^6.28.0",
+  "react-router": "^6.28.0"
     }
   }
 }

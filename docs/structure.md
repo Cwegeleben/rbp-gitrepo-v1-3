@@ -33,3 +33,20 @@ Output is terse, one bullet per line. All checks passing yields only ✅ lines.
 **Diagnostics:** `/apps/proxy/doctor` returns `{ ok, path, queryKeys, verified }` for quick proxy checks.
 HMAC is non-blocking here by design; harden the catch-all later.
 <!-- END RBP GENERATED: structure-diagnostics -->
+
+<!-- BEGIN RBP GENERATED: Fly staging proxy -->
+## Fly Staging Preview
+
+To preview the Remix app via Fly staging, the Shopify App Proxy must point to:
+
+- `https://rbp-rod-builder-pro-staging.fly.dev/apps/proxy`
+
+This value is configured in `src/apps/rbp-shopify-app/rod-builder-pro/shopify.app.toml` under `[app_proxy]`.
+
+- Strict preflight will fail if the configured proxy URL does not match the Fly URL above.
+- For CI or temporary exceptions, you may set `PREFLIGHT_EXPECTED_PROXY_URL=https://rbp-rod-builder-pro-staging.fly.dev/apps/proxy`.
+
+Verification endpoints:
+- `GET https://rbp-rod-builder-pro-staging.fly.dev/apps/proxy/ping`
+- `GET https://rbp-rod-builder-pro-staging.fly.dev/apps/proxy/api/access/ctx`
+<!-- END RBP GENERATED: Fly staging proxy -->
