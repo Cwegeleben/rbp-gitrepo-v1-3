@@ -5,6 +5,16 @@ import Tiles from "./components/Tiles";
 import StatusPanel from "./components/StatusPanel";
 import Skeleton from "./components/Skeleton";
 import ErrorBoundary from "./components/ErrorBoundary";
+/*
+<!-- BEGIN RBP GENERATED: storefront-shell-v0-2 -->
+*/
+import ModuleList from "./components/ModuleList";
+import ActiveBuild from "./components/ActiveBuild";
+import ErrorBanner from "./components/ErrorBanner";
+import LoadingBlock from "./components/LoadingBlock";
+/*
+<!-- END RBP GENERATED: storefront-shell-v0-2 -->
+*/
 
 type Ctx = {
   tenant: { domain: string };
@@ -71,24 +81,7 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
     }
   }
 
-  if (state.view === "loading") {
-    return <div aria-live="polite" aria-busy className="p-6"><Skeleton /></div>;
-  }
-
-  if (state.view === "error") {
-    return (
-      <div role="alert" aria-live="polite" className="p-6">
-        <div className="rounded-2xl shadow p-6 grid gap-4">
-          <h2 className="text-xl font-semibold">We couldn't load Rod Builder Pro</h2>
-          <p className="opacity-80">Try again in a moment. If the issue persists, contact support.</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="inline-flex items-center justify-center rounded-lg px-4 py-2 ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-offset-2"
-          >Retry</button>
-        </div>
-      </div>
-    );
-  }
+  // Always render visible chrome; show status blocks inline per view
 
   const tiles = [
     { id: "rbp-catalog", label: "Catalog" },
@@ -99,10 +92,28 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
     <ErrorBoundary>
       <div className="p-6 grid gap-6">
         <Header title="Rod Builder Pro" tenant={ctx?.tenant?.domain} plan={ctx?.plan} devTools={!!ctx?.flags?.showDevTools} />
+        {/* <!-- BEGIN RBP GENERATED: storefront-shell-v0-2 --> */}
+        <div className="flex items-center justify-between">
+          <div className="text-sm opacity-70" aria-live="polite">{state.view === 'loading' ? 'Fetching context…' : `Ready at ${status.at}`}</div>
+          <button
+            className="inline-flex items-center justify-center rounded-lg px-4 py-2 ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-offset-2"
+            onClick={() => { /* placeholder */ }}
+            aria-label="Open Builder Panel"
+          >Open Builder Panel</button>
+        </div>
+        {state.view === 'error' && <ErrorBanner message="Failed to load context. Ensure the Theme Editor is using a signed HMAC URL." />}
+        {state.view === 'loading' && <LoadingBlock label="Loading storefront context…" />}
+        {/* <!-- END RBP GENERATED: storefront-shell-v0-2 --> */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Tiles tiles={tiles} onClick={(id: "rbp-catalog" | "rbp-builds") => onTileClick(id)} isEnabled={(id: "rbp-catalog" | "rbp-builds") => !!resolveModuleUrl(id)} />
           <StatusPanel accessOk={status.accessOk} registryOk={status.registryOk} timestamp={status.at} />
         </div>
+        {/* <!-- BEGIN RBP GENERATED: storefront-shell-v0-2 --> */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <ModuleList registry={registry} />
+          <ActiveBuild />
+        </div>
+        {/* <!-- END RBP GENERATED: storefront-shell-v0-2 --> */}
         <div id="rbp-module-root" ref={moduleRootRef} className="min-h-[200px] rounded-2xl shadow p-4" />
       </div>
     </ErrorBoundary>

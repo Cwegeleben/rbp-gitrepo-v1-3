@@ -1,5 +1,5 @@
 // <!-- BEGIN RBP GENERATED: rbp-shell-mvp -->
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import Shell from "../Shell";
 
@@ -33,7 +33,7 @@ export const Loading: StoryObj<typeof Shell> = {
 };
 
 export const Ready: StoryObj<typeof Shell> = {
-  render: (args) => {
+  render: (args: React.ComponentProps<typeof Shell>) => {
     (globalThis as any).__rbp_mockImport = async (url: string) => ({ default: (root: HTMLElement) => { root.innerHTML = `<div class='p-4'>Loaded ${url}</div>`; } });
     return <Shell {...args} />;
   },
@@ -62,4 +62,36 @@ export const Empty: StoryObj<typeof Shell> = {
     initialView: "ready",
   },
 };
+/*
+<!-- BEGIN RBP GENERATED: storefront-shell-v0-2 -->
+*/
+export const Default: StoryObj<typeof Shell> = {
+  args: {
+    ctx,
+    registry: registryWithModules,
+    navigate: (p: string) => console.log("navigate", p),
+    initialView: "ready",
+  },
+};
+
+export const ErrorCtx: StoryObj<typeof Shell> = {
+  args: {
+    ctx: { ...ctx, tenant: { domain: "" } },
+    registry: {},
+    navigate: (p: string) => console.log("navigate", p),
+    initialView: "error",
+  },
+};
+
+export const EmptyActiveBuild: StoryObj<typeof Shell> = {
+  args: {
+    ctx,
+    registry: { modules: {} },
+    navigate: (p: string) => console.log("navigate", p),
+    initialView: "ready",
+  },
+};
+/*
+<!-- END RBP GENERATED: storefront-shell-v0-2 -->
+*/
 // <!-- END RBP GENERATED: rbp-shell-mvp -->

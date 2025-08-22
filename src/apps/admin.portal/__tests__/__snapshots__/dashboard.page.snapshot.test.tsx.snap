@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Dashboard snapshot renders stable UI 1`] = `
+<div>
+  <div
+    class="dashboard"
+  >
+    <div
+      style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;"
+    >
+      <div
+        style="display: flex; align-items: center; gap: 8px;"
+      >
+        <div
+          style="display: inline-flex; align-items: center; gap: 6px;"
+        >
+          <span
+            aria-label="Tenant snap.myshopify.com"
+            style="padding: 4px 8px; border-radius: 999px; background: rgb(238, 242, 255); color: rgb(30, 64, 175); font-weight: 600; font-size: 12px;"
+          >
+            snap.myshopify.com
+          </span>
+          <span
+            aria-label="Plan Pro"
+            style="padding: 2px 6px; border-radius: 6px; background: rgb(241, 245, 249); color: rgb(51, 65, 85); font-size: 11px; border: 1px solid rgb(226, 232, 240);"
+          >
+            Pro
+          </span>
+          <span
+            style="padding: 2px 6px; border-radius: 6px; background: rgb(255, 247, 237); color: rgb(154, 52, 18); font-size: 11px; border: 1px solid rgb(254, 215, 170);"
+            title="Developer tools enabled"
+          >
+            DEV
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="kpi-row"
+      style="margin-bottom: 12px;"
+    >
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;"
+      >
+        <div
+          class="kpi-tile"
+          data-tone="default"
+          style="border: 1px solid rgb(229, 229, 229); border-radius: 8px; padding: 12px; background: rgb(255, 255, 255);"
+        >
+          <div
+            class="kpi-label"
+            style="font-size: 12px; color: rgb(85, 85, 85);"
+          >
+            Builds
+          </div>
+          <div
+            class="kpi-value"
+            style="font-size: 22px; font-weight: 700; color: rgb(17, 17, 17);"
+          >
+            —
+          </div>
+        </div>
+        <div
+          class="kpi-tile"
+          data-tone="default"
+          style="border: 1px solid rgb(229, 229, 229); border-radius: 8px; padding: 12px; background: rgb(255, 255, 255);"
+        >
+          <div
+            class="kpi-label"
+            style="font-size: 12px; color: rgb(85, 85, 85);"
+          >
+            Catalog
+          </div>
+          <div
+            class="kpi-value"
+            style="font-size: 22px; font-weight: 700; color: rgb(17, 17, 17);"
+          >
+            —
+          </div>
+        </div>
+        <div
+          class="kpi-tile"
+          data-tone="red"
+          style="border: 1px solid rgb(229, 229, 229); border-radius: 8px; padding: 12px; background: rgb(255, 255, 255);"
+        >
+          <div
+            class="kpi-label"
+            style="font-size: 12px; color: rgb(85, 85, 85);"
+          >
+            Package
+          </div>
+          <div
+            class="kpi-value"
+            style="font-size: 22px; font-weight: 700; color: rgb(176, 0, 32);"
+          >
+            Error
+          </div>
+          <div
+            class="kpi-subtext"
+            style="font-size: 11px; color: rgb(102, 102, 102); margin-top: 2px;"
+          >
+            Error
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <section
+        aria-labelledby="packager-dry-run-title"
+        style="border: 1px solid rgb(229, 231, 235); border-radius: 8px; padding: 12px;"
+      >
+        <h3
+          id="packager-dry-run-title"
+          style="margin: 0px 0px 8px 0px;"
+        >
+          Dry-run packager
+        </h3>
+        <div
+          aria-live="polite"
+          role="status"
+          style="color: rgb(107, 114, 128);"
+        >
+          Running…
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+`;
