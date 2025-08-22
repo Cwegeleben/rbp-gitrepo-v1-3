@@ -26,3 +26,17 @@ export async function safeApiSend<T=any>(path: string, method: string, body?: an
 }
 // <!-- END RBP GENERATED: BuildsQoL -->
 // <!-- END RBP GENERATED: BuildsQoL -->
+// <!-- BEGIN RBP GENERATED: AccessV2 -->
+export type AccessCtx = {
+  tenant: { domain: string; plan: string } & Record<string, any>;
+  roles: string[];
+  features: Record<string, boolean>;
+  ts?: number;
+};
+
+export async function getCtx(): Promise<AccessCtx> {
+  return apiGet<AccessCtx>("/apps/proxy/api/access/ctx");
+}
+
+export { canAccess } from "./access";
+// <!-- END RBP GENERATED: AccessV2 -->

@@ -1,0 +1,10 @@
+{
+  "features": {
+    "catalog:view": true,
+    "builds:view": true,
+    "builds:edit": true,
+    "checkout:package": true,
+    "module:rbp-builds": true,
+    "module:rbp-catalog": true
+  }
+}

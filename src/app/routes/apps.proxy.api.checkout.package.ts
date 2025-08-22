@@ -4,8 +4,14 @@ import { PrismaClient } from "@prisma/client";
 import { json } from "@remix-run/node";
 import { readCatalogJson } from "~/proxy/catalog.server";
 import { dbg, dbe } from "../../apps/rbp-shopify-app/rod-builder-pro/app/utils/debug.server";
+// <!-- BEGIN RBP GENERATED: AccessV2 -->
+import { requireAccess } from "../../apps/gateway/api-gateway/app/proxy/requireAccess.server";
+// <!-- END RBP GENERATED: AccessV2 -->
 // <!-- BEGIN RBP GENERATED: package-phase1 -->
 import { buildCartPath, computeBOM, createSoftReservations, ensurePackagedSku, smartChoiceV1, upsertSourcingPlan } from "../../packages/builds/package/index";
+// <!-- BEGIN RBP GENERATED: jit-recheck-phase2 -->
+import { jitRecheckRbpAvailability } from "../../packages/builds/package/index";
+// <!-- END RBP GENERATED: jit-recheck-phase2 -->
 // <!-- END RBP GENERATED: package-phase1 -->
 
 const prisma = new PrismaClient();
@@ -26,9 +32,17 @@ async function getBuildId(req: Request) {
 }
 
 export async function loader({ request }: { request: Request }) {
+  // <!-- BEGIN RBP GENERATED: AccessV2 -->
+  const denied = await requireAccess(request, "checkout:package");
+  if (denied) return denied;
+  // <!-- END RBP GENERATED: AccessV2 -->
   return handlePack(request);
 }
 export async function action({ request }: { request: Request }) {
+  // <!-- BEGIN RBP GENERATED: AccessV2 -->
+  const denied = await requireAccess(request, "checkout:package");
+  if (denied) return denied;
+  // <!-- END RBP GENERATED: AccessV2 -->
   return handlePack(request);
 }
 
@@ -82,8 +96,14 @@ async function handlePack(request: Request) {
   const bom = await computeBOM(buildId);
     const bomHash = Buffer.from(JSON.stringify(bom)).toString("base64");
   const choice = await smartChoiceV1(bom);
-  const sp = await upsertSourcingPlan(buildId, choice.plan, "PLANNED");
-  const softReservationsFull = await createSoftReservations(buildId, choice.plan);
+  // <!-- BEGIN RBP GENERATED: jit-recheck-phase2 -->
+  // JIT live recheck of RBP availability before creating SOFT reservations
+  const { adjustedPlan, rbpOut } = await jitRecheckRbpAvailability(
+    choice.plan.map((p: any) => ({ ...p, variantId: undefined }))
+  );
+  const sp = await upsertSourcingPlan(buildId, adjustedPlan, "PLANNED");
+  const softReservationsFull = await createSoftReservations(buildId, adjustedPlan);
+  // <!-- END RBP GENERATED: jit-recheck-phase2 -->
   const softReservations = softReservationsFull.map((r: any) => ({ sku: r.sku, locationId: r.locationId, qty: r.qty, expiresAt: r.expiresAt }));
     const packagedSku = await ensurePackagedSku(buildId, bomHash);
     const upgradedCartPath = buildCartPath(packagedSku.variantId, 1);

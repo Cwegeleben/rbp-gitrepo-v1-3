@@ -3,9 +3,9 @@
  * <script src="{{ shop.url }}/apps/proxy/boot.js"></script>
  * Paste this into your theme file to load the bootstrap.
  */
-import { LoaderFunctionArgs } from "@remix-run/node";
+// type-only import avoided for compat
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: any) {
   const js = `
 (async function() {
   try {
@@ -38,9 +38,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
       console.error('[RBP_BOOT] malformed registry', registry);
       return;
     }
-    // Load modules
+    // Load modules (filtered by access features)
     for (const [name, info] of Object.entries(registry.modules)) {
       if (!info?.enabled) continue;
+  // <!-- BEGIN RBP GENERATED: AccessV2 -->
+  if (!ctx || !ctx.features || !ctx.features['module:' + name]) {
+        continue;
+      }
+      // <!-- END RBP GENERATED: AccessV2 -->
       const v = info.v;
       const moduleUrl = `/apps/proxy/modules/${name}/${v}/index.js`;
       try {

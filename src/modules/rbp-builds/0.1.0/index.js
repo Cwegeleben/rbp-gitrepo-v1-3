@@ -88,7 +88,15 @@ function renderPanel(build) {
   panel.querySelector('#rbp-build-summary').textContent = `Total items: ${total}`;
   // Package Build button and summary
   const pkgDiv = panel.querySelector('#rbp-build-package');
-  pkgDiv.innerHTML = `<button id="rbp-package-btn" style="margin-bottom:6px;">Package Build</button><div id="rbp-package-summary"></div>`;
+  pkgDiv.innerHTML = `<div id="rbp-package-summary"></div>`;
+  // <!-- BEGIN RBP GENERATED: AccessV2 -->
+  const canPackage = !!(ctx && ctx.features && ctx.features['checkout:package']);
+  // <!-- END RBP GENERATED: AccessV2 -->
+  if (canPackage) {
+    pkgDiv.innerHTML += `<button id="rbp-package-btn" style="margin-bottom:6px;">Package Build</button>`;
+  } else {
+    pkgDiv.innerHTML += `<div style='color:#888;font-size:12px;margin-bottom:6px;'>Checkout packaging disabled</div>`;
+  }
   const pkgBtn = pkgDiv.querySelector('#rbp-package-btn');
   const pkgSummary = pkgDiv.querySelector('#rbp-package-summary');
   let pkgJson = null;
@@ -163,7 +171,7 @@ async function refreshPanel() {
   renderPanel(build);
 }
 
-export default function init() {
+export default function init(ctx) {
   window.addEventListener("rbp:active-build", e => {
     activeBuildId = e.detail.id;
     refreshPanel();

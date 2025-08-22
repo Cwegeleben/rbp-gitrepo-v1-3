@@ -1,4 +1,4 @@
-// BEGIN RBP GENERATED
+// <!-- BEGIN RBP GENERATED: sign-proxy-url -->
 import crypto from "node:crypto";
 
 function usage() {
@@ -36,4 +36,4 @@ const url = params.toString()
   : `${rawPath}?signature=${signature}`;
 
 console.log(url);
-// END RBP GENERATED
+// <!-- END RBP GENERATED: sign-proxy-url -->

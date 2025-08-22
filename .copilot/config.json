@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schema.copilot.ide/config.v1.json",
+  "projectName": "Rod Builder Pro (RBP)",
+  "style": {
+    "typescript": {
+      "modules": "esm",
+      "imports": "named",
+      "strict": true
+    },
+    "comments": {
+      "requireJSDocOnPublic": true
+    }
+  },
+  "context": {
+    "include": [
+      "src/**",
+      "docs/**",
+      "shopify.app.toml",
+      "package.json",
+      "pnpm-workspace.yaml",
+      ".env.example",
+      ".env",
+      "README.md"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.shopify/*bundle*/**",
+      "**/.cache/**",
+      "**/.turbo/**",
+      "**/.next/**"
+    ],
+    "pin": [
+      "src/shared/sdk/**",
+      "src/apps/gateway/**",
+      "src/apps/**/app/routes/**",
+      "src/packages/**",
+      "src/modules/**",
+      "docs/adr/**",
+      "docs/structure.md",
+      "extensions/rbp-theme/**"
+    ]
+  },
+  "rules": [
+    "Never hard-code paths; import from src/apps/gateway/api-gateway/app/proxy/paths.server.ts (cfgDir/srcRoot/modulesDir).",
+    "All generated edits MUST be wrapped in sentinels: <!-- BEGIN RBP GENERATED: <slug> --> … <!-- END RBP GENERATED: <slug> -->.",
+    "Edits to existing files MUST be returned as a unified diff (git patch) when asked.",
+    "Breaking changes REQUIRE an ADR in docs/adr with migration notes.",
+    "Responses should keep scope to a single feature/module.",
+    "Prefer small, composable functions; avoid magic globals.",
+    "All API routes must set cache headers to no-store unless explicitly documented.",
+    "Do not import from .shopify/*bundle*; use source under extensions/**.",
+    "Use @rbp/sdk for shared types; if missing, add to src/shared/sdk and export.",
+    "Tenant enforcement is mandatory for Builds/Packager/App Proxy routes."
+  ],
+  "checklists": {
+    "route": [
+      "Verify HMAC (App Proxy) where required; /doctor may intentionally relax it.",
+      "Add no-store cache headers.",
+      "Accept only documented query params; validate and default safely.",
+      "Return stable JSON shapes; include version when appropriate."
+    ],
+    "module": [
+      "Register in modules registry (apps.rbp.modules.registry).",
+      "No hard-coded URLs; use store-relative paths.",
+      "Feature flag behind registry version if experimental."
+    ]
+  },
+  "sentinels": {
+    "begin": "<!-- BEGIN RBP GENERATED: ${slug} -->",
+    "end": "<!-- END RBP GENERATED: ${slug} -->"
+  },
+  "lint": {
+    "forbid": [
+      {"pattern": "from\\s+['\\\"]/.+['\\\"]", "message": "Use store-relative paths, not absolute."},
+      {"pattern": "process\\.env\\.[A-Z_]+\\s*\\|\\|\\s*['\\\"]/.*['\\\"]", "message": "Don’t bake runtime defaults in code—use config/paths or documented fallbacks."},
+  {"pattern": "\\.shopify\\/.+bundle", "message": "Do not import from .shopify/*bundle*; use source under extensions/**"}
+    ]
+  },
+  "tests": {
+    "framework": "jest",
+    "requirements": [
+      "If a route or SDK surface is added or changed, add/adjust at least 1 test.",
+      "Mock Shopify Admin and file reads; no network calls."
+    ]
+  }
+}

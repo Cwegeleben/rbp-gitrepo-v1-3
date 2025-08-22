@@ -109,4 +109,55 @@ export async function upsertSourcingPlan(buildId: string, plan: Array<{ sku: str
   });
   return rec;
 }
+// <!-- BEGIN RBP GENERATED: jit-recheck-phase2 -->
+// JIT live recheck (RBP-only): trim qty for RBP lines based on live Shopify availability
+export async function jitRecheckRbpAvailability(plan: Array<{ sku: string; variantId?: string; qty: number; locationId: string }>) {
+  // Placeholder baseline upgraded: if env is present and we can map to Shopify location, trim qtys to currently available
+  try {
+  const { getVariantInventoryItemId, getAvailableAtLocation } = await import("../../shopify/admin");
+    const prismaLocal: any = prisma;
+    const adjusted: typeof plan = [];
+    const rbpOut: Array<{ sku: string; qty: number }> = [];
+    for (const ln of plan) {
+      // Look up location; only apply to RBP kind with shopifyLocationId
+      const loc = await prismaLocal.inventoryLocation.findUnique({ where: { id: ln.locationId } });
+      if (!loc || loc.kind !== "RBP" || !loc.shopifyLocationId) { adjusted.push(ln); continue; }
+
+      // Resolve inventoryItemId via variantId or SKU
+      const variantRef: any = ln.variantId ? { variantId: ln.variantId } : { sku: ln.sku };
+      const vi = await getVariantInventoryItemId(variantRef as any);
+      if (!vi?.ok) { adjusted.push(ln); continue; }
+      const iv = await getAvailableAtLocation((vi as any).data.inventoryItemId, loc.shopifyLocationId);
+      if (!iv?.ok) { adjusted.push(ln); continue; }
+
+      const available = Math.max(0, Number((iv as any).data.available ?? 0));
+      if (available <= 0) {
+        // No stock: push to supplier if present in our plan's ecosystem by swapping location to SUPPLIER fallback
+        const supplier = await prismaLocal.inventoryLocation.findFirst({ where: { name: "SUPPLIER" } });
+        if (supplier) {
+          adjusted.push({ ...ln, locationId: supplier.id });
+          rbpOut.push({ sku: ln.sku, qty: ln.qty });
+        } else {
+          adjusted.push(ln);
+        }
+      } else if (available < ln.qty) {
+        // Partial: trim to available and leave remainder to supplier if found
+        adjusted.push({ ...ln, qty: available });
+        const remainder = ln.qty - available;
+        const supplier = await prismaLocal.inventoryLocation.findFirst({ where: { name: "SUPPLIER" } });
+        if (supplier && remainder > 0) {
+          adjusted.push({ sku: ln.sku, qty: remainder, locationId: supplier.id });
+        }
+        rbpOut.push({ sku: ln.sku, qty: remainder });
+      } else {
+        adjusted.push(ln);
+      }
+    }
+    return { adjustedPlan: adjusted, rbpOut };
+  } catch {
+    const rbpOut: Array<{ sku: string; qty: number }> = [];
+    return { adjustedPlan: plan, rbpOut };
+  }
+}
+// <!-- END RBP GENERATED: jit-recheck-phase2 -->
 // <!-- END RBP GENERATED: package-phase1 -->

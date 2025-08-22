@@ -174,6 +174,9 @@ export default async function init(ctx) {
               products.forEach(p => {
                 const btn = list.querySelector(`button[data-add='${p.id}']`);
                 if (btn) {
+                  // <!-- BEGIN RBP GENERATED: AccessV2 -->
+                  if (!(ctx && ctx.features && ctx.features['builds:edit'])) { btn.disabled = true; btn.title = 'Requires builds:edit'; }
+                  // <!-- END RBP GENERATED: AccessV2 -->
                   btn.onclick = () => addProductToActiveBuild(p, btn);
                 }
               });
@@ -203,6 +206,9 @@ export default async function init(ctx) {
         results.forEach(p => {
           const btn = list.querySelector(`button[data-add='${p.id}']`);
           if (btn) {
+            // <!-- BEGIN RBP GENERATED: AccessV2 -->
+            if (!(ctx && ctx.features && ctx.features['builds:edit'])) { btn.disabled = true; btn.title = 'Requires builds:edit'; }
+            // <!-- END RBP GENERATED: AccessV2 -->
             btn.onclick = () => addProductToActiveBuild(p, btn);
           }
         });
