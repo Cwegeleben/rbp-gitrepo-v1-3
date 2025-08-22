@@ -1,0 +1,200 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run packager v2 tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run packager v2 tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run packager v2 tests after module mapping fix",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run tests again after simplifying mocks",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run tests after mapper tweak",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run tests after adding explicit mocks",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run tests after mapper path correction",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run tests after removing bad mock",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run packager v2 tests with admin bypass",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run packager v2 tests after adjusting mock paths",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run packager v2 tests after access mocks",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run tests after adding builds package mapping",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Final run of packager v2 tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"packager.v2.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}

@@ -13,6 +13,12 @@ import { buildCartPath, computeBOM, createSoftReservations, ensurePackagedSku, s
 import { jitRecheckRbpAvailability } from "../../packages/builds/package/index";
 // <!-- END RBP GENERATED: jit-recheck-phase2 -->
 // <!-- END RBP GENERATED: package-phase1 -->
+/* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+import { getPlannedLinesForOrder, resolveVariantIdsWithHints, type PlannedLine } from "../../apps/gateway/api-gateway/app/proxy/packager/plan.server";
+import { calcTotals } from "../../apps/gateway/api-gateway/app/proxy/packager/totals.server";
+import { getCorrelationId } from "../../apps/gateway/api-gateway/app/proxy/logger.server";
+import { logPackager } from "../../apps/gateway/api-gateway/app/proxy/logger.server";
+/* <!-- END RBP GENERATED: packager-v2 --> */
 
 const prisma = new PrismaClient();
 const HEADERS = { "content-type": "application/json", "cache-control": "no-store" } as const;
@@ -46,13 +52,18 @@ export async function action({ request }: { request: Request }) {
   return handlePack(request);
 }
 
-async function handlePack(request: Request) {
+export async function handlePack(request: Request) {
   try {
     dbg("packager:start", { url: request.url, method: request.method });
+    /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+    const correlationId = getCorrelationId(request);
+    /* <!-- END RBP GENERATED: packager-v2 --> */
     const buildId = await getBuildId(request);
     dbg("packager:buildId", buildId);
     if (!buildId) {
-      return json({ error: "BAD_REQUEST", message: "buildId required" }, { status: 400, headers: HEADERS });
+      /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+      return json({ ok: false, code: "BAD_REQUEST", message: "buildId required" }, { status: 400, headers: HEADERS });
+      /* <!-- END RBP GENERATED: packager-v2 --> */
     }
 
     const build = await prisma.build.findUnique({
@@ -61,7 +72,9 @@ async function handlePack(request: Request) {
     });
     if (!build) {
       dbg("packager:not_found", { buildId });
-      return json({ error: "NOT_FOUND", message: "build not found" }, { status: 404, headers: HEADERS });
+      /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+      return json({ ok: false, code: "NOT_FOUND", message: "build not found" }, { status: 404, headers: HEADERS });
+      /* <!-- END RBP GENERATED: packager-v2 --> */
     }
     dbg("packager:build_loaded", { id: build.id, tenant: build.tenant, items: build.items?.length ?? 0 });
 
@@ -69,15 +82,16 @@ async function handlePack(request: Request) {
     let catalog: any = null;
     try { catalog = await readCatalogJson(); } catch {}
 
-  const normItems: Array<{ productId: string | null; title: string; quantity: number; variantId?: string }> = (build.items ?? []).map((it: any) => {
+  const normItems: Array<{ productId: string | null; title: string; quantity: number; variantId?: string; price?: number }> = (build.items ?? []).map((it: any) => {
       const qty = Math.max(1, Math.min(999, Number(it.quantity ?? 1)));
       const title = (it as any).label ?? (it as any).productId ?? "Item";
+      const price = typeof (it as any).price === 'number' ? (it as any).price : undefined;
       let variantId: string | undefined;
       if (catalog && it.productId) {
         const p = (catalog.products || catalog || []).find((x: any) => x.id === it.productId || x.handle === it.productId);
         if (p?.variantId) variantId = String(p.variantId);
       }
-      return { productId: it.productId ?? null, title: String(title), quantity: qty, ...(variantId ? { variantId } : {}) };
+      return { productId: it.productId ?? null, title: String(title), quantity: qty, ...(variantId ? { variantId } : {}), ...(price != null ? { price } : {}) };
     });
   const withVariants = normItems.filter((i) => "variantId" in i).length;
     dbg("packager:normalized", { total: normItems.length, withVariants });
@@ -120,11 +134,41 @@ async function handlePack(request: Request) {
   sourcingPlanId: sp?.id ?? null,
       softReservations,
       // <!-- END RBP GENERATED: package-phase1 -->
+      /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+      ok: true as const,
+      // planning lines + hints
+      lines: [] as Array<{ sku?: string; variantId?: string; qty: number; source: "RBP" | "SUPPLIER" | "TENANT"; locationId?: string }> | undefined,
+      meta: undefined as any,
+      hints: [] as Array<{ type: string; [k: string]: any }>,
+      correlationId,
+      /* <!-- END RBP GENERATED: packager-v2 --> */
     } as any;
+
+    /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+    // Build planning lines from stored sourcing plan (preferred) or BOM
+    let planned: PlannedLine[] = [];
+    try {
+      planned = await getPlannedLinesForOrder(build.tenant, buildId, sp?.id ?? undefined, correlationId);
+    } catch {}
+    if (!planned.length) {
+      planned = bom.map((b: any) => ({ sku: b.sku, qty: b.qty, source: "RBP" as const }));
+    }
+    const { lines, hints } = await resolveVariantIdsWithHints(planned);
+    payload.lines = lines;
+
+    // Totals from item prices when present
+    const totalsRes = calcTotals(normItems.map((i) => ({ qty: i.quantity, price: (i as any).price })) as any);
+  payload.meta = { totals: totalsRes.totals };
+  payload.hints = [...hints, ...totalsRes.hints];
+  logPackager('info', 'packager.v2 packaged', { correlationId, lineCount: payload.lines?.length ?? 0, hintCount: payload.hints?.length ?? 0 });
+    /* correlation logging will be handled by gateway logger consumer */
+    /* <!-- END RBP GENERATED: packager-v2 --> */
 
     return json(payload, { headers: HEADERS });
   } catch (e: any) {
     dbe("packager:error", e?.message);
-    return json({ error: "INTERNAL", message: e?.message ?? "unexpected" }, { status: 500, headers: HEADERS });
+    /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+    return json({ ok: false, code: "INTERNAL", message: e?.message ?? "unexpected" }, { status: 500, headers: HEADERS });
+    /* <!-- END RBP GENERATED: packager-v2 --> */
   }
 }

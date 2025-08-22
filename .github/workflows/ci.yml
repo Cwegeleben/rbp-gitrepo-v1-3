@@ -1,0 +1,57 @@
+# <!-- BEGIN RBP GENERATED: ci-admin-tests-smoke -->
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  test:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+      - name: Run admin tests (if defined)
+        run: |
+          if pnpm -s run | grep -q "test:admin"; then pnpm -s test:admin; else echo "no test:admin"; fi
+      - name: Run all tests
+        run: pnpm -s test
+
+  smoke_admin_mock:
+    name: smoke_admin_mock
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+      - name: Mocked Admin Smoke
+        env:
+          RBP_ADMIN_BASE_URL: http://localhost:5173
+          RBP_PROXY_HMAC_BYPASS: 1
+          RBP_SMOKE_ADMIN_MOCK: 1
+        run: pnpm -s smoke:admin
+# <!-- END RBP GENERATED: ci-admin-tests-smoke -->

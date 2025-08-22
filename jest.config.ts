@@ -30,6 +30,17 @@ const config: Config = {
     '^\\.\\.\\/\\.\\.\\/proxy/catalog\\.server$': '<rootDir>/src/test/mocks/catalog-server.ts',
     '^\\.\\.\\/\\.\\.\\/proxy/paths\\.server$': '<rootDir>/src/test/mocks/paths-server.ts',
     '^\\.\\.\\/\\.\\.\\/proxy/ranking\\.server$': '<rootDir>/src/test/mocks/ranking-server.ts',
+  // Packager v2: tilde alias used by /src/app/routes
+  '^~\/proxy\/catalog\.server$': '<rootDir>/src/test/mocks/catalog-server.ts',
+  // Packager v2: route deps (from src/app/routes → deep relative back to gateway app)
+  '^\.\.\/\.\.\/apps\/gateway\/api-gateway\/app\/proxy\/requireAccess\.server$': '<rootDir>/src/test/mocks/requireAccess.server.ts',
+  '^\.\.\/\.\.\/apps\/gateway\/api-gateway\/app\/proxy\/packager\/plan\.server$': '<rootDir>/src/apps/gateway/api-gateway/app/proxy/packager/plan.server.ts',
+  '^\.\.\/\.\.\/apps\/gateway\/api-gateway\/app\/proxy\/packager\/totals\.server$': '<rootDir>/src/apps/gateway/api-gateway/app/proxy/packager/totals.server.ts',
+    '^\.\.\/\.\.\/packages\/builds\/package\/index$': '<rootDir>/src/test/mocks/builds-package-index.ts',
+    /* <!-- BEGIN RBP GENERATED: tenant-admin-devtools --> */
+    '^@shopify/polaris/build/esm/styles\\.css\\?url$': '<rootDir>/src/test/mocks/style-url.ts',
+    '.*\\.css\\?url$': '<rootDir>/src/test/mocks/style-url.ts',
+    /* <!-- END RBP GENERATED: tenant-admin-devtools --> */
   },
   /* <!-- END RBP GENERATED: jest-config-mappers --> */
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],

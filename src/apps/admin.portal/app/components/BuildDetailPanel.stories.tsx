@@ -39,4 +39,29 @@ export const NotFound404: Story = {
   </WrapWithReadonly>
   )
 };
+/* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */
+export const PreviewOk: Story = {
+  render: () => (
+    <WrapWithReadonly readonlyFlag={true}>
+      <BuildDetailPanel onClose={() => {}} loading={false} error={null} detail={{ id: 'b2', title: 'Build B2', createdAt: '2025-08-20', items: [{ type: 'part', name: 'Blank', qty: 1 }], meta: { totals: { subtotal: 10, estTax: 0.8, total: 10.8, currency: 'USD' } } }} />
+    </WrapWithReadonly>
+  )
+};
+
+export const PreviewWithHints: Story = {
+  render: () => (
+    <WrapWithReadonly readonlyFlag={true}>
+      <BuildDetailPanel onClose={() => {}} loading={false} error={null} detail={{ id: 'b3', title: 'Build B3', createdAt: '2025-08-20', items: [{ type: 'part', name: 'Blank', qty: 1 }], hints: [{ type: 'MISSING_VARIANT', sku: 'SKU-1', message: 'Map SKU' }, { type: 'NO_PRICE', sku: 'SKU-2', message: 'Add price' }] }} />
+    </WrapWithReadonly>
+  )
+};
+
+export const PreviewError: Story = {
+  render: () => (
+    <WrapWithReadonly readonlyFlag={true}>
+      <BuildDetailPanel onClose={() => {}} loading={false} error={'Error loading preview'} />
+    </WrapWithReadonly>
+  )
+};
+/* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */
 /* <!-- END RBP GENERATED: tenant-admin-storybook --> */

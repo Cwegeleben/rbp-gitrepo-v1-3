@@ -11,6 +11,20 @@ export const ui = {
     copy: "Copy",
     copied: "Copied!",
   },
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */
+  dashboard: {
+    kpis: {
+      builds: 'Builds',
+      catalog: 'Catalog',
+      pkg: 'Package',
+    },
+    package: {
+      ok: 'OK',
+      hints: (n: number) => `${n} hint${n === 1 ? '' : 's'}`,
+      error: 'Error',
+    },
+  },
+  /* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */
   catalog: {
     title: "Catalog",
     searchPlaceholder: "Search",
@@ -51,6 +65,23 @@ export const ui = {
     moveDown: "Move down",
     saved: "Saved",
     saveFailed: "Save failed. Reverted.",
+  /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+  packageSummary: "Package Summary",
+  subtotal: "Subtotal",
+  estTax: "Est. tax",
+  total: "Total",
+  missingVariantHint: "Some items are missing variants:",
+  /* <!-- END RBP GENERATED: packager-v2 --> */
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */
+    preview: {
+      title: 'Preview package',
+      load: 'Loading preview…',
+      loaded: 'Loaded preview',
+      hintsTitle: 'Hints',
+      error: 'Error loading preview',
+      button: 'Preview package',
+    },
+  /* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */
   /* <!-- END RBP GENERATED: tenant-admin-builds-qol --> */
   },
   settings: {

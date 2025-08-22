@@ -2,6 +2,10 @@
 [![Preflight](https://github.com/Cwegeleben/rbp-gitrepo-v1-3/actions/workflows/preflight.yml/badge.svg)](https://github.com/Cwegeleben/rbp-gitrepo-v1-3/actions/workflows/preflight.yml)
 <!-- END RBP GENERATED: preflight-badge -->
 
+<!-- BEGIN RBP GENERATED: ci-admin-tests-smoke -->
+[![CI - tests](https://github.com/Cwegeleben/rbp-gitrepo-v1-3/actions/workflows/ci.yml/badge.svg?event=pull_request)](https://github.com/Cwegeleben/rbp-gitrepo-v1-3/actions/workflows/ci.yml)
+<!-- END RBP GENERATED: ci-admin-tests-smoke -->
+
 <!-- BEGIN RBP GENERATED: Fly-Deploy-Fix -->
 ## Fly Deploy Quickstart
 ```bash

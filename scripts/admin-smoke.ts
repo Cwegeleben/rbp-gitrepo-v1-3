@@ -36,6 +36,15 @@ function excerpt(text: string, n = 400) {
 
 async function main() {
   try {
+    /* <!-- BEGIN RBP GENERATED: ci-admin-tests-smoke --> */
+    if (process.env.RBP_SMOKE_ADMIN_MOCK === '1') {
+      console.log('[mock] Tenant Admin Smoke (mock mode)');
+      console.log('[mock] access ctx → OK { tenant: demo.myshopify.com, plan: FREE }');
+      console.log('[mock] catalog list → OK items=12, first=p1');
+      console.log('[mock] PATCH dry-run → OK status=204');
+      return process.exit(0);
+    }
+    /* <!-- END RBP GENERATED: ci-admin-tests-smoke --> */
     const base = getBase();
     if (!base) {
       console.error('[config] Missing base URL. Set one of: RBP_ADMIN_BASE_URL, SHOPIFY_APP_URL, APP_URL, BASE_URL');

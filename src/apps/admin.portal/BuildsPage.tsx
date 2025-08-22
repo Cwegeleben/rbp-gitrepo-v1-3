@@ -14,6 +14,9 @@ import { ui } from "./uiStrings";
 import { ConfirmDialog } from './app/components/ConfirmDialog';
 import { createBuildsApi as createBuildsApiLib } from './app/lib/createBuildsApi';
 /* <!-- END RBP GENERATED: tenant-admin-builds-qol --> */
+/* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */
+import { createPackagerApi } from './app/lib/createPackagerApi';
+/* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */
 
 export type BuildListItem = {
   id: string;
@@ -27,6 +30,10 @@ export type BuildDetail = {
   title?: string;
   createdAt?: string;
   items?: Array<{ type?: string; name?: string; qty?: number }>;
+  /* <!-- BEGIN RBP GENERATED: packager-v2 --> */
+  hints?: Array<{ type: string; sku?: string; message?: string }>;
+  meta?: { totals?: { subtotal: number; estTax?: number; total: number; currency: 'USD' } };
+  /* <!-- END RBP GENERATED: packager-v2 --> */
 };
 
 type BuildsListResponse = {
@@ -148,16 +155,55 @@ export const BuildDetailPanel: React.FC<{
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [onClose]);
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */
+  const previewBtnRef = useRef<HTMLButtonElement | null>(null);
+  const previewHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [previewErr, setPreviewErr] = useState<string | null>(null);
+  const [previewData, setPreviewData] = useState<{ meta?: any; hints?: Array<{ type: string; message?: string; sku?: string }>; ok?: boolean; lines?: Array<{ title?: string; vendor?: string; qty?: number; priceBand?: string; sku?: string }> } | null>(null);
+  const [previewLive, setPreviewLive] = useState('');
+  async function runPreview() {
+    setPreviewOpen(true);
+    setPreviewLoading(true);
+    setPreviewErr(null);
+    setPreviewData(null);
+    setPreviewLive(ui.builds.preview.load);
+    try {
+      const api = createPackagerApi();
+  const res = await api.packageDryRun({ buildId: id });
+  setPreviewData({ meta: res.meta, hints: res.hints || [], ok: res.ok, lines: (res as any).lines });
+      setPreviewLive(res.ok ? ui.builds.preview.loaded : ui.builds.preview.error);
+      // move focus to section heading when opened
+      setTimeout(() => previewHeadingRef.current?.focus(), 0);
+    } catch {
+      setPreviewErr(ui.builds.preview.error);
+      setPreviewLive(ui.builds.preview.error);
+    } finally {
+      setPreviewLoading(false);
+    }
+  }
+  /* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */
   return (
     <aside aria-labelledby="build-panel-title" style={{ width: 360, borderLeft: "1px solid #eee", padding: 16 }}>
       <div ref={panelRef}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h3 id="build-panel-title" style={{ margin: 0 }}>{ui.builds.detailTitle}</h3>
-          <button onClick={onClose} aria-label={ui.common.close}>{ui.common.close}</button>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {/* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */}
+            <button ref={previewBtnRef} onClick={runPreview}>{ui.builds.preview.button}</button>
+            {/* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */}
+            <button onClick={onClose} aria-label={ui.common.close}>{ui.common.close}</button>
+          </div>
         </div>
         <div role="status" aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px, 1px, 1px, 1px)' }}>
           {loading ? ui.common.loading : statusMsg}
         </div>
+        {/* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */}
+        <div role="status" aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px, 1px, 1px, 1px)' }}>
+          {previewLive}
+        </div>
+        {/* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */}
         {loading && <LoadingSkeleton rows={6} />}
         {error && <ErrorState message={error} />}
         {!loading && !error && detail && (
@@ -247,6 +293,85 @@ export const BuildDetailPanel: React.FC<{
               </div>
             )}
             {/* <!-- END RBP GENERATED: tenant-admin-builds-qol --> */}
+            {/* <!-- BEGIN RBP GENERATED: packager-v2 --> */}
+            {Array.isArray(detail.hints) && detail.hints.length > 0 && (
+              <div style={{ marginTop: 12, padding: 8, border: '1px solid #eee', background: '#fafafa' }}>
+                <div style={{ fontWeight: 600, marginBottom: 4 }}>{ui.builds.missingVariantHint}</div>
+                <ul style={{ margin: 0, paddingLeft: 16 }}>
+                  {detail.hints.filter(h => h.type === 'MISSING_VARIANT').map((h, i) => (
+                    <li key={i}>{h.sku || h.message}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {detail.meta?.totals && (
+              <div style={{ marginTop: 12, padding: 8, borderTop: '1px solid #eee' }}>
+                <div style={{ fontWeight: 600 }}>{ui.builds.packageSummary}</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 4, marginTop: 6 }}>
+                  <div>{ui.builds.subtotal}</div>
+                  <div>${detail.meta.totals.subtotal.toFixed(2)}</div>
+                  <div>{ui.builds.estTax}</div>
+                  <div>{detail.meta.totals.estTax != null ? `$${detail.meta.totals.estTax.toFixed(2)}` : '—'}</div>
+                  <div>{ui.builds.total}</div>
+                  <div>${detail.meta.totals.total.toFixed(2)}</div>
+                </div>
+              </div>
+            )}
+            {/* <!-- END RBP GENERATED: packager-v2 --> */}
+            {/* <!-- BEGIN RBP GENERATED: tenant-admin-ui-visibility --> */}
+            {previewOpen && (
+              <section style={{ marginTop: 12 }} aria-labelledby="preview-title">
+                <h4 id="preview-title" ref={previewHeadingRef} tabIndex={-1} style={{ margin: '6px 0' }}>{ui.builds.preview.title}</h4>
+                {previewLoading && <LoadingSkeleton rows={3} />}
+                {previewErr && <div role="alert" style={{ color: 'crimson' }}>{previewErr}</div>}
+                {!previewLoading && !previewErr && previewData && (
+                  <div>
+                    {Array.isArray(previewData.lines) && previewData.lines.length > 0 && (
+                      <div style={{ marginBottom: 8 }}>
+                        <div style={{ fontWeight: 600, marginBottom: 4 }}>Items</div>
+                        <ul style={{ margin: 0, paddingLeft: 16 }}>
+                          {previewData.lines.map((ln, i) => (
+                            <li key={i}>
+                              {(ln.title || ln.sku || 'Item')}
+                              {ln.vendor ? ` — ${ln.vendor}` : ''}
+                              {ln.qty != null ? ` × ${ln.qty}` : ''}
+                              {ln.priceBand ? ` [${ln.priceBand}]` : ''}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {previewData.meta?.totals && (
+                      <div style={{ marginBottom: 8 }}>
+                        <div style={{ fontWeight: 600 }}>{ui.builds.packageSummary}</div>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 4, marginTop: 6 }}>
+                          <div>{ui.builds.subtotal}</div>
+                          <div>${previewData.meta.totals.subtotal.toFixed(2)}</div>
+                          <div>{ui.builds.estTax}</div>
+                          <div>{previewData.meta.totals.estTax != null ? `$${previewData.meta.totals.estTax.toFixed(2)}` : '—'}</div>
+                          <div>{ui.builds.total}</div>
+                          <div>${previewData.meta.totals.total.toFixed(2)}</div>
+                        </div>
+                      </div>
+                    )}
+                    {Array.isArray(previewData.hints) && previewData.hints.length > 0 && (
+                      <div style={{ padding: 8, border: '1px solid #eee', background: '#fafafa' }}>
+                        <div style={{ fontWeight: 600, marginBottom: 4 }}>{ui.builds.preview.hintsTitle}</div>
+                        <ul style={{ margin: 0, paddingLeft: 16 }}>
+                          {previewData.hints!.map((h, i) => (
+                            <li key={i}>{h.type}{h.sku ? `: ${h.sku}` : ''}{h.message ? ` — ${h.message}` : ''}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div style={{ marginTop: 8 }}>
+                  <button onClick={() => { setPreviewOpen(false); setPreviewErr(null); setPreviewData(null); setPreviewLive(''); setTimeout(() => previewBtnRef.current?.focus(), 0); }}>{ui.common.close}</button>
+                </div>
+              </section>
+            )}
+            {/* <!-- END RBP GENERATED: tenant-admin-ui-visibility --> */}
           </div>
         )}
       </div>
