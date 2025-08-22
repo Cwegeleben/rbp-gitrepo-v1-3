@@ -1,5 +1,5 @@
 /* <!-- BEGIN RBP GENERATED: tenant-admin-storybook --> */
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 
 export const globalTypes = {
   buildsReadonly: {

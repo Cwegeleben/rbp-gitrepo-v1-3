@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { BuildDetailPanel } from '../BuildsPage';
 /* <!-- BEGIN RBP GENERATED: tenant-admin-builds-qol --> */
 const baseDetail = { id: 'b1', title: 'Build B1', createdAt: '2025-08-20', items: [

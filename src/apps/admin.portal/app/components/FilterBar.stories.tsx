@@ -1,6 +1,6 @@
 /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2 --> */
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter, useSearchParams } from 'react-router-dom';
 import { FilterBar } from '../../CatalogPage';
 

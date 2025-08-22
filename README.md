@@ -1,3 +1,21 @@
+<!-- BEGIN RBP GENERATED: rbp-shell-mvp -->
+## How to Preview the Shell
+
+1) Seed tenant and start dev
+
+```bash
+pnpm dev:up
+```
+
+2) In Shopify Theme Editor, add the RBP block to a page.
+
+3) Open the page. You should see loading skeletons, then the Shell with header, tiles, and status.
+
+4) Click Catalog or Builds to load modules into the module area without a full reload.
+
+Troubleshooting: Toggle the API off to verify error + retry. The shell fetches `/apps/rbp/api/access/ctx` and `/apps/proxy/modules/registry.json`.
+<!-- END RBP GENERATED: rbp-shell-mvp -->
+
 <!-- BEGIN RBP GENERATED: preflight-badge -->
 [![Preflight](https://github.com/Cwegeleben/rbp-gitrepo-v1-3/actions/workflows/preflight.yml/badge.svg)](https://github.com/Cwegeleben/rbp-gitrepo-v1-3/actions/workflows/preflight.yml)
 <!-- END RBP GENERATED: preflight-badge -->

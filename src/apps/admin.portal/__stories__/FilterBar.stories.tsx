@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FilterBar } from '../CatalogPage';
 
 const meta: Meta<typeof FilterBar> = {

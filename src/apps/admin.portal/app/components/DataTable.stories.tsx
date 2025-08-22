@@ -1,6 +1,6 @@
 /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DataTable } from './DataTable';
 
 const meta: Meta<typeof DataTable> = {
