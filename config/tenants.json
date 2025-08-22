@@ -4,5 +4,17 @@
     "plan": "dev",
     "features": ["catalog:view", "builds:view", "checkout:package", "module:rbp-catalog", "module:rbp-builds"],
     "vendors": []
+  },
+  {
+    "domain": "rbp-dev.myshopify.com",
+    "plan": "dev",
+    "features": [
+      "catalog:view",
+      "builds:view",
+      "checkout:package",
+      "module:rbp-catalog",
+      "module:rbp-builds"
+    ],
+    "vendors": []
   }
 ]

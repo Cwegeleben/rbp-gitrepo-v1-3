@@ -6,5 +6,6 @@
     "checkout:package": true,
     "module:rbp-builds": true,
     "module:rbp-catalog": true
-  }
+  },
+  "showDevTools": true
 }
