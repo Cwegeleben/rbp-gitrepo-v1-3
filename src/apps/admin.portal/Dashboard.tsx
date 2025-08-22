@@ -12,6 +12,9 @@ import { DashboardKPIs } from './app/components/DashboardKPIs';
 import { TenantBadge } from './app/components/TenantBadge';
 import { PackagerDryRunPanel } from './app/components/PackagerDryRunPanel';
 /* <!-- END RBP GENERATED: tenant-admin-dashboard-v1 --> */
+/* <!-- BEGIN RBP GENERATED: dev-debug-panel-v1 --> */
+import { DevDebugPanel } from './app/components/DevDebugPanel';
+/* <!-- END RBP GENERATED: dev-debug-panel-v1 --> */
 
 export const Dashboard: React.FC = () => {
   const ctx = useContext(TenantContext);
@@ -33,6 +36,13 @@ export const Dashboard: React.FC = () => {
         <PackagerDryRunPanel />
       </div>
       {/* <!-- END RBP GENERATED: tenant-admin-dashboard-v1 --> */}
+      {/* <!-- BEGIN RBP GENERATED: dev-debug-panel-v1 --> */}
+      {ctx?.flags?.showDevTools ? (
+        <div style={{ marginTop: 16 }}>
+          <DevDebugPanel />
+        </div>
+      ) : null}
+      {/* <!-- END RBP GENERATED: dev-debug-panel-v1 --> */}
     </div>
   );
 };

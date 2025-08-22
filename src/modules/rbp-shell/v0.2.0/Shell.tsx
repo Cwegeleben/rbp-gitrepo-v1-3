@@ -15,6 +15,9 @@ import LoadingBlock from "./components/LoadingBlock";
 /*
 <!-- END RBP GENERATED: storefront-shell-v0-2 -->
 */
+/* <!-- BEGIN RBP GENERATED: dev-debug-panel-v1 --> */
+import DevSection from "./components/DevSection";
+/* <!-- END RBP GENERATED: dev-debug-panel-v1 --> */
 
 type Ctx = {
   tenant: { domain: string };
@@ -114,6 +117,13 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
           <ActiveBuild />
         </div>
         {/* <!-- END RBP GENERATED: storefront-shell-v0-2 --> */}
+        {/* <!-- BEGIN RBP GENERATED: dev-debug-panel-v1 --> */}
+        {!!ctx?.flags?.showDevTools && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <DevSection ctx={ctx} error={state.view === 'error' ? state.error || true : undefined} />
+          </div>
+        )}
+        {/* <!-- END RBP GENERATED: dev-debug-panel-v1 --> */}
         <div id="rbp-module-root" ref={moduleRootRef} className="min-h-[200px] rounded-2xl shadow p-4" />
       </div>
     </ErrorBoundary>
