@@ -1,6 +1,32 @@
 /*
 <!-- BEGIN RBP GENERATED: tenant-admin-dashboard-v1 -->
 */
+// Mock server helpers used by the loader to avoid importing ESM-only modules (import.meta) in ts-jest
+jest.mock('../../rbp-shopify-app/rod-builder-pro/app/proxy/ctx.server', () => ({
+  // ctx returns a Response-like object with a json() method
+  ctx: async () =>
+    new Response(
+      JSON.stringify({
+        tenant: { domain: 'test.myshopify.com', plan: 'Pro' },
+        flags: { features: { devtools: true } },
+      }),
+      { status: 200 }
+    ),
+}));
+
+jest.mock('../../gateway/api-gateway/app/proxy/access.server', () => ({
+  getAccessForUser: async () => ({ ok: true }),
+}));
+
+jest.mock('../../gateway/api-gateway/app/proxy/packager/plan.server', () => ({
+  getPlannedLinesForOrder: async () => [{ sku: 'SKU1', qty: 1 }],
+  resolveVariantIdsWithHints: async (lines: any[]) => ({ lines, hints: [] }),
+}));
+
+jest.mock('../../gateway/api-gateway/app/proxy/packager/totals.server', () => ({
+  calcTotals: (lines: any[]) => ({ totals: { subtotal: 10, estTax: 1, total: 11, currency: 'USD' }, hints: [] }),
+}));
+
 import { loader } from '../app/routes/app._index';
 
 describe('dashboard route loader', () => {
