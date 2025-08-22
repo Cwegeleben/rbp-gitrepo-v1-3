@@ -28,6 +28,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
   "deploy:shopify": "pnpm exec shopify app deploy --path=src/apps/rbp-shopify-app/rod-builder-pro",
+  "deploy:fly": "flyctl deploy -a rbp-rod-builder-pro-staging",
+  "deploy:all": "pnpm -s deploy:shopify && pnpm -s deploy:fly",
     "smoke:admin": "tsx scripts/admin-smoke.ts",
     "test:admin": "jest --passWithNoTests --runInBand --runTestsByPath src/apps/admin.portal/__tests__/catalog.filters.test.tsx src/apps/admin.portal/__tests__/catalog.pagination.test.tsx src/apps/admin.portal/__tests__/catalog.toggle.retry.test.tsx src/apps/admin.portal/__tests__/proxy.enforcement.test.ts src/apps/admin.portal/__tests__/proxy.enforcement.test.tsx src/apps/admin.portal/__tests__/builds.focus.test.tsx src/apps/admin.portal/__tests__/gating.test.tsx"
   },
