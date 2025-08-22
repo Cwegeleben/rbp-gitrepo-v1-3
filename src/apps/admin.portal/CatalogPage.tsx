@@ -13,6 +13,11 @@ import * as urlState from "./app/lib/urlState";
 /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
 /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
 import { ui } from "./uiStrings";
+/* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+import { DataTable as DataTableV21 } from './app/components/DataTable';
+import type { SortKey, SortDir } from './app/components/DataTable';
+import { Toolbar } from './app/components/Toolbar';
+/* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 
 function parseMulti(v?: string | null): string[] {
   if (!v) return [];
@@ -24,6 +29,11 @@ export const CatalogPage: React.FC<{ api?: ReturnType<typeof createCatalogApi>; 
   const [sp, setSp] = useSearchParams();
   const state = urlState.read(sp);
   const { q, vendor, tags, priceBand, cursor } = state;
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+  const [sort, setSort] = useState<{ key: SortKey; dir: SortDir }>(() => state.sort || { key: 'vendor', dir: 'asc' });
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 
   const [data, setData] = useState<CatalogListResponse | null>(initialData ?? null);
   const [loading, setLoading] = useState<boolean>(!initialData);
@@ -37,17 +47,7 @@ export const CatalogPage: React.FC<{ api?: ReturnType<typeof createCatalogApi>; 
     setError(null);
     try {
   const res = await apiImpl.list({ vendor, tags, q, priceBand, cursor });
-      // Stable sort for display: vendor -> product name -> price asc
-      const sorted = [...(res.items || [])].sort((a: CatalogProduct, b: CatalogProduct) => {
-        const va = (a.vendor || '').localeCompare(b.vendor || '');
-        if (va !== 0) return va;
-        const ta = (a.title || '').localeCompare(b.title || '');
-        if (ta !== 0) return ta;
-        const pa = Number(a.priceBand ?? Number.MAX_SAFE_INTEGER);
-        const pb = Number(b.priceBand ?? Number.MAX_SAFE_INTEGER);
-        return pa - pb;
-      });
-      setData({ ...res, items: sorted });
+      setData(res);
     } catch (e: any) {
       setError(e?.message || "Failed to load catalog");
     } finally {
@@ -139,18 +139,92 @@ export const CatalogPage: React.FC<{ api?: ReturnType<typeof createCatalogApi>; 
 
   // Ensure stable sort is applied for both initialData and fetched data
   /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2 --> */
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
   const sortedItems = useMemo(() => {
     const items = data?.items || [];
-    return [...items].sort((a: CatalogProduct, b: CatalogProduct) => {
-      const va = (a.vendor || '').localeCompare(b.vendor || '');
-      if (va !== 0) return va;
-      const ta = (a.title || '').localeCompare(b.title || '');
-      if (ta !== 0) return ta;
-      const pa = Number(a.priceBand ?? Number.MAX_SAFE_INTEGER);
-      const pb = Number(b.priceBand ?? Number.MAX_SAFE_INTEGER);
-      return pa - pb;
+    const stable = [...items].map((it, idx) => ({ it, idx }));
+    const dirMul = sort.dir === 'asc' ? 1 : -1;
+    const cmp = (a: CatalogProduct, b: CatalogProduct): number => {
+      switch (sort.key) {
+        case 'vendor': {
+          const va = (a.vendor || '').localeCompare(b.vendor || '');
+          if (va !== 0) return va * dirMul;
+          const ta = (a.title || '').localeCompare(b.title || '');
+          if (ta !== 0) return ta;
+          // stability fallbacks
+          const pa = Number(a.priceBand ?? Number.NaN);
+          const pb = Number(b.priceBand ?? Number.NaN);
+          const bothNum = !Number.isNaN(pa) && !Number.isNaN(pb);
+          const pd = bothNum ? (pa - pb) : String(a.priceBand ?? '').localeCompare(String(b.priceBand ?? ''));
+          if (pd !== 0) return pd;
+          const ed = (a.enabled ? 1 : 0) - (b.enabled ? 1 : 0);
+          if (ed !== 0) return ed;
+          return 0;
+        }
+        case 'title': {
+          const ta = (a.title || '').localeCompare(b.title || '');
+          if (ta !== 0) return ta * dirMul;
+          const va = (a.vendor || '').localeCompare(b.vendor || '');
+          if (va !== 0) return va;
+          const pa = Number(a.priceBand ?? Number.NaN);
+          const pb = Number(b.priceBand ?? Number.NaN);
+          const bothNum = !Number.isNaN(pa) && !Number.isNaN(pb);
+          const pd = bothNum ? (pa - pb) : String(a.priceBand ?? '').localeCompare(String(b.priceBand ?? ''));
+          if (pd !== 0) return pd;
+          const ed = (a.enabled ? 1 : 0) - (b.enabled ? 1 : 0);
+          if (ed !== 0) return ed;
+          return 0;
+        }
+        case 'priceBand': {
+          const pa = Number(a.priceBand ?? Number.NaN);
+          const pb = Number(b.priceBand ?? Number.NaN);
+          const bothNum = !Number.isNaN(pa) && !Number.isNaN(pb);
+          const diff = bothNum ? (pa - pb) : String(a.priceBand ?? '').localeCompare(String(b.priceBand ?? ''));
+          if (diff !== 0) return diff * dirMul;
+          const va = (a.vendor || '').localeCompare(b.vendor || '');
+          if (va !== 0) return va;
+          const ta = (a.title || '').localeCompare(b.title || '');
+          if (ta !== 0) return ta;
+          const ed = (a.enabled ? 1 : 0) - (b.enabled ? 1 : 0);
+          if (ed !== 0) return ed;
+          return 0;
+        }
+        case 'enabled': {
+          const ea = a.enabled ? 1 : 0;
+          const eb = b.enabled ? 1 : 0;
+          const diff = ea - eb; // asc: false->true
+          if (diff !== 0) return diff * dirMul;
+          const va = (a.vendor || '').localeCompare(b.vendor || '');
+          if (va !== 0) return va;
+          const ta = (a.title || '').localeCompare(b.title || '');
+          if (ta !== 0) return ta;
+          const pa = Number(a.priceBand ?? Number.NaN);
+          const pb = Number(b.priceBand ?? Number.NaN);
+          const bothNum = !Number.isNaN(pa) && !Number.isNaN(pb);
+          const pd = bothNum ? (pa - pb) : String(a.priceBand ?? '').localeCompare(String(b.priceBand ?? ''));
+          if (pd !== 0) return pd;
+          return 0;
+        }
+      }
+    };
+    stable.sort((a, b) => {
+      const c = cmp(a.it, b.it);
+      if (c !== 0) return c;
+      // stable
+      return a.idx - b.idx;
     });
-  }, [data]);
+    return stable.map(s => s.it);
+  }, [data, sort]);
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+  const setUrlSort = (next: { key: SortKey; dir: SortDir }) => {
+    setSort(next);
+    const nextSp = new URLSearchParams(sp.toString());
+    nextSp.set('sort', `${next.key}:${next.dir}`);
+    setSp(nextSp, { replace: false });
+  };
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
   /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
 
   return (
@@ -163,21 +237,101 @@ export const CatalogPage: React.FC<{ api?: ReturnType<typeof createCatalogApi>; 
         priceBand={priceBand}
         onChange={(next) => onSetSp(next)}
       />
-  <div role="status" aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px, 1px, 1px, 1px)' }}>
-        {loading ? ui.common.loading : (data?.pageInfo?.total != null ? `${data?.pageInfo?.total} results` : `${data?.items?.length ?? 0} results`)}
+  {/* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */}
+      <div role="status" aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px, 1px, 1px, 1px)' }}>
+        {loading ? ui.common.loading : ui.catalog.totalResults(data?.pageInfo?.total ?? data?.items?.length ?? 0)}
       </div>
+  <div style={{ position: 'sticky', top: 0, background: '#fff', zIndex: 3, padding: '4px 0', borderBottom: '1px solid #eee', display: 'flex', gap: 8, alignItems: 'center' }}>
+        <div style={{ marginRight: 'auto' }}>
+          {ui.catalog.totalResults(data?.pageInfo?.total ?? data?.items?.length ?? 0)} • {ui.catalog.sortedBy(ui.catalog.sortLabels[sort.key](sort.dir))} • {selected.size} selected
+        </div>
+      </div>
+  {/* live status for completion announcements */}
+  <div role="status" aria-live="polite" data-testid="bulk-status" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(1px, 1px, 1px, 1px)' }}></div>
+  {/* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */}
       {loading && <LoadingSkeleton rows={6} />}
       {error && <ErrorState message={error} />}
       {!loading && !error && (
         <>
           {data && data.items.length > 0 ? (
-            <DataTable
-              rows={sortedItems}
-              toggling={toggling}
-              onToggle={onToggle}
-              pageInfo={data.pageInfo}
-              onPage={(cursor) => onSetSp({ cursor })}
-            />
+            <>
+              {/* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */}
+              <Toolbar
+                selectedCount={selected.size}
+                totalCount={data.pageInfo?.total ?? data.items.length}
+                sortLabel={ui.catalog.sortLabels[sort.key](sort.dir)}
+                onEnable={async () => {
+                  if (selected.size === 0) return;
+                  const ids = Array.from(selected);
+                  // optimistic
+                  setData(d => d ? { ...d, items: d.items.map(it => ids.includes(it.id) ? { ...it, enabled: true } : it) } : d);
+                  let failed = 0;
+                  const lastActive = document.activeElement as HTMLElement | null;
+                  await Promise.all(ids.map(async (id) => {
+                    try { await apiImpl.setEnabled(id, true); }
+                    catch {
+                      failed++;
+                      // rollback this row
+                      setData(d => d ? { ...d, items: d.items.map(it => it.id === id ? { ...it, enabled: false } : it) } : d);
+                    }
+                  }));
+                  if (failed > 0) toast('error', ui.catalog.bulkFailedSummary(failed));
+                  else toast('success', ui.catalog.bulkDone(ids.length));
+                  requestAnimationFrame(() => lastActive?.focus());
+                }}
+                onDisable={async () => {
+                  if (selected.size === 0) return;
+                  const ids = Array.from(selected);
+                  setData(d => d ? { ...d, items: d.items.map(it => ids.includes(it.id) ? { ...it, enabled: false } : it) } : d);
+                  let failed = 0;
+                  const lastActive = document.activeElement as HTMLElement | null;
+                  await Promise.all(ids.map(async (id) => {
+                    try { await apiImpl.setEnabled(id, false); }
+                    catch {
+                      failed++;
+                      setData(d => d ? { ...d, items: d.items.map(it => it.id === id ? { ...it, enabled: true } : it) } : d);
+                    }
+                  }));
+                  if (failed > 0) toast('error', ui.catalog.bulkFailedSummary(failed));
+                  else toast('success', ui.catalog.bulkDone(ids.length));
+                  requestAnimationFrame(() => lastActive?.focus());
+                }}
+                onClear={() => setSelected(new Set())}
+              />
+              <DataTableV21
+                rows={sortedItems}
+                toggling={toggling}
+                onToggle={onToggle}
+                sort={sort}
+                onSortChange={(next) => setUrlSort(next)}
+                selectedIds={selected}
+                onSelectChange={({ type, id, index, checked, shiftKey }) => {
+                  setSelected(prev => {
+                    const nextSel = new Set(prev);
+                    if (type === 'all') {
+                      if (checked) sortedItems.forEach((r: CatalogProduct) => nextSel.add(r.id)); else sortedItems.forEach((r: CatalogProduct) => nextSel.delete(r.id));
+                      setLastSelectedIndex(null);
+                      return nextSel;
+                    }
+                    if (!id || index == null) return prev;
+                    if (shiftKey && lastSelectedIndex != null) {
+                      const [start, end] = [lastSelectedIndex, index].sort((a, b) => a - b);
+                      for (let i = start; i <= end; i++) {
+                        const rid = sortedItems[i].id;
+                        if (checked) nextSel.add(rid); else nextSel.delete(rid);
+                      }
+                    } else {
+                      if (checked) nextSel.add(id); else nextSel.delete(id);
+                      setLastSelectedIndex(index);
+                    }
+                    return nextSel;
+                  });
+                }}
+                pageInfo={data.pageInfo}
+                onPage={(cursor) => onSetSp({ cursor })}
+              />
+              {/* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */}
+            </>
           ) : (
             <div>{ui.catalog.empty}</div>
           )}
@@ -253,75 +407,15 @@ export const FilterBar: React.FC<{
 };
 /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
 
-export const DataTable: React.FC<{
-  rows: CatalogProduct[];
-  toggling: Set<string>;
-  onToggle: (id: string, next: boolean) => void | Promise<void>;
-  pageInfo?: { nextCursor?: string; prevCursor?: string };
-  onPage: (cursor?: string) => void;
-}> = ({ rows, toggling, onToggle, pageInfo, onPage }) => {
-  return (
-    <div>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: "left" }}>Product</th>
-            <th>Vendor</th>
-            <th>Tags</th>
-            <th>Price Band</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.id}>
-              <td style={{ textAlign: "left" }}>{r.title}</td>
-              <td style={{ textAlign: "center" }}>{r.vendor || "—"}</td>
-              <td style={{ textAlign: "center" }}>{(r.tags || []).join(", ")}</td>
-              <td style={{ textAlign: "center" }}>{String(r.priceBand ?? "—")}</td>
-              <td style={{ textAlign: "center" }}>{r.enabled ? "Enabled" : "Disabled"}</td>
-              <td style={{ textAlign: "center" }}>
-                <ToggleCell
-                  checked={r.enabled}
-                  pending={toggling.has(r.id)}
-                  onChange={(n) => onToggle(r.id, n)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", marginTop: 12 }}>
-        <button disabled={!pageInfo?.prevCursor} onClick={() => onPage(pageInfo?.prevCursor)} aria-label={ui.common.prev}>
-          {ui.common.prev}
-        </button>
-        <button disabled={!pageInfo?.nextCursor} onClick={() => onPage(pageInfo?.nextCursor)} aria-label={ui.common.next}>
-          {ui.common.next}
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export const ToggleCell: React.FC<{ checked: boolean; pending?: boolean; onChange: (next: boolean) => void }>
-  = ({ checked, pending, onChange }) => {
-    return (
-      <label style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-        <input
-          type="checkbox"
-          checked={checked}
-          disabled={pending}
-          onChange={(e) => onChange(e.target.checked)}
-          aria-label={ui.a11y.toggle("product", !checked)}
-        />
-        {pending && <span>{ui.catalog.saving}</span>}
-      </label>
-    );
-  };
+/* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+// Deprecated inline table replaced by app/components/DataTable
+/* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 // Re-export API to preserve prior public surface for tests and callers
 /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2 --> */
 export { createCatalogApi } from './app/lib/createCatalogApi';
+/* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+export { ToggleCell } from './app/components/DataTable';
+/* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
 /*
 <!-- END RBP GENERATED: tenant-admin-harden -->

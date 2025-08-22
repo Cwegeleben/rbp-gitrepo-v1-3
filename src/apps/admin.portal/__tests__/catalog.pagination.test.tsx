@@ -49,8 +49,10 @@ test('pagination preserves filters; deep link with cursor renders the same subse
     </MemoryRouter>
   );
   // initial table rows sorted
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
   const rowsPage1 = screen.getAllByRole('row').slice(1);
-  expect(rowsPage1.map((r: HTMLElement) => r.firstChild?.textContent)).toEqual(['Alpha','Beta']);
+  expect(rowsPage1.map((r: HTMLElement) => (r.querySelector('td:nth-child(2)') as HTMLElement)?.textContent)).toEqual(['Alpha','Beta']);
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 
   // go next -> URL updates with cursor; rows remain the same until data fetched
   fireEvent.click(screen.getByRole('button', { name: /Next/i }));
@@ -63,8 +65,10 @@ test('pagination preserves filters; deep link with cursor renders the same subse
       <ShowSearch />
     </MemoryRouter>
   );
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
   const rowsDeep = screen.getAllByRole('row').slice(1);
-  expect(rowsDeep.map((r: HTMLElement) => r.firstChild?.textContent)).toEqual(['Delta','Gamma']);
+  expect(rowsDeep.map((r: HTMLElement) => (r.querySelector('td:nth-child(2)') as HTMLElement)?.textContent)).toEqual(['Delta','Gamma']);
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 });
 /*
 <!-- END RBP GENERATED: tenant-admin-catalog-v2 -->

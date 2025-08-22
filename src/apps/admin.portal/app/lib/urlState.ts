@@ -7,6 +7,9 @@ export type CatalogUrlState = {
   tags: string[];
   priceBand?: string;
   cursor?: string;
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+  sort?: { key: 'vendor'|'title'|'priceBand'|'enabled'; dir: 'asc'|'desc' };
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
 };
 
 function splitCSV(v?: string | null): string[] {
@@ -21,6 +24,16 @@ export function read(sp: URLSearchParams): CatalogUrlState {
     tags: splitCSV(sp.get('tags')),
     priceBand: sp.get('priceBand') || undefined,
     cursor: sp.get('cursor') || undefined,
+    /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+    sort: (() => {
+      const v = sp.get('sort') || undefined;
+      if (!v) return undefined;
+      const [key, dir] = v.split(':');
+      if (!key || (dir !== 'asc' && dir !== 'desc')) return undefined;
+      if (key === 'vendor' || key === 'title' || key === 'priceBand' || key === 'enabled') return { key, dir } as any;
+      return undefined;
+    })(),
+    /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
   };
 }
 
@@ -37,6 +50,13 @@ export function write(state: Partial<CatalogUrlState>): URLSearchParams {
     if (state.cursor) sp.set('cursor', state.cursor);
     else sp.delete('cursor');
   }
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+  if (state.sort !== undefined) {
+    const s = state.sort;
+    if (s) sp.set('sort', `${s.key}:${s.dir}`);
+    else sp.delete('sort');
+  }
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
   return sp;
 }
 /*

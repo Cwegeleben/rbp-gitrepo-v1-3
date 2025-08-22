@@ -37,6 +37,22 @@ export const ui = {
   priceBandMedium: "Medium",
   priceBandHigh: "High",
   /* <!-- END RBP GENERATED: tenant-admin-catalog-v2 --> */
+  /* <!-- BEGIN RBP GENERATED: tenant-admin-catalog-v2-1 --> */
+    enable: "Enable",
+    disable: "Disable",
+    clear: "Clear",
+    selectedOf: (total: number) => `selected of ${total}`,
+    sortedBy: (label: string) => `Sorted by ${label}`,
+    bulkDone: (n: number) => `${n} updated`,
+    bulkFailedSummary: (n: number) => `${n} failed, rolled back`,
+    totalResults: (n: number) => `${n} results`,
+    sortLabels: {
+      vendor: (dir: 'asc' | 'desc') => `Vendor ${dir === 'asc' ? 'A→Z' : 'Z→A'}`,
+      title: (dir: 'asc' | 'desc') => `Product ${dir === 'asc' ? 'A→Z' : 'Z→A'}`,
+      priceBand: (dir: 'asc' | 'desc') => `Price ${dir === 'asc' ? 'Low→High' : 'High→Low'}`,
+      enabled: (dir: 'asc' | 'desc') => `Enabled ${dir === 'asc' ? 'Off→On' : 'On→Off'}`,
+    },
+  /* <!-- END RBP GENERATED: tenant-admin-catalog-v2-1 --> */
     apply: "Apply",
     empty: "Nothing selected yet—use filters and enable items.",
     saving: "Saving…",
