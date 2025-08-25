@@ -3,8 +3,10 @@
 */
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+/* <!-- BEGIN RBP GENERATED: admin-host-nav-v2 --> */
 import ShopHostLink from './app/components/ShopHostLink';
 import { useShopHostNavigate } from './app/hooks/useShopHostNavigate';
+/* <!-- END RBP GENERATED: admin-host-nav-v2 --> */
 import { TenantContext } from "./TenantContext";
 import { LoadingSkeleton } from "./LoadingSkeleton";
 import { ErrorState } from "./ErrorState";
@@ -50,11 +52,13 @@ export { createBuildsApi } from './app/lib/createBuildsApi';
 
 export const BuildCard: React.FC<{ build: BuildListItem; to: string }> = ({ build, to }) => {
   return (
-  <ShopHostLink to={to} style={{ display: "block", border: "1px solid #ddd", padding: 12, borderRadius: 6, textDecoration: "none", color: "inherit" }}>
+    /* <!-- BEGIN RBP GENERATED: admin-host-nav-v2 --> */
+    <ShopHostLink to={to} style={{ display: "block", border: "1px solid #ddd", padding: 12, borderRadius: 6, textDecoration: "none", color: "inherit" }}>
       <div style={{ fontWeight: 600 }}>{build.title || `Build ${build.id}`}</div>
       <div style={{ fontSize: 12, color: "#555" }}>{build.createdAt || "—"}</div>
       <div style={{ marginTop: 4 }}>{build.itemsCount ?? 0} items</div>
-  </ShopHostLink>
+    </ShopHostLink>
+    /* <!-- END RBP GENERATED: admin-host-nav-v2 --> */
   );
 };
 
@@ -382,7 +386,9 @@ export const BuildDetailPanel: React.FC<{
 };
 
 export const BuildsPage: React.FC<{ api?: ReturnType<typeof createBuildsApiLib>; /* <!-- BEGIN RBP GENERATED: tenant-admin-builds-qol --> */ writeEnabled?: boolean /* <!-- END RBP GENERATED: tenant-admin-builds-qol --> */ }> = ({ api, writeEnabled }) => {
+  /* <!-- BEGIN RBP GENERATED: admin-host-nav-v2 --> */
   const navigate = useShopHostNavigate();
+  /* <!-- END RBP GENERATED: admin-host-nav-v2 --> */
   const { id } = useParams();
   const [sp, setSp] = useSearchParams();
   const q = sp.get("q") || "";

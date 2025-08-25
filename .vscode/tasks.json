@@ -456,6 +456,15 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run jest after Theme Editor diagnostics + GET form tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			]
 		}
 	]
 }
