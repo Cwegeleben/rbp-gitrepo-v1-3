@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "pnw-mooching-106-m",
+      "title": "PNW Mooching 10'6\" Medium",
+      "tags": ["Salmon & Steelhead", "Mooching", "10'6"],
+      "species": "Salmon & Steelhead",
+      "build": "Mooching",
+      "notes": "Balanced for Columbia/PS mooching.",
+      "slots": [
+        { "type": "Blanks", "productId": "blank-td1264", "variantId": "v1" },
+        { "type": "Reel Seat", "productId": "alps-xyz", "variantId": "v2" },
+        { "type": "Butt Cap", "productId": "cap-std", "variantId": "v1" }
+      ],
+      "image": "/templates/pnw-mooching-106.jpg",
+      "_recency": 100
+    },
+    {
+      "id": "steelhead-drift-96-ml",
+      "title": "Steelhead Drift 9'6\" ML",
+      "tags": ["Drift", "9'6"],
+      "species": "Salmon & Steelhead",
+      "build": "Drift",
+      "notes": "Versatile drift setup.",
+      "slots": [
+        { "type": "Blanks", "productId": "blank-sh96ml", "variantId": "std" },
+        { "type": "Guides", "productId": "fuji-k", "variantId": "6+tip" }
+      ],
+      "_recency": 90
+    }
+  ]
+}

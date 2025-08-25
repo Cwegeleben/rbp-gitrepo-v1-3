@@ -78,3 +78,33 @@ pnpm test:access                         # unit/integration-lite (no network)
 If pnpm smoke says the server isn’t reachable, ensure the PORT matches your dev server
 (env or scripts/port.env) and that the CLI is running.
 <!-- END RBP GENERATED: DevUX v1 -->
+
+<!-- BEGIN RBP GENERATED: fast-smoke-checklist -->
+## Fast smoke checklist
+
+Admin
+- Run: `pnpm dev:shopify-cli` then open `/app`
+- TenantBadge shows rbp-dev.myshopify.com and DEV chip ✅
+- KPI tiles show counts (numbers or —), no crash ✅
+- Packager preview shows totals/hints (mock ok) ✅
+- Dev Debug Panel only when flags.showDevTools ✅
+
+Storefront (Theme Editor)
+- Open a page with the app block
+- Header shows domain/plan (or placeholders), CTA, not blank ✅
+- Modules list present (or “registry offline (mock)”) ✅
+- Active Build placeholder card + disabled button + aria-live note ✅
+- On ctx/HMAC failure → inline error banner with “use Theme Editor or signed URL” ✅
+
+Endpoints
+- `pnpm proxy:sign --path /apps/proxy/api/access/ctx` → 200, plan=dev, showDevTools=true ✅
+- `/apps/proxy/modules/registry.json` → contains rbp-shell v0.2.0 ✅
+- `/apps/proxy/modules/rbp-shell/0.2.0/index.js` → 200 ✅
+
+Quick run
+```bash
+pnpm storybook -p 6007
+pnpm test
+pnpm dev:shopify-cli
+```
+<!-- END RBP GENERATED: fast-smoke-checklist -->

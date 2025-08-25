@@ -1,7 +1,7 @@
 // <!-- BEGIN RBP GENERATED: rbp-shell-mvp -->
 import React from "react";
 
-type Tile = { id: "rbp-catalog" | "rbp-builds"; label: string };
+type Tile = { id: "rbp-catalog" | "rbp-builds" | /* <!-- BEGIN RBP GENERATED: package-cta-v1 --> */ "rbp-package" /* <!-- END RBP GENERATED: package-cta-v1 --> */; label: string };
 
 export default function Tiles({ tiles, onClick, isEnabled }: { tiles: readonly Tile[]; onClick: (id: Tile["id"]) => void; isEnabled: (id: Tile["id"]) => boolean }) {
   return (

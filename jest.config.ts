@@ -37,7 +37,8 @@ const config: Config = {
   '^\.\.\/\.\.\/apps\/gateway\/api-gateway\/app\/proxy\/requireAccess\.server$': '<rootDir>/src/test/mocks/requireAccess.server.ts',
   '^\.\.\/\.\.\/apps\/gateway\/api-gateway\/app\/proxy\/packager\/plan\.server$': '<rootDir>/src/apps/gateway/api-gateway/app/proxy/packager/plan.server.ts',
   '^\.\.\/\.\.\/apps\/gateway\/api-gateway\/app\/proxy\/packager\/totals\.server$': '<rootDir>/src/apps/gateway/api-gateway/app/proxy/packager/totals.server.ts',
-    '^\.\.\/\.\.\/packages\/builds\/package\/index$': '<rootDir>/src/test/mocks/builds-package-index.ts',
+  '^\.\.\/\.\.\/packages\/builds\/package\/index$': '<rootDir>/src/test/mocks/builds-package-index.ts',
+  '^\.\.\/\.\.\/\.\.\/rbp-shopify-app\/rod-builder-pro\/app\/shopify\.server$': '<rootDir>/src/test/mocks/shopify.server.ts',
     /* <!-- BEGIN RBP GENERATED: tenant-admin-devtools --> */
     '^@shopify/polaris/build/esm/styles\\.css\\?url$': '<rootDir>/src/test/mocks/style-url.ts',
     '.*\\.css\\?url$': '<rootDir>/src/test/mocks/style-url.ts',

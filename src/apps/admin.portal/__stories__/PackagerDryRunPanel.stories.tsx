@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PackagerDryRunPanel } from '../app/components/PackagerDryRunPanel';
 
 const meta: Meta<typeof PackagerDryRunPanel> = {
-  title: 'Admin/Dashboard/PackagerDryRunPanel',
+  title: 'Admin/Legacy/PackagerDryRunPanel',
   component: PackagerDryRunPanel,
 };
 export default meta;

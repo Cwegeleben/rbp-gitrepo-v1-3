@@ -97,6 +97,35 @@ export default async function mountShell(rootEl, { logger: customLogger } = {}) 
 
   await load();
 
+  /* <!-- BEGIN RBP GENERATED: ui-toast-announcer-v1 --> */
+  // Load rbp-ui v1.0.0 once per page to provide Global Toasts + Announcer
+  try {
+    const reg = await fetchJson("/apps/proxy/modules/registry.json", logger);
+    const ui = reg?.modules?.["rbp-ui"];
+    const pick = ui?.default || ui?.latest || Object.keys(ui?.versions || {}).sort().slice(-1)[0];
+    const src = pick && ui?.versions?.[pick]?.path;
+    if (src) {
+      // dynamic import; module self-mounts
+      // @ts-ignore
+      import(/* @vite-ignore */ src).catch(() => {});
+    }
+  } catch (e) { /* non-blocking */ }
+  /* <!-- END RBP GENERATED: ui-toast-announcer-v1 --> */
+
+  /* <!-- BEGIN RBP GENERATED: ui-command-palette-v1 --> */
+  // Load rbp-command v1.0.0 once per page to provide Command Palette hotkey
+  try {
+    const reg = await fetchJson("/apps/proxy/modules/registry.json", logger);
+    const cmd = reg?.modules?.["rbp-command"];
+    const pick = cmd?.default || cmd?.latest || Object.keys(cmd?.versions || {}).sort().slice(-1)[0];
+    const src = pick && cmd?.versions?.[pick]?.path;
+    if (src) {
+      // @ts-ignore self-mounts
+      import(/* @vite-ignore */ src).catch(() => {});
+    }
+  } catch (e) { /* non-blocking */ }
+  /* <!-- END RBP GENERATED: ui-command-palette-v1 --> */
+
   return {
     unmount,
   };

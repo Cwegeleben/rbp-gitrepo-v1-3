@@ -23,13 +23,15 @@
     "preflight:strict": "PREFLIGHT_STRICT=1 pnpm -s preflight:app-proxy",
     "smoke": "tsx scripts/smoke.ts",
     "smoke:signed": "tsx scripts/smoke.ts",
-    "test": "jest -c jest.config.ts --passWithNoTests",
+  "test": "jest -c jest.config.ts --passWithNoTests",
+  "test:rbp-package": "pnpm test -- src/modules/rbp-package/1.0.0/__tests__",
+  "test:full:3x": "node scripts/run-tests-3x.mjs",
     "test:access": "jest --passWithNoTests --runTestsByPath src/apps/gateway/api-gateway/app/proxy/__tests__/accessV2.test.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-  "deploy:shopify": "pnpm exec shopify app deploy --path=src/apps/rbp-shopify-app/rod-builder-pro",
-  "deploy:fly": "flyctl deploy -a rbp-rod-builder-pro-staging",
-  "deploy:all": "pnpm -s deploy:shopify && pnpm -s deploy:fly",
+    "deploy:shopify": "pnpm exec shopify app deploy --path=src/apps/rbp-shopify-app/rod-builder-pro",
+    "deploy:fly": "flyctl deploy -a rbp-rod-builder-pro-staging",
+    "deploy:all": "pnpm -s deploy:shopify && pnpm -s deploy:fly",
     "smoke:admin": "tsx scripts/admin-smoke.ts",
     "test:admin": "jest --passWithNoTests --runInBand --runTestsByPath src/apps/admin.portal/__tests__/catalog.filters.test.tsx src/apps/admin.portal/__tests__/catalog.pagination.test.tsx src/apps/admin.portal/__tests__/catalog.toggle.retry.test.tsx src/apps/admin.portal/__tests__/proxy.enforcement.test.ts src/apps/admin.portal/__tests__/proxy.enforcement.test.tsx src/apps/admin.portal/__tests__/builds.focus.test.tsx src/apps/admin.portal/__tests__/gating.test.tsx"
   },
@@ -41,6 +43,10 @@
       "<!-- END RBP GENERATED: dev-scripts -->",
       "<!-- BEGIN RBP GENERATED: DevUX v1 -->",
       "<!-- END RBP GENERATED: DevUX v1 -->"
+    ],
+    "qa-validate-v1": [
+      "<!-- BEGIN RBP GENERATED: qa-validate-v1 -->",
+      "<!-- END RBP GENERATED: qa-validate-v1 -->"
     ],
     "react-router-dom NavLink import fix": [
       "<!-- BEGIN RBP GENERATED: react-router-dom NavLink import fix -->",
@@ -56,11 +62,13 @@
   "license": "ISC",
   "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",
   "devDependencies": {
-    "@storybook/react-vite": "^9.1.3",
     "@jest/globals": "^30.0.5",
     "@prisma/client": "^6.14.0",
+    "@storybook/addon-docs": "^9.1.3",
+    "@storybook/react-vite": "^9.1.3",
     "@testing-library/jest-dom": "^6.7.0",
     "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.17.2",
     "@types/react": "^18.3.23",
@@ -70,12 +78,11 @@
     "jest-environment-jsdom": "^30.0.5",
     "jest-environment-node": "^30.0.5",
     "prisma": "^6.14.0",
+    "storybook": "^9.1.3",
     "toml": "^3.0.0",
     "ts-jest": "^29.4.1",
     "tsx": "^4.20.4",
-    "whatwg-fetch": "^3.6.20",
-    "storybook": "^9.1.3",
-    "@storybook/addon-docs": "^9.1.3"
+    "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
     "@shopify/app-bridge": "^3.7.10",

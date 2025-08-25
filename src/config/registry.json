@@ -2,7 +2,28 @@
   "modules": {
     "rbp-shell": { "v": "0.1.0", "enabled": true },
     "rbp-catalog": { "v": "0.1.0", "enabled": true },
-    "rbp-builds": { "v": "0.2.0", "enabled": true }
+  /* <!-- BEGIN RBP GENERATED: builds-undo-redo-v1 --> */
+  "rbp-builds": { "v": "1.4.0", "enabled": true },
+  /* <!-- END RBP GENERATED: builds-undo-redo-v1 --> */
+  /* <!-- BEGIN RBP GENERATED: package-cta-v1 --> */
+  "rbp-package": { "v": "1.0.0", "enabled": true }
+  /* <!-- END RBP GENERATED: package-cta-v1 --> */
+  ,
+  /* <!-- BEGIN RBP GENERATED: builds-gallery-bulk-v1 --> */
+  "rbp-builds-gallery": { "v": "1.1.0", "enabled": true }
+  /* <!-- END RBP GENERATED: builds-gallery-bulk-v1 --> */
+  ,
+  /* <!-- BEGIN RBP GENERATED: builds-templates-v1 --> */
+  "rbp-templates": { "v": "1.0.0", "enabled": true }
+  /* <!-- END RBP GENERATED: builds-templates-v1 --> */
+  ,
+  /* <!-- BEGIN RBP GENERATED: ui-toast-announcer-v1 --> */
+  "rbp-ui": { "v": "1.0.0", "enabled": true }
+  /* <!-- END RBP GENERATED: ui-toast-announcer-v1 --> */
+  ,
+  /* <!-- BEGIN RBP GENERATED: ui-command-palette-v1 --> */
+  "rbp-command": { "v": "1.0.0", "enabled": true }
+  /* <!-- END RBP GENERATED: ui-command-palette-v1 --> */
   },
   "flags": {
     "builds.qol.v1": true

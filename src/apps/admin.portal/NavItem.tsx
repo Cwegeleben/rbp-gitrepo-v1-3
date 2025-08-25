@@ -2,15 +2,16 @@
 <!-- BEGIN RBP GENERATED: tenant-admin-shell -->
 */
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import ShopHostLink from "./app/components/ShopHostLink";
 
 export const NavItem = ({ to, label }: { to: string; label: string }) => {
   const location = useLocation();
   const active = location.pathname === to;
   return (
-    <Link to={to} className={active ? "nav-item active" : "nav-item"}>
+    <ShopHostLink to={to} className={active ? "nav-item active" : "nav-item"}>
       {label}
-    </Link>
+    </ShopHostLink>
   );
 };
 /*

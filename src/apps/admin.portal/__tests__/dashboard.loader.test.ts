@@ -42,7 +42,8 @@ describe('dashboard route loader', () => {
   });
 
   it('returns stable shape with counts and flags', async () => {
-    const data = await loader();
+    const req = new Request('https://rbp.local/app?shop=test.myshopify.com&host=abc&embedded=1');
+    const data = await loader({ request: req } as any);
     expect(data.tenant.domain).toBe('test.myshopify.com');
     expect(data.tenant.plan).toBe('Pro');
     expect(typeof data.kpis.buildsCount).toBe('number');

@@ -195,6 +195,267 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Run Storybook (smoke)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"storybook",
+				"-p",
+				"6007"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run Storybook (smoke)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"storybook",
+				"-p",
+				"6007"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run tests (smoke)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run unit tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run Shopify CLI dev server (smoke)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"dev:shopify-cli"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Run Storybook on 6008 (smoke)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"storybook",
+				"-p",
+				"6008"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run Storybook after retitling",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"storybook",
+				"-p",
+				"6008"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run new registry health tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"health.server.test.ts",
+				"apps.proxy.modules.health.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run new registry health tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"health.server.test.ts",
+				"apps.proxy.modules.health.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run full test suite",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			]
+		},
+		{
+			"label": "Re-run unit tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test"
+			]
+		},
+		{
+			"label": "Run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			]
+		},
+		{
+			"label": "Run cart drawer tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"src/modules/rbp-cart/v1.0.0/__tests__"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run rbp-cart tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"src/modules/rbp-cart/v1.0.0/__tests__"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run builds v1.4.0 tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"src/modules/rbp-builds/v1.4.0/__tests__"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run Storybook to validate HistoryBar stories",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"storybook",
+				"-p",
+				"6007"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run Storybook on 6008 (stories)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"storybook",
+				"-p",
+				"6008"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run builds v1.4.0 tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"src/modules/rbp-builds/v1.4.0/__tests__"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run builds v1.4.0 tests (2)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"src/modules/rbp-builds/v1.4.0/__tests__"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run builds v1.4.0 tests (3)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"src/modules/rbp-builds/v1.4.0/__tests__"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

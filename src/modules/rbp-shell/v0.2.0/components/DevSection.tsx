@@ -1,16 +1,33 @@
 /*
 <!-- BEGIN RBP GENERATED: dev-debug-panel-v1 -->
 */
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 export default function DevSection({ ctx, error }: { ctx?: { tenant?: { domain?: string }; plan?: string; flags?: any }; error?: any }) {
   const [open, setOpen] = useState(false);
+  const [health, setHealth] = useState<{ ok: boolean; errors?: any[] } | null>(null);
   const info = useMemo(() => {
     const domain = ctx?.tenant?.domain || '—';
     const plan = ctx?.plan || '—';
     const flags = ctx?.flags || {};
     return { domain, plan, flags };
   }, [ctx]);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        if (!info.flags?.showDevTools || error) return;
+        const r = await fetch('/apps/proxy/modules/health', { cache: 'no-store' });
+        const j = await r.json();
+        if (!cancelled) setHealth(j);
+      } catch {
+        if (!cancelled) setHealth({ ok: false, errors: [{ code: 'FETCH_FAILED' }] });
+      }
+    }
+    load();
+    return () => { cancelled = true; };
+  }, [info.flags?.showDevTools, error]);
 
   return (
     <div className="rounded-2xl border border-amber-200 bg-amber-50">
@@ -25,10 +42,20 @@ export default function DevSection({ ctx, error }: { ctx?: { tenant?: { domain?:
               HMAC validation failed. Open via Theme Editor or use a signed URL.
             </div>
           ) : (
-            <div className="grid gap-1">
-              <div><strong>Domain:</strong> {info.domain}</div>
-              <div><strong>Plan:</strong> {info.plan}</div>
-              <div><strong>Flags:</strong> <code className="text-[11px]">{JSON.stringify(info.flags)}</code></div>
+            <div className="grid gap-2">
+              <div className="grid gap-1">
+                <div><strong>Domain:</strong> {info.domain}</div>
+                <div><strong>Plan:</strong> {info.plan}</div>
+                <div><strong>Flags:</strong> <code className="text-[11px]">{JSON.stringify(info.flags)}</code></div>
+              </div>
+              {!!info.flags?.showDevTools && (
+                <div className="text-amber-900">
+                  <strong>Registry:</strong>{' '}
+                  {health ? (health.ok ? 'OK' : `${health.errors?.length ?? 0} issues (details in JSON)`) : '—'}
+                  {' '}· <span className="underline">Use a signed URL for JSON:</span>
+                  <code className="ml-1 text-[11px] break-all">pnpm proxy:sign --path "/apps/proxy/modules/health"</code>
+                </div>
+              )}
             </div>
           )}
         </div>

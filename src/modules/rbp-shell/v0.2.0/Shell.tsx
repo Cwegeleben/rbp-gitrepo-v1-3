@@ -67,7 +67,7 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
     return import(/* @vite-ignore */ url);
   }
 
-  async function onTileClick(name: "rbp-catalog" | "rbp-builds") {
+  async function onTileClick(name: "rbp-catalog" | "rbp-builds" | "rbp-package") {
     if (!moduleRootRef.current) return;
     const url = resolveModuleUrl(name);
     if (!url) return; // disabled if missing
@@ -92,6 +92,9 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
   const tiles = [
     { id: "rbp-catalog", label: "Catalog" },
     { id: "rbp-builds", label: "Builds" },
+    /* <!-- BEGIN RBP GENERATED: package-cta-v1 --> */
+    { id: "rbp-package", label: "Package" },
+    /* <!-- END RBP GENERATED: package-cta-v1 --> */
   ] as const;
 
   return (
@@ -111,7 +114,9 @@ export default function Shell({ ctx, registry, navigate, logger, initialView }: 
         {state.view === 'loading' && <LoadingBlock label="Loading storefront context…" />}
         {/* <!-- END RBP GENERATED: storefront-shell-v0-2 --> */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Tiles tiles={tiles} onClick={(id: "rbp-catalog" | "rbp-builds") => onTileClick(id)} isEnabled={(id: "rbp-catalog" | "rbp-builds") => !!resolveModuleUrl(id)} />
+          {/* <!-- BEGIN RBP GENERATED: package-cta-v1 --> */}
+          <Tiles tiles={tiles} onClick={(id: "rbp-catalog" | "rbp-builds" | "rbp-package") => onTileClick(id)} isEnabled={(id: "rbp-catalog" | "rbp-builds" | "rbp-package") => !!resolveModuleUrl(id)} />
+          {/* <!-- END RBP GENERATED: package-cta-v1 --> */}
           <StatusPanel accessOk={status.accessOk} registryOk={status.registryOk} timestamp={status.at} />
         </div>
         {/* <!-- BEGIN RBP GENERATED: storefront-shell-v0-2 --> */}

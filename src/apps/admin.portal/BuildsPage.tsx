@@ -2,7 +2,9 @@
 <!-- BEGIN RBP GENERATED: tenant-admin-harden -->
 */
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
+import ShopHostLink from './app/components/ShopHostLink';
+import { useShopHostNavigate } from './app/hooks/useShopHostNavigate';
 import { TenantContext } from "./TenantContext";
 import { LoadingSkeleton } from "./LoadingSkeleton";
 import { ErrorState } from "./ErrorState";
@@ -48,11 +50,11 @@ export { createBuildsApi } from './app/lib/createBuildsApi';
 
 export const BuildCard: React.FC<{ build: BuildListItem; to: string }> = ({ build, to }) => {
   return (
-    <Link to={to} style={{ display: "block", border: "1px solid #ddd", padding: 12, borderRadius: 6, textDecoration: "none", color: "inherit" }}>
+  <ShopHostLink to={to} style={{ display: "block", border: "1px solid #ddd", padding: 12, borderRadius: 6, textDecoration: "none", color: "inherit" }}>
       <div style={{ fontWeight: 600 }}>{build.title || `Build ${build.id}`}</div>
       <div style={{ fontSize: 12, color: "#555" }}>{build.createdAt || "—"}</div>
       <div style={{ marginTop: 4 }}>{build.itemsCount ?? 0} items</div>
-    </Link>
+  </ShopHostLink>
   );
 };
 
@@ -380,7 +382,7 @@ export const BuildDetailPanel: React.FC<{
 };
 
 export const BuildsPage: React.FC<{ api?: ReturnType<typeof createBuildsApiLib>; /* <!-- BEGIN RBP GENERATED: tenant-admin-builds-qol --> */ writeEnabled?: boolean /* <!-- END RBP GENERATED: tenant-admin-builds-qol --> */ }> = ({ api, writeEnabled }) => {
-  const navigate = useNavigate();
+  const navigate = useShopHostNavigate();
   const { id } = useParams();
   const [sp, setSp] = useSearchParams();
   const q = sp.get("q") || "";

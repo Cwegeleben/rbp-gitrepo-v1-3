@@ -6,6 +6,9 @@ import { TenantBadge } from '../components/TenantBadge';
 import { KpiCards } from '../components/KpiCards';
 import { PackagerDryRunPanel } from '../components/PackagerDryRunPanel';
 import type { DashboardLoaderData } from './dashboard.contract';
+// <!-- BEGIN RBP GENERATED: admin-auth-guard-v1 -->
+import { requireAdminAuth, ensureEmbeddedRedirect } from '../utils/auth.server';
+// <!-- END RBP GENERATED: admin-auth-guard-v1 -->
 /*
 <!-- BEGIN RBP GENERATED: admin-loader-server-wiring -->
 */
@@ -17,7 +20,12 @@ import { calcTotals } from '../../../gateway/api-gateway/app/proxy/packager/tota
 <!-- END RBP GENERATED: admin-loader-server-wiring -->
 */
 
-export async function loader(): Promise<DashboardLoaderData> {
+export async function loader({ request }: { request: Request }): Promise<DashboardLoaderData> {
+  // <!-- BEGIN RBP GENERATED: admin-auth-guard-v1 -->
+  const { session, shop } = await requireAdminAuth(request);
+  const reembed = ensureEmbeddedRedirect(request);
+  if (reembed) return reembed as unknown as any;
+  // <!-- END RBP GENERATED: admin-auth-guard-v1 -->
   /* <!-- BEGIN RBP GENERATED: admin-loader-server-wiring --> */
   // Access context via shared server helper
   let tenantDomain = 'rbp-dev.myshopify.com';

@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TenantBadge } from '../app/components/TenantBadge';
 
 const meta: Meta<typeof TenantBadge> = {
-  title: 'Admin/Dashboard/TenantBadge',
+  title: 'Admin/Legacy/TenantBadge',
   component: TenantBadge,
 };
 export default meta;
