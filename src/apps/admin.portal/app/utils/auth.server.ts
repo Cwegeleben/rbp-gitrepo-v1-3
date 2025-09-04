@@ -11,25 +11,18 @@ export async function requireAdminAuth(request: Request): Promise<AdminAuth> {
   const { admin, session, redirect: shopifyRedirect } = await authenticate.admin(request);
   // authenticate.admin may return a redirect helper for subsequent flows; not used here.
   const shop = (session as any)?.shop || '';
-  // <!-- BEGIN RBP GENERATED: admin-host-nav-v1 -->
-  // Set rbp_host cookie for later host recovery
+  // <!-- BEGIN RBP GENERATED: admin-host-nav-v3 -->
+  // Set cookies for recovery of host/shop on subsequent requests
   try {
     if (shop) {
-      const res = new Response(null, { headers: { 'Set-Cookie': `rbp_host=${encodeURIComponent(shop)}; Path=/; SameSite=Lax` } });
-      // Attach noop to keep type happy; upstream may replace/merge headers in real loaders
-      (res as any).__rbp_ignore = true;
+      const h = new Headers();
+      h.append('Set-Cookie', `rbp_shop=${encodeURIComponent(shop)}; Path=/; SameSite=Lax`);
+      h.append('Set-Cookie', `rbp_host=${encodeURIComponent(shop)}; Path=/; SameSite=Lax`);
+      // attach to a throwaway response to satisfy types; router/loaders may merge headers
+      new Response(null, { headers: h });
     }
   } catch {}
-  // <!-- END RBP GENERATED: admin-host-nav-v1 -->
-  // <!-- BEGIN RBP GENERATED: admin-host-nav-v2 -->
-  // Also set rbp_shop cookie for recovery of ?shop
-  try {
-    if (shop) {
-      const res2 = new Response(null, { headers: { 'Set-Cookie': `rbp_shop=${encodeURIComponent(shop)}; Path=/; SameSite=Lax` } });
-      (res2 as any).__rbp_ignore = true;
-    }
-  } catch {}
-  // <!-- END RBP GENERATED: admin-host-nav-v2 -->
+  // <!-- END RBP GENERATED: admin-host-nav-v3 -->
   return { session, admin, shop };
 }
 
@@ -45,32 +38,32 @@ export function ensureEmbeddedRedirect(request: Request): Response | null {
   // If already embedded with host, nothing to do
   if (host && shop && embedded === '1') return null;
 
-  // <!-- BEGIN RBP GENERATED: admin-host-nav-v1 -->
-  // Recover host from cookie if missing
+  // <!-- BEGIN RBP GENERATED: admin-host-nav-v3 -->
+  // Recover host/shop from cookies if missing
   let recoveredHost = host || '';
   let recoveredShop = shop || '';
+  const cookie = request.headers.get('Cookie') || '';
   if (!recoveredHost) {
-    const cookie = request.headers.get('Cookie') || '';
     const m = cookie.match(/(?:^|;\s*)rbp_host=([^;]+)/);
     if (m) recoveredHost = decodeURIComponent(m[1]);
   }
   if (!recoveredShop) {
-    const cookie = request.headers.get('Cookie') || '';
     const m = cookie.match(/(?:^|;\s*)rbp_shop=([^;]+)/);
     if (m) recoveredShop = decodeURIComponent(m[1]);
   }
   const target = new URL(url.pathname, url.origin);
+  // Always ensure embedded=1
   target.searchParams.set('embedded', '1');
   if (recoveredHost) target.searchParams.set('host', recoveredHost);
   if (recoveredShop) target.searchParams.set('shop', recoveredShop);
-  // Preserve rest of query except host/embedded to avoid duplication
+  // Preserve any other params
   for (const [k, v] of url.searchParams) {
     if (k === 'host' || k === 'shop' || k === 'embedded') continue;
     target.searchParams.set(k, v);
   }
-  // Also include return_to for App Bridge based re-embed flows
+  // Provide return_to to allow client re-embed flows to bounce back
   target.searchParams.set('return_to', url.pathname + url.search);
-  // <!-- END RBP GENERATED: admin-host-nav-v1 -->
+  // <!-- END RBP GENERATED: admin-host-nav-v3 -->
 
   // Standard App Bridge re-embed pattern: redirect to /app?embedded=1&host=...
   return new Response('', { status: 302, headers: { Location: target.toString() } });

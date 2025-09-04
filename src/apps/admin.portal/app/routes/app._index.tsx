@@ -2,6 +2,9 @@
 <!-- BEGIN RBP GENERATED: tenant-admin-dashboard-v1 -->
 */
 import React from 'react';
+/* <!-- BEGIN RBP GENERATED: admin-dashboard-v1 --> */
+import { AdminDashboard } from '../components/dashboard/AdminDashboard';
+/* <!-- END RBP GENERATED: admin-dashboard-v1 --> */
 import { TenantBadge } from '../components/TenantBadge';
 import { KpiCards } from '../components/KpiCards';
 import { PackagerDryRunPanel } from '../components/PackagerDryRunPanel';
@@ -84,21 +87,11 @@ export async function loader({ request }: { request: Request }): Promise<Dashboa
   /* <!-- END RBP GENERATED: admin-loader-server-wiring --> */
 }
 
-export default function DashboardRoute(props: { data?: DashboardLoaderData } = {}) {
-  const data = props.data;
-  return (
-    <div>
-      {data && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-          <TenantBadge domain={data.tenant.domain} plan={data.tenant.plan} showDevChip={data.flags.showDevTools} />
-        </div>
-      )}
-      <div style={{ marginBottom: 12 }}>
-        <KpiCards />
-      </div>
-      <PackagerDryRunPanel />
-    </div>
-  );
+export default function DashboardRoute() {
+  /* <!-- BEGIN RBP GENERATED: admin-dashboard-v1 --> */
+  // Render the lean Admin Dashboard (client-fetch with skeletons + aggregated error banner)
+  return <AdminDashboard />;
+  /* <!-- END RBP GENERATED: admin-dashboard-v1 --> */
 }
 /*
 <!-- END RBP GENERATED: tenant-admin-dashboard-v1 -->

@@ -13,6 +13,7 @@ function makeApi() {
   get: jest.fn(async (_id: string) => ({ id: 'b1', title: 'Build 1', items: [] })),
   patch: jest.fn(async (_id: string, payload: any) => ({ id: 'b1', title: 'Build 1', items: payload?.items ?? [] })),
   duplicate: jest.fn(async (_id: string) => ({ id: 'b1-copy', title: 'Build 1 Copy', items: [] } as any)),
+  delete: jest.fn(async (_id: string) => ({ ok: true } as const)),
   } as ReturnType<typeof createBuildsApi>;
 }
 

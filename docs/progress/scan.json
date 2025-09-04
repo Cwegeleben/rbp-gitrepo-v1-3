@@ -1,0 +1,1243 @@
+{
+  "generatedAt": "2025-08-26T00:58:07.838Z",
+  "cwd": "/Users/cwegeleben/Projects/rbp-gitrepo-v1-3",
+  "count": 103,
+  "sentinels": [
+    {
+      "sentinel": "AccessV2",
+      "files": [
+        "docs/adr/ACCESS-V2-MVP.md",
+        "src/app/routes/apps.proxy.api.checkout.package.ts",
+        "src/apps/gateway/api-gateway/app/proxy/access.server.ts",
+        "src/apps/gateway/api-gateway/app/proxy/features.registry.ts",
+        "src/apps/gateway/api-gateway/app/proxy/index.ts",
+        "src/apps/gateway/api-gateway/app/proxy/requireAccess.server.ts",
+        "src/apps/gateway/api-gateway/app/routes/admin.access.$tenant.tsx",
+        "src/apps/gateway/api-gateway/app/routes/apps.proxy.boot[.]js.ts",
+        "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.access.ctx.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.$id.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.checkout.package.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/prisma/seed.ts",
+        "src/modules/rbp-builds/0.1.0/index.js",
+        "src/modules/rbp-catalog/0.1.0/index.js",
+        "src/shared/sdk/access.ts",
+        "src/shared/sdk/client.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.734Z",
+      "lastSeenIso": "2025-08-26T00:58:07.827Z"
+    },
+    {
+      "sentinel": "accessv2-preflight-v1",
+      "files": [
+        "scripts/preflight/accessv2.sanity.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.743Z",
+      "lastSeenIso": "2025-08-26T00:58:07.743Z"
+    },
+    {
+      "sentinel": "accessv2-tests-v1",
+      "files": [
+        "src/apps/gateway/api-gateway/app/proxy/__tests__/access.server.test.ts",
+        "src/apps/gateway/api-gateway/app/proxy/__tests__/features.registry.test.ts",
+        "src/apps/gateway/api-gateway/app/proxy/__tests__/requireAccess.server.test.ts",
+        "src/apps/gateway/api-gateway/app/routes/__tests__/apps.rbp.api.access.ctx.test.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/__tests__/apps.proxy.api.access.ctx.test.ts",
+        "src/test/types/remix-node.d.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.767Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "admin-auth-guard-v1",
+      "files": [
+        "src/apps/admin.portal/app/__tests__/auth.guard.test.ts",
+        "src/apps/admin.portal/app/utils/auth.server.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.756Z",
+      "lastSeenIso": "2025-08-26T00:58:07.783Z"
+    },
+    {
+      "sentinel": "admin-builds-v1",
+      "files": [
+        "src/apps/admin.portal/app/components/builds/AdminBuildsPage.stories.tsx",
+        "src/apps/admin.portal/app/components/builds/AdminBuildsPage.tsx",
+        "src/apps/admin.portal/app/components/builds/__tests__/AdminBuildsPage.test.tsx",
+        "src/apps/admin.portal/app/routes/app.builds.tsx",
+        "src/apps/admin.portal/mocks/handlers/buildsHandlers.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.761Z",
+      "lastSeenIso": "2025-08-26T00:58:07.766Z"
+    },
+    {
+      "sentinel": "admin-catalog-v2-2",
+      "files": [
+        "src/apps/admin.portal/app/components/catalog/AdminCatalogShell.stories.tsx",
+        "src/apps/admin.portal/app/components/catalog/AdminCatalogShell.tsx",
+        "src/apps/admin.portal/app/components/catalog/__tests__/AdminCatalogShell.test.tsx",
+        "src/apps/admin.portal/app/routes/app.catalog.tsx",
+        "src/apps/admin.portal/mocks/handlers/catalogHandlers.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.761Z",
+      "lastSeenIso": "2025-08-26T00:58:07.766Z"
+    },
+    {
+      "sentinel": "admin-dashboard-v1",
+      "files": [
+        "src/apps/admin.portal/app/components/dashboard/AdminDashboard.stories.tsx",
+        "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx",
+        "src/apps/admin.portal/app/components/dashboard/__tests__/AdminDashboard.test.tsx",
+        "src/apps/admin.portal/mocks/handlers/dashboardHandlers.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.762Z",
+      "lastSeenIso": "2025-08-26T00:58:07.766Z"
+    },
+    {
+      "sentinel": "admin-embed-fix-v3",
+      "files": [
+        "scripts/preflight/admin-embed.sanity.v3.ts",
+        "scripts/preflight/admin-links.scan.ts",
+        "scripts/smoke/admin-routes.embedded.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/admin/Builds.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/admin/Catalog.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/admin/Dashboard.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/admin/Settings.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/root.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app._index.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.builds._index.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.catalog._index.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.settings._index.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.743Z",
+      "lastSeenIso": "2025-08-26T00:58:07.783Z"
+    },
+    {
+      "sentinel": "admin-host-nav-v1",
+      "files": [
+        "src/apps/admin.portal/app/__tests__/admin-host-nav.test.tsx",
+        "src/apps/admin.portal/app/components/HostLink.tsx",
+        "src/apps/admin.portal/app/hooks/useHostNavigate.ts",
+        "src/apps/admin.portal/app/utils/url.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.755Z",
+      "lastSeenIso": "2025-08-26T00:58:07.765Z"
+    },
+    {
+      "sentinel": "admin-host-nav-v2",
+      "files": [
+        "src/apps/admin.portal/app/__tests__/admin-host-nav.v2.get-form.test.tsx",
+        "src/apps/admin.portal/app/__tests__/admin-host-nav.v2.test.tsx",
+        "src/apps/admin.portal/app/components/ShopHostLink.tsx",
+        "src/apps/admin.portal/app/hooks/useShopHostNavigate.ts",
+        "src/apps/admin.portal/app/hooks/useShopHostSubmit.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.755Z",
+      "lastSeenIso": "2025-08-26T00:58:07.763Z"
+    },
+    {
+      "sentinel": "admin-host-nav-v3",
+      "files": [
+        "scripts/preflight/admin-embed.sanity.ts",
+        "src/apps/admin.portal/app/__tests__/admin-host-nav.v3.test.tsx",
+        "src/apps/admin.portal/app/routes/app.doctor.tsx",
+        "src/apps/admin.portal/app/utils/url.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/dev-bundle/3db7633f-6967-2de7-817f-4ec22cd6939bbc68e703/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/extensions/rbp-theme/assets/rbp-bootstrap.js"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.743Z",
+      "lastSeenIso": "2025-08-26T00:58:07.788Z"
+    },
+    {
+      "sentinel": "admin-links-hardening-v1",
+      "files": [
+        "package.json",
+        "scripts/migrate/admin-links.wrap.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/root.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.780Z"
+    },
+    {
+      "sentinel": "admin-nav-dev-pages-v1",
+      "files": [
+        "scripts/preflight/shopify-admin.links.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.env.example",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/AppNav.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.744Z",
+      "lastSeenIso": "2025-08-26T00:58:07.783Z"
+    },
+    {
+      "sentinel": "admin-nav-dev-pages-v1-1",
+      "files": [
+        "package.json",
+        "scripts/preflight/no-stub-routes.ts",
+        "scripts/preflight/smoke-admin-routes.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.783Z"
+    },
+    {
+      "sentinel": "admin-navmenu-v1",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.783Z",
+      "lastSeenIso": "2025-08-26T00:58:07.783Z"
+    },
+    {
+      "sentinel": "admin-preflight-runner-v1",
+      "files": [
+        "package.json",
+        "scripts/preflight/admin-all.ts",
+        "scripts/preflight/utils/sleep.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.745Z"
+    },
+    {
+      "sentinel": "admin-settings-v1",
+      "files": [
+        "src/apps/admin.portal/app/components/settings/AdminSettings.stories.tsx",
+        "src/apps/admin.portal/app/components/settings/AdminSettings.tsx",
+        "src/apps/admin.portal/app/components/settings/__tests__/AdminSettings.test.tsx",
+        "src/apps/admin.portal/app/routes/app.settings.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.762Z",
+      "lastSeenIso": "2025-08-26T00:58:07.764Z"
+    },
+    {
+      "sentinel": "builds-gallery-bulk-v1",
+      "files": [
+        "config/registry.json",
+        "src/config/registry.json",
+        "src/modules/rbp-builds-gallery/v1.1.0/GalleryBulk.stories.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/__tests__/bulkDelete.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/__tests__/bulkDuplicate.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/__tests__/bulkSelect.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/__tests__/bulkShareExport.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/__tests__/renameInline.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/BuildCard.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/BuildCard.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/BulkBar.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/BulkBar.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/BulkConfirmDialog.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/BulkConfirmDialog.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/Gallery.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/SelectionCheckbox.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/components/SelectionCheckbox.tsx",
+        "src/modules/rbp-builds-gallery/v1.1.0/hooks/useBuildsGallery.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/hooks/useBuildsGallery.ts",
+        "src/modules/rbp-builds-gallery/v1.1.0/index.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/utils/selection.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/utils/selection.ts",
+        "src/modules/rbp-builds-gallery/v1.1.0/utils/sorters.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/utils/sorters.ts",
+        "src/modules/rbp-builds-gallery/v1.1.0/utils/urlState.js",
+        "src/modules/rbp-builds-gallery/v1.1.0/utils/urlState.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.808Z"
+    },
+    {
+      "sentinel": "builds-gallery-v1",
+      "files": [
+        "src/modules/rbp-builds-gallery/v1.0.0/Gallery.stories.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/README.md",
+        "src/modules/rbp-builds-gallery/v1.0.0/__tests__/filterSort.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/__tests__/openDuplicateDelete.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/__tests__/shareFallback.test.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/components/BuildCard.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/components/ConfirmDialog.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/components/FilterBar.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/components/Gallery.tsx",
+        "src/modules/rbp-builds-gallery/v1.0.0/hooks/useBuildsGallery.ts",
+        "src/modules/rbp-builds-gallery/v1.0.0/index.js",
+        "src/modules/rbp-builds-gallery/v1.0.0/utils/sorters.ts",
+        "src/modules/rbp-builds-gallery/v1.0.0/utils/urlState.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.803Z",
+      "lastSeenIso": "2025-08-26T00:58:07.805Z"
+    },
+    {
+      "sentinel": "builds-panel-v2",
+      "files": [
+        "config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/config/registry.json",
+        "src/modules/rbp-builds/1.1.0/__stories__/BuildsPanelV2.stories.tsx",
+        "src/modules/rbp-builds/1.1.0/__tests__/importExport.test.ts",
+        "src/modules/rbp-builds/1.1.0/__tests__/optimisticRollback.test.ts",
+        "src/modules/rbp-builds/1.1.0/index.js",
+        "src/modules/rbp-builds/1.1.0/utils/buildImportExport.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.798Z"
+    },
+    {
+      "sentinel": "builds-readiness-v1",
+      "files": [
+        "src/modules/rbp-builds/v1.2.0/ReadinessPanel.stories.tsx",
+        "src/modules/rbp-builds/v1.2.0/__tests__/fixActions.test.tsx",
+        "src/modules/rbp-builds/v1.2.0/__tests__/readiness.test.tsx",
+        "src/modules/rbp-builds/v1.2.0/__tests__/utils.test.ts",
+        "src/modules/rbp-builds/v1.2.0/components/FixActions.tsx",
+        "src/modules/rbp-builds/v1.2.0/hooks/useReadiness.ts",
+        "src/modules/rbp-builds/v1.2.0/index.d.ts",
+        "src/modules/rbp-builds/v1.2.0/index.js",
+        "src/modules/rbp-builds/v1.2.0/utils/hintsMap.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.799Z",
+      "lastSeenIso": "2025-08-26T00:58:07.800Z"
+    },
+    {
+      "sentinel": "builds-share-links-v1",
+      "files": [
+        "config/registry.json",
+        "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.share.mint.ts",
+        "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.share.resolve.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/public/apps/proxy/modules/rbp-builds/1.3.0/index.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/public/apps/proxy/modules/rbp-share/1.0.0/index.js",
+        "src/modules/rbp-builds/v1.3.0/Share.stories.tsx",
+        "src/modules/rbp-builds/v1.3.0/__tests__/shareLink.test.ts",
+        "src/modules/rbp-builds/v1.3.0/index.js",
+        "src/modules/rbp-builds/v1.3.0/utils/shareUrl.ts",
+        "src/modules/rbp-share/v1.0.0/Preview.stories.tsx",
+        "src/modules/rbp-share/v1.0.0/__tests__/preview.test.tsx",
+        "src/modules/rbp-share/v1.0.0/index.js"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.818Z"
+    },
+    {
+      "sentinel": "builds-templates-v1",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/config/registry.json",
+        "src/config/registry.json",
+        "src/modules/rbp-templates/v1.0.0/README.md",
+        "src/modules/rbp-templates/v1.0.0/Templates.stories.tsx",
+        "src/modules/rbp-templates/v1.0.0/__tests__/README.md",
+        "src/modules/rbp-templates/v1.0.0/__tests__/applyTemplate.test.tsx",
+        "src/modules/rbp-templates/v1.0.0/__tests__/filters.test.tsx",
+        "src/modules/rbp-templates/v1.0.0/__tests__/manifest.test.ts",
+        "src/modules/rbp-templates/v1.0.0/components/FilterBar.tsx",
+        "src/modules/rbp-templates/v1.0.0/components/README.md",
+        "src/modules/rbp-templates/v1.0.0/components/TemplateCard.tsx",
+        "src/modules/rbp-templates/v1.0.0/components/TemplatePreview.tsx",
+        "src/modules/rbp-templates/v1.0.0/components/TemplatesGrid.tsx",
+        "src/modules/rbp-templates/v1.0.0/hooks/useTemplates.ts",
+        "src/modules/rbp-templates/v1.0.0/index.js",
+        "src/modules/rbp-templates/v1.0.0/utils/README.md",
+        "src/modules/rbp-templates/v1.0.0/utils/manifest.ts",
+        "src/modules/rbp-templates/v1.0.0/utils/urlState.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.788Z",
+      "lastSeenIso": "2025-08-26T00:58:07.823Z"
+    },
+    {
+      "sentinel": "builds-undo-redo-v1",
+      "files": [
+        "src/config/registry.json",
+        "src/modules/rbp-builds/v1.4.0/History.stories.tsx",
+        "src/modules/rbp-builds/v1.4.0/__tests__/history.stack.test.ts",
+        "src/modules/rbp-builds/v1.4.0/__tests__/history.test.ts",
+        "src/modules/rbp-builds/v1.4.0/__tests__/keyboard.test.ts",
+        "src/modules/rbp-builds/v1.4.0/__tests__/mutations.test.ts",
+        "src/modules/rbp-builds/v1.4.0/components/HistoryBar.tsx",
+        "src/modules/rbp-builds/v1.4.0/hooks/useBuildMutations.ts",
+        "src/modules/rbp-builds/v1.4.0/hooks/useHistoryStack.ts",
+        "src/modules/rbp-builds/v1.4.0/index.js",
+        "src/modules/rbp-builds/v1.4.0/utils/ops.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.796Z",
+      "lastSeenIso": "2025-08-26T00:58:07.803Z"
+    },
+    {
+      "sentinel": "BuildsQoL",
+      "files": [
+        "src/modules/rbp-builds/0.2.0/actions.ts",
+        "src/modules/rbp-builds/0.2.0/index.js",
+        "src/modules/rbp-builds/0.2.0/index.ts",
+        "src/modules/rbp-builds/0.2.0/index.tsx",
+        "src/modules/rbp-builds/__tests__/qol.test.tsx",
+        "src/shared/sdk/client.ts",
+        "src/shared/ui/toast.ts",
+        "src/shared/ui/toast.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.797Z",
+      "lastSeenIso": "2025-08-26T00:58:07.827Z"
+    },
+    {
+      "sentinel": "cart-drawer-v1",
+      "files": [
+        "config/registry.json",
+        "src/modules/rbp-cart/v1.0.0/CartDrawer.stories.tsx",
+        "src/modules/rbp-cart/v1.0.0/__tests__/README.md",
+        "src/modules/rbp-cart/v1.0.0/__tests__/a11y.test.tsx",
+        "src/modules/rbp-cart/v1.0.0/__tests__/events.test.tsx",
+        "src/modules/rbp-cart/v1.0.0/__tests__/fallback.test.tsx",
+        "src/modules/rbp-cart/v1.0.0/components/Actions.js",
+        "src/modules/rbp-cart/v1.0.0/components/Actions.tsx",
+        "src/modules/rbp-cart/v1.0.0/components/CartDrawer.js",
+        "src/modules/rbp-cart/v1.0.0/components/CartDrawer.tsx",
+        "src/modules/rbp-cart/v1.0.0/components/Hints.js",
+        "src/modules/rbp-cart/v1.0.0/components/Hints.tsx",
+        "src/modules/rbp-cart/v1.0.0/components/ItemsList.js",
+        "src/modules/rbp-cart/v1.0.0/components/ItemsList.tsx",
+        "src/modules/rbp-cart/v1.0.0/components/Totals.js",
+        "src/modules/rbp-cart/v1.0.0/components/Totals.tsx",
+        "src/modules/rbp-cart/v1.0.0/hooks/useEvents.ts",
+        "src/modules/rbp-cart/v1.0.0/hooks/useMiniCart.ts",
+        "src/modules/rbp-cart/v1.0.0/index.d.ts",
+        "src/modules/rbp-cart/v1.0.0/index.js",
+        "src/modules/rbp-cart/v1.0.0/index.tsx",
+        "src/modules/rbp-cart/v1.0.0/types.d.ts",
+        "src/modules/rbp-cart/v1.0.0/utils/formatCart.ts",
+        "src/test/types/rbp-cart.d.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "catalog-picker-v2",
+      "files": [
+        "config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/config/registry.json",
+        "src/modules/rbp-catalog/v1.1.0/__stories__/CatalogPickerV2.stories.tsx",
+        "src/modules/rbp-catalog/v1.1.0/__tests__/events.test.ts",
+        "src/modules/rbp-catalog/v1.1.0/__tests__/optimisticAdd.test.ts",
+        "src/modules/rbp-catalog/v1.1.0/__tests__/query.test.ts",
+        "src/modules/rbp-catalog/v1.1.0/hooks/useCatalogPicker.ts",
+        "src/modules/rbp-catalog/v1.1.0/index.js",
+        "src/modules/rbp-catalog/v1.1.0/utils/query.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.813Z"
+    },
+    {
+      "sentinel": "catalog-products-v2-tests",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/__tests__/apps.proxy.api.catalog.products.v2.test.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.781Z",
+      "lastSeenIso": "2025-08-26T00:58:07.781Z"
+    },
+    {
+      "sentinel": "CatalogV2",
+      "files": [
+        "docs/catalog-products.md",
+        "src/apps/gateway/api-gateway/app/__tests__/catalog.products.v2.test.ts",
+        "src/apps/gateway/api-gateway/app/proxy/catalog.server.ts",
+        "src/apps/gateway/api-gateway/app/proxy/ranking.server.ts",
+        "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.catalog.products.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/proxy/ranking.server.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.catalog.products.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.734Z",
+      "lastSeenIso": "2025-08-26T00:58:07.784Z"
+    },
+    {
+      "sentinel": "CatalogV2-Tests",
+      "files": [
+        "src/apps/gateway/api-gateway/app/routes/__tests__/apps.proxy.api.catalog.products.test.ts",
+        "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.catalog.products.test.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.770Z",
+      "lastSeenIso": "2025-08-26T00:58:07.772Z"
+    },
+    {
+      "sentinel": "check-app-proxy",
+      "files": [
+        "scripts/preflight/check-app-proxy.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.744Z",
+      "lastSeenIso": "2025-08-26T00:58:07.744Z"
+    },
+    {
+      "sentinel": "ci-admin-tests-smoke",
+      "files": [
+        ".github/workflows/ci.yml",
+        "README.md",
+        "docs/dev/ci.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.483Z",
+      "lastSeenIso": "2025-08-26T00:58:07.735Z"
+    },
+    {
+      "sentinel": "dev-debug-panel-v1",
+      "files": [
+        "src/apps/admin.portal/__tests__/dev.debug.gating.test.tsx",
+        "src/apps/admin.portal/__tests__/dev.debug.panel.test.tsx",
+        "src/apps/admin.portal/app/components/DevDebugPanel.stories.tsx",
+        "src/apps/admin.portal/app/components/DevDebugPanel.tsx",
+        "src/modules/rbp-shell/__tests__/dev.section.gating.test.tsx",
+        "src/modules/rbp-shell/__tests__/dev.section.test.tsx",
+        "src/modules/rbp-shell/v0.2.0/__stories__/DevSection.stories.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/DevSection.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.754Z",
+      "lastSeenIso": "2025-08-26T00:58:07.819Z"
+    },
+    {
+      "sentinel": "dev-scripts",
+      "files": [
+        "package.json"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.740Z"
+    },
+    {
+      "sentinel": "dev-workflow-doc",
+      "files": [
+        "docs/dev-workflow.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.736Z",
+      "lastSeenIso": "2025-08-26T00:58:07.736Z"
+    },
+    {
+      "sentinel": "docs-smoke-admin",
+      "files": [
+        "docs/dev/smoke-admin.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.736Z",
+      "lastSeenIso": "2025-08-26T00:58:07.736Z"
+    },
+    {
+      "sentinel": "docs-storybook",
+      "files": [
+        "docs/ui/storybook.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.739Z",
+      "lastSeenIso": "2025-08-26T00:58:07.739Z"
+    },
+    {
+      "sentinel": "doctor-proxy-print",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/doctor.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.786Z",
+      "lastSeenIso": "2025-08-26T00:58:07.786Z"
+    },
+    {
+      "sentinel": "dts-proxy-catalog",
+      "files": [
+        "src/test/types/catalog-proxy.d.ts",
+        "src/test/types/proxy-catalog.d.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.829Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "dts-proxy-paths",
+      "files": [
+        "src/test/types/paths-proxy.d.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.829Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "dts-remix-node",
+      "files": [
+        "src/test/types/remix-node.d.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.829Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "env-example",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/.env",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.env.example"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.773Z",
+      "lastSeenIso": "2025-08-26T00:58:07.773Z"
+    },
+    {
+      "sentinel": "env-guard",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/shopify.server.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.787Z",
+      "lastSeenIso": "2025-08-26T00:58:07.787Z"
+    },
+    {
+      "sentinel": "fast-smoke-checklist",
+      "files": [
+        "README.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.485Z",
+      "lastSeenIso": "2025-08-26T00:58:07.485Z"
+    },
+    {
+      "sentinel": "Fly-Deploy-Fix",
+      "files": [
+        "README.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.485Z",
+      "lastSeenIso": "2025-08-26T00:58:07.485Z"
+    },
+    {
+      "sentinel": "Fly-MinDocker",
+      "files": [
+        ".dockerignore",
+        "Dockerfile",
+        "fly.toml",
+        "scripts/fly/curl-smoke.sh"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.481Z",
+      "lastSeenIso": "2025-08-26T00:58:07.742Z"
+    },
+    {
+      "sentinel": "github-preflight",
+      "files": [
+        ".github/workflows/preflight.yml"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.483Z",
+      "lastSeenIso": "2025-08-26T00:58:07.483Z"
+    },
+    {
+      "sentinel": "inventory-commit-phase2",
+      "files": [
+        "docs/dev/orders-commit-phase2.md",
+        "src/apps/gateway/api-gateway/app/proxy/__tests__/orders.commit.test.ts",
+        "src/apps/gateway/api-gateway/app/proxy/commit/orderCommit.server.ts",
+        "src/apps/gateway/api-gateway/app/proxy/logger.server.ts",
+        "src/apps/gateway/api-gateway/app/proxy/packager/plan.server.ts",
+        "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.webhooks.orders.paid.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.735Z",
+      "lastSeenIso": "2025-08-26T00:58:07.771Z"
+    },
+    {
+      "sentinel": "inventory-phase1",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/prisma/schema.prisma",
+        "src/packages/access/scripts/seed-inventory.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.792Z",
+      "lastSeenIso": "2025-08-26T00:58:07.826Z"
+    },
+    {
+      "sentinel": "inventory-sync",
+      "files": [
+        "scripts/curl-inventory-sync.sh",
+        "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.inventory.sync.ts",
+        "src/packages/catalog/inventory/sync.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.741Z",
+      "lastSeenIso": "2025-08-26T00:58:07.826Z"
+    },
+    {
+      "sentinel": "jest-config",
+      "files": [
+        "jest.config.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.739Z",
+      "lastSeenIso": "2025-08-26T00:58:07.739Z"
+    },
+    {
+      "sentinel": "jest-setup",
+      "files": [
+        "jest.setup.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.740Z"
+    },
+    {
+      "sentinel": "mock-catalog-server",
+      "files": [
+        "src/test/mocks/catalog-server.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.828Z",
+      "lastSeenIso": "2025-08-26T00:58:07.828Z"
+    },
+    {
+      "sentinel": "mock-paths-server",
+      "files": [
+        "src/test/mocks/paths-server.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.828Z",
+      "lastSeenIso": "2025-08-26T00:58:07.828Z"
+    },
+    {
+      "sentinel": "mock-ranking-server",
+      "files": [
+        "src/test/mocks/ranking-server.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.828Z",
+      "lastSeenIso": "2025-08-26T00:58:07.828Z"
+    },
+    {
+      "sentinel": "mock-remix-node",
+      "files": [
+        "src/test/mocks/remix-node.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.828Z",
+      "lastSeenIso": "2025-08-26T00:58:07.828Z"
+    },
+    {
+      "sentinel": "mock-shopify-server",
+      "files": [
+        "src/test/mocks/shopify.server.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.829Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "mode-a",
+      "files": [
+        ".gitignore",
+        "src/__tests__/package.utils.test.ts",
+        "src/apps/gateway/api-gateway/app/__tests__/inventory.sync.route.mode-a.test.ts",
+        "src/packages/access/config/tenant.inventory.mode.ts",
+        "src/test/fixtures/inventory.fixtures.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.484Z",
+      "lastSeenIso": "2025-08-26T00:58:07.827Z"
+    },
+    {
+      "sentinel": "no-store-headers",
+      "files": [
+        "src/apps/gateway/api-gateway/app/routes/admin.access.$tenant.tsx",
+        "src/apps/gateway/api-gateway/app/routes/apps.proxy.ping.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.771Z",
+      "lastSeenIso": "2025-08-26T00:58:07.772Z"
+    },
+    {
+      "sentinel": "orders-commit-phase2",
+      "files": [
+        "scripts/curl-webhook-orders-paid.sh",
+        "src/apps/gateway/api-gateway/app/__tests__/webhooks.orders.paid.test.ts",
+        "src/packages/builds/commit/index.ts",
+        "src/packages/builds/commit/shopifyRbpAdjust.ts",
+        "src/packages/shopify/admin.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.742Z",
+      "lastSeenIso": "2025-08-26T00:58:07.827Z"
+    },
+    {
+      "sentinel": "package-cta-v1",
+      "files": [
+        "config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/config/registry.json",
+        "src/config/registry.json",
+        "src/modules/rbp-package/1.0.0/PackagePanel.stories.tsx",
+        "src/modules/rbp-package/1.0.0/README.md",
+        "src/modules/rbp-package/1.0.0/__tests__/README.md",
+        "src/modules/rbp-package/1.0.0/__tests__/a11y.test.tsx",
+        "src/modules/rbp-package/1.0.0/__tests__/packager.test.tsx",
+        "src/modules/rbp-package/1.0.0/components/HintsList.tsx",
+        "src/modules/rbp-package/1.0.0/components/PackagePanel.tsx",
+        "src/modules/rbp-package/1.0.0/components/Toast.tsx",
+        "src/modules/rbp-package/1.0.0/hooks/usePackager.ts",
+        "src/modules/rbp-package/1.0.0/index.js",
+        "src/modules/rbp-package/1.0.0/packager.test.ts",
+        "src/modules/rbp-package/1.0.0/utils/formatTotals.ts",
+        "src/modules/rbp-package/1.1.0/index.js"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.817Z"
+    },
+    {
+      "sentinel": "package-phase1",
+      "files": [
+        "src/app/routes/apps.proxy.api.checkout.package.ts",
+        "src/packages/builds/package/index.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.748Z",
+      "lastSeenIso": "2025-08-26T00:58:07.826Z"
+    },
+    {
+      "sentinel": "package-tests-stable-v1",
+      "files": [
+        "src/test/utils/fetchMock.ts",
+        "src/test/utils/renderWithBuildCtx.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.830Z",
+      "lastSeenIso": "2025-08-26T00:58:07.830Z"
+    },
+    {
+      "sentinel": "packager-v2",
+      "files": [
+        "docs/dev/packager-v2.md",
+        "src/app/routes/apps.proxy.api.checkout.package.ts",
+        "src/apps/gateway/api-gateway/app/proxy/__tests__/packager.v2.test.ts",
+        "src/apps/gateway/api-gateway/app/proxy/packager/totals.server.ts",
+        "src/test/mocks/builds-package-index.ts",
+        "src/test/mocks/requireAccess.server.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.735Z",
+      "lastSeenIso": "2025-08-26T00:58:07.828Z"
+    },
+    {
+      "sentinel": "preflight-app-proxy",
+      "files": [
+        "package.json"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.740Z"
+    },
+    {
+      "sentinel": "preflight-badge",
+      "files": [
+        "README.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.485Z",
+      "lastSeenIso": "2025-08-26T00:58:07.485Z"
+    },
+    {
+      "sentinel": "qa-validate-v1",
+      "files": [
+        "docs/qa/validation-checklist.md",
+        "package.json",
+        "scripts/run-tests-3x.mjs"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.739Z",
+      "lastSeenIso": "2025-08-26T00:58:07.746Z"
+    },
+    {
+      "sentinel": "rbp-chat-importer-v1",
+      "files": [
+        "scripts/progress/import-chat.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.745Z",
+      "lastSeenIso": "2025-08-26T00:58:07.745Z"
+    },
+    {
+      "sentinel": "rbp-inventory-endpoints-v1",
+      "files": [
+        "package.json",
+        "scripts/progress/inventory-endpoints.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.745Z"
+    },
+    {
+      "sentinel": "rbp-inventory-routes-v1",
+      "files": [
+        "package.json",
+        "scripts/progress/inventory-routes.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.745Z"
+    },
+    {
+      "sentinel": "rbp-progress-ledger-paths-v1",
+      "files": [
+        "scripts/preflight/progress-paths.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.744Z",
+      "lastSeenIso": "2025-08-26T00:58:07.744Z"
+    },
+    {
+      "sentinel": "rbp-progress-ledger-v1",
+      "files": [
+        "docs/progress/.gitkeep",
+        "docs/progress/GAPS.md",
+        "docs/progress/REPORT.md",
+        "package.json",
+        "scripts/progress/gaps.ts",
+        "scripts/progress/scan.ts",
+        "scripts/progress/types.ts",
+        "scripts/progress/update.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.736Z",
+      "lastSeenIso": "2025-08-26T00:58:07.746Z"
+    },
+    {
+      "sentinel": "rbp-shell-mvp",
+      "files": [
+        "README.md",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/deploy-bundle/e5368ccf-ed30-49eb-9584-d7c961f26f37/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/dev-bundle/3db7633f-6967-2de7-817f-4ec22cd6939bbc68e703/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/extensions/rbp-theme/assets/rbp-bootstrap.js",
+        "src/modules/rbp-shell/v0.2.0/Shell.tsx",
+        "src/modules/rbp-shell/v0.2.0/__stories__/Shell.stories.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/ErrorBoundary.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/Header.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/Skeleton.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/StatusPanel.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/Tiles.tsx",
+        "src/modules/rbp-shell/v0.2.0/index.js",
+        "src/modules/rbp-shell/v0.2.0/types.d.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.485Z",
+      "lastSeenIso": "2025-08-26T00:58:07.821Z"
+    },
+    {
+      "sentinel": "rbp-snapshot-exporter-v1",
+      "files": [
+        "package.json",
+        "scripts/progress/snapshot.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.740Z",
+      "lastSeenIso": "2025-08-26T00:58:07.746Z"
+    },
+    {
+      "sentinel": "registry-health-ui-v1",
+      "files": [
+        "src/apps/admin.portal/app/components/RegistryHealth.stories.tsx",
+        "src/apps/admin.portal/app/components/RegistryHealth.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.760Z",
+      "lastSeenIso": "2025-08-26T00:58:07.760Z"
+    },
+    {
+      "sentinel": "registry-health-v1",
+      "files": [
+        "src/apps/gateway/api-gateway/app/proxy/modules/__tests__/health.server.test.ts",
+        "src/apps/gateway/api-gateway/app/proxy/modules/health.server.ts",
+        "src/apps/gateway/api-gateway/app/routes/__tests__/apps.proxy.modules.health.test.ts",
+        "src/apps/gateway/api-gateway/app/routes/apps.proxy.modules.health.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.769Z",
+      "lastSeenIso": "2025-08-26T00:58:07.772Z"
+    },
+    {
+      "sentinel": "reservations-ttl",
+      "files": [
+        "src/packages/builds/workers/expire-soft-reservations.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.826Z",
+      "lastSeenIso": "2025-08-26T00:58:07.826Z"
+    },
+    {
+      "sentinel": "shopify-admin-host-nav-v1",
+      "files": [
+        "scripts/preflight/shopify-admin-embed.sanity.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/__tests__/shopify-admin-host-nav.v1.test.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/ShopHostLink.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/hooks/useShopHostNavigate.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/hooks/useShopHostSubmit.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.doctor.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/utils/url.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.744Z",
+      "lastSeenIso": "2025-08-26T00:58:07.787Z"
+    },
+    {
+      "sentinel": "sign-proxy-url",
+      "files": [
+        "scripts/proxy/sign-url.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.746Z",
+      "lastSeenIso": "2025-08-26T00:58:07.746Z"
+    },
+    {
+      "sentinel": "storefront-shell-v0-2",
+      "files": [
+        "src/modules/rbp-shell/v0.2.0/components/ActiveBuild.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/ErrorBanner.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/LoadingBlock.tsx",
+        "src/modules/rbp-shell/v0.2.0/components/ModuleList.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.819Z",
+      "lastSeenIso": "2025-08-26T00:58:07.820Z"
+    },
+    {
+      "sentinel": "storefront-shell-v0-2-registry",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/deploy-bundle/e5368ccf-ed30-49eb-9584-d7c961f26f37/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/dev-bundle/3db7633f-6967-2de7-817f-4ec22cd6939bbc68e703/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/proxy/__tests__/registry.test.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/extensions/rbp-theme/assets/rbp-bootstrap.js"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.774Z",
+      "lastSeenIso": "2025-08-26T00:58:07.788Z"
+    },
+    {
+      "sentinel": "structure",
+      "files": [
+        "docs/structure.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.739Z",
+      "lastSeenIso": "2025-08-26T00:58:07.739Z"
+    },
+    {
+      "sentinel": "structure-diagnostics",
+      "files": [
+        "docs/structure.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.739Z",
+      "lastSeenIso": "2025-08-26T00:58:07.739Z"
+    },
+    {
+      "sentinel": "tenant-admin-audit-proxy",
+      "files": [
+        "src/apps/admin.portal/__tests__/proxy.enforcement.test.ts",
+        "src/apps/admin.portal/__tests__/proxy.enforcement.test.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.755Z",
+      "lastSeenIso": "2025-08-26T00:58:07.755Z"
+    },
+    {
+      "sentinel": "tenant-admin-builds-qol",
+      "files": [
+        "src/apps/admin.portal/__stories__/BuildDetailPanel.stories.tsx",
+        "src/apps/admin.portal/__tests__/builds.qol.test.tsx",
+        "src/apps/admin.portal/app/components/ConfirmDialog.tsx",
+        "src/apps/admin.portal/app/lib/createBuildsApi.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.750Z",
+      "lastSeenIso": "2025-08-26T00:58:07.763Z"
+    },
+    {
+      "sentinel": "tenant-admin-catalog-v2",
+      "files": [
+        "src/apps/admin.portal/__tests__/catalog.filters.test.tsx",
+        "src/apps/admin.portal/__tests__/catalog.pagination.test.tsx",
+        "src/apps/admin.portal/app/components/FilterBar.stories.tsx",
+        "src/apps/admin.portal/app/lib/createCatalogApi.ts",
+        "src/apps/admin.portal/app/lib/urlState.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.753Z",
+      "lastSeenIso": "2025-08-26T00:58:07.764Z"
+    },
+    {
+      "sentinel": "tenant-admin-catalog-v2-1",
+      "files": [
+        "src/apps/admin.portal/__tests__/catalog.bulk.test.tsx",
+        "src/apps/admin.portal/__tests__/catalog.sort.test.tsx",
+        "src/apps/admin.portal/app/components/DataTable.stories.tsx",
+        "src/apps/admin.portal/app/components/DataTable.tsx",
+        "src/apps/admin.portal/app/components/Toolbar.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.753Z",
+      "lastSeenIso": "2025-08-26T00:58:07.760Z"
+    },
+    {
+      "sentinel": "tenant-admin-dashboard-v1",
+      "files": [
+        "docs/dev/tenant-admin-dashboard-v1.md",
+        "src/apps/admin.portal/__stories__/PackagerDryRunPanel.stories.tsx",
+        "src/apps/admin.portal/__stories__/TenantBadge.stories.tsx",
+        "src/apps/admin.portal/__tests__/dashboard.loader.test.ts",
+        "src/apps/admin.portal/__tests__/dashboard.page.snapshot.test.tsx",
+        "src/apps/admin.portal/app/components/EmptyState.stories.tsx",
+        "src/apps/admin.portal/app/components/EmptyState.tsx",
+        "src/apps/admin.portal/app/components/ErrorBanner.stories.tsx",
+        "src/apps/admin.portal/app/components/ErrorBanner.tsx",
+        "src/apps/admin.portal/app/components/KpiCards.stories.tsx",
+        "src/apps/admin.portal/app/components/KpiCards.tsx",
+        "src/apps/admin.portal/app/components/LoadingBlock.stories.tsx",
+        "src/apps/admin.portal/app/components/LoadingBlock.tsx",
+        "src/apps/admin.portal/app/components/PackagerDryRunPanel.stories.tsx",
+        "src/apps/admin.portal/app/components/PackagerDryRunPanel.tsx",
+        "src/apps/admin.portal/app/components/TenantBadge.stories.tsx",
+        "src/apps/admin.portal/app/components/TenantBadge.tsx",
+        "src/apps/admin.portal/app/routes/app._index.tsx",
+        "src/apps/admin.portal/app/routes/dashboard.contract.ts",
+        "src/apps/admin.portal/app/routes/index.route.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.736Z",
+      "lastSeenIso": "2025-08-26T00:58:07.765Z"
+    },
+    {
+      "sentinel": "tenant-admin-devtools",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/__tests__/navmenu.devtools.test.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/DevMutationPanel.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/DevQueryPanel.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/components/NavMenu.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/lib/adminGraphQL.server.ts",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.devtools._index.tsx",
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx",
+        "src/test/mocks/style-url.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.776Z",
+      "lastSeenIso": "2025-08-26T00:58:07.829Z"
+    },
+    {
+      "sentinel": "tenant-admin-harden",
+      "files": [
+        "src/apps/admin.portal/BuildsPage.tsx",
+        "src/apps/admin.portal/CatalogPage.tsx",
+        "src/apps/admin.portal/SettingsPage.tsx",
+        "src/apps/admin.portal/TenantContext.tsx",
+        "src/apps/admin.portal/__tests__/builds.focus.test.tsx",
+        "src/apps/admin.portal/__tests__/catalog.toggle.retry.test.tsx",
+        "src/apps/admin.portal/accessCtx.server.ts",
+        "src/apps/admin.portal/fetchProxy.server.ts",
+        "src/apps/admin.portal/uiStrings.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.748Z",
+      "lastSeenIso": "2025-08-26T00:58:07.766Z"
+    },
+    {
+      "sentinel": "tenant-admin-nav",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.783Z",
+      "lastSeenIso": "2025-08-26T00:58:07.783Z"
+    },
+    {
+      "sentinel": "tenant-admin-shell",
+      "files": [
+        "src/apps/admin.portal/AppShell.tsx",
+        "src/apps/admin.portal/Dashboard.tsx",
+        "src/apps/admin.portal/EmptyState.tsx",
+        "src/apps/admin.portal/ErrorState.tsx",
+        "src/apps/admin.portal/KpiTile.tsx",
+        "src/apps/admin.portal/LoadingSkeleton.tsx",
+        "src/apps/admin.portal/Nav.tsx",
+        "src/apps/admin.portal/NavItem.tsx",
+        "src/apps/admin.portal/__stories__/AdminShell.stories.tsx",
+        "src/apps/admin.portal/__stories__/BuildsPage.stories.tsx",
+        "src/apps/admin.portal/__stories__/CatalogPage.stories.tsx",
+        "src/apps/admin.portal/__stories__/EmptyState.stories.tsx",
+        "src/apps/admin.portal/__stories__/KpiTile.stories.tsx",
+        "src/apps/admin.portal/__stories__/NavItem.stories.tsx",
+        "src/apps/admin.portal/__stories__/SettingsPage.stories.tsx",
+        "src/apps/admin.portal/__tests__/gating.test.tsx",
+        "src/apps/admin.portal/fetchProxy.ts",
+        "src/apps/admin.portal/index.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.748Z",
+      "lastSeenIso": "2025-08-26T00:58:07.766Z"
+    },
+    {
+      "sentinel": "tenant-admin-smoke",
+      "files": [
+        "scripts/admin-smoke.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.741Z",
+      "lastSeenIso": "2025-08-26T00:58:07.741Z"
+    },
+    {
+      "sentinel": "tenant-admin-storybook",
+      "files": [
+        ".storybook/preview.tsx",
+        "src/apps/admin.portal/app/components/BuildDetailPanel.stories.tsx",
+        "src/apps/admin.portal/app/components/ErrorState.stories.tsx",
+        "src/apps/admin.portal/app/components/LoadingSkeleton.stories.tsx",
+        "src/apps/admin.portal/app/components/ToggleCell.stories.tsx"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.484Z",
+      "lastSeenIso": "2025-08-26T00:58:07.760Z"
+    },
+    {
+      "sentinel": "tenant-admin-ui-visibility",
+      "files": [
+        "src/apps/admin.portal/__tests__/build.preview.test.tsx",
+        "src/apps/admin.portal/__tests__/dashboard.kpis.test.tsx",
+        "src/apps/admin.portal/app/components/DashboardKPIs.stories.tsx",
+        "src/apps/admin.portal/app/components/DashboardKPIs.testables.d.ts",
+        "src/apps/admin.portal/app/components/DashboardKPIs.tsx",
+        "src/apps/admin.portal/app/lib/createPackagerApi.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.753Z",
+      "lastSeenIso": "2025-08-26T00:58:07.764Z"
+    },
+    {
+      "sentinel": "tenant-admin-wrapup",
+      "files": [
+        "docs/dev/tenant-admin-wrapup.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.736Z",
+      "lastSeenIso": "2025-08-26T00:58:07.736Z"
+    },
+    {
+      "sentinel": "Tests-AccessV2",
+      "files": [
+        "README.md",
+        "scripts/smoke.ts",
+        "src/apps/gateway/api-gateway/app/proxy/__tests__/accessV2.test.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.485Z",
+      "lastSeenIso": "2025-08-26T00:58:07.767Z"
+    },
+    {
+      "sentinel": "theme-editor-diagnostics-v1",
+      "files": [
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/dev-bundle/3db7633f-6967-2de7-817f-4ec22cd6939bbc68e703/blocks/rbp-builder.liquid",
+        "src/apps/rbp-shopify-app/rod-builder-pro/extensions/rbp-theme/blocks/rbp-builder.liquid"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.775Z",
+      "lastSeenIso": "2025-08-26T00:58:07.788Z"
+    },
+    {
+      "sentinel": "tool-inventory-v1",
+      "files": [
+        "docs/tools.md"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.739Z",
+      "lastSeenIso": "2025-08-26T00:58:07.739Z"
+    },
+    {
+      "sentinel": "tsconfig-jest-confirm",
+      "files": [
+        "tsconfig.jest.json"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.830Z",
+      "lastSeenIso": "2025-08-26T00:58:07.830Z"
+    },
+    {
+      "sentinel": "tsconfig-root",
+      "files": [
+        "tsconfig.json"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.830Z",
+      "lastSeenIso": "2025-08-26T00:58:07.830Z"
+    },
+    {
+      "sentinel": "ui-command-palette-v1",
+      "files": [
+        "config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/deploy-bundle/e5368ccf-ed30-49eb-9584-d7c961f26f37/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/dev-bundle/3db7633f-6967-2de7-817f-4ec22cd6939bbc68e703/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/extensions/rbp-theme/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/public/apps/proxy/modules/rbp-command/1.0.0/index.js",
+        "src/config/registry.json",
+        "src/modules/rbp-command/v1.0.0/Palette.stories.tsx",
+        "src/modules/rbp-command/v1.0.0/__tests__/builtins.test.ts",
+        "src/modules/rbp-command/v1.0.0/__tests__/fuzzy.test.ts",
+        "src/modules/rbp-command/v1.0.0/__tests__/keyboard.test.ts",
+        "src/modules/rbp-command/v1.0.0/__tests__/registry.test.ts",
+        "src/modules/rbp-command/v1.0.0/components/CommandPalette.tsx",
+        "src/modules/rbp-command/v1.0.0/components/ResultItem.tsx",
+        "src/modules/rbp-command/v1.0.0/components/ResultsList.tsx",
+        "src/modules/rbp-command/v1.0.0/components/SearchInput.tsx",
+        "src/modules/rbp-command/v1.0.0/hooks/useCommandRegistry.ts",
+        "src/modules/rbp-command/v1.0.0/hooks/useKeyboard.ts",
+        "src/modules/rbp-command/v1.0.0/index.d.ts",
+        "src/modules/rbp-command/v1.0.0/index.js",
+        "src/modules/rbp-command/v1.0.0/utils/builtins.ts",
+        "src/modules/rbp-command/v1.0.0/utils/fuzzy.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.815Z"
+    },
+    {
+      "sentinel": "ui-toast-announcer-v1",
+      "files": [
+        "config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/deploy-bundle/e5368ccf-ed30-49eb-9584-d7c961f26f37/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/.shopify/dev-bundle/3db7633f-6967-2de7-817f-4ec22cd6939bbc68e703/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/config/registry.json",
+        "src/apps/rbp-shopify-app/rod-builder-pro/extensions/rbp-theme/assets/rbp-bootstrap.js",
+        "src/apps/rbp-shopify-app/rod-builder-pro/public/apps/proxy/modules/rbp-ui/1.0.0/index.js",
+        "src/config/registry.json",
+        "src/modules/rbp-ui/v1.0.0/README.md",
+        "src/modules/rbp-ui/v1.0.0/UiHost.stories.tsx",
+        "src/modules/rbp-ui/v1.0.0/__tests__/a11y.test.tsx",
+        "src/modules/rbp-ui/v1.0.0/__tests__/events.test.tsx",
+        "src/modules/rbp-ui/v1.0.0/__tests__/timers.test.tsx",
+        "src/modules/rbp-ui/v1.0.0/components/Announcer.tsx",
+        "src/modules/rbp-ui/v1.0.0/components/Toast.tsx",
+        "src/modules/rbp-ui/v1.0.0/components/ToastHost.tsx",
+        "src/modules/rbp-ui/v1.0.0/hooks/useToastBus.ts",
+        "src/modules/rbp-ui/v1.0.0/index.d.ts",
+        "src/modules/rbp-ui/v1.0.0/index.js",
+        "src/modules/rbp-ui/v1.0.0/utils/ids.ts"
+      ],
+      "firstSeenIso": "2025-08-26T00:58:07.733Z",
+      "lastSeenIso": "2025-08-26T00:58:07.825Z"
+    }
+  ]
+}

@@ -465,6 +465,171 @@
 				"test",
 				"--"
 			]
+		},
+		{
+			"label": "Run targeted jest for new admin pages",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"AdminCatalogShell.test.tsx",
+				"AdminBuildsPage.test.tsx"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$jest-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run targeted jest for new admin pages",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"AdminCatalogShell.test.tsx",
+				"AdminBuildsPage.test.tsx"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$jest-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run targeted jest after checkbox fix",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"AdminCatalogShell.test.tsx",
+				"AdminBuildsPage.test.tsx"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$jest-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run targeted jest after live region assertion fix",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"AdminCatalogShell.test.tsx",
+				"AdminBuildsPage.test.tsx"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$jest-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run test for AdminSettings",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"AdminSettings.test.tsx"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$jest-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run preflight shopify-admin-links",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:shopify-admin-links"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run v1-1 preflights",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:shopify-admin-links",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:no-stub-routes",
+				"&&",
+				"pnpm",
+				"-s",
+				"smoke:admin-routes"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run v1-1 preflights",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-stub-routes",
+				"&&",
+				"pnpm",
+				"-s",
+				"smoke:admin-routes"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run v1-1 preflights (2)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-stub-routes",
+				"&&",
+				"pnpm",
+				"-s",
+				"smoke:admin-routes"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run no-stub and smoke after deletion",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-stub-routes",
+				"&&",
+				"pnpm",
+				"-s",
+				"smoke:admin-routes"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run smoke after heuristic tweak",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"smoke:admin-routes"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

@@ -1,0 +1,1 @@
+RBP_PROGRESS: { "date":"2025-08-25T13:56:00.000Z", "feature":"Progress Ledger v1", "change":"ADD", "sentinel":"rbp-progress-ledger-v1", "apps":["scripts","docs"], "files":["scripts/progress/*","docs/progress/*","package.json"], "tests":"N/A", "preflight":"PASS", "notes":"Initial audit + ledger" }

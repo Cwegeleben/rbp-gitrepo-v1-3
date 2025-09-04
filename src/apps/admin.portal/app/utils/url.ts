@@ -32,7 +32,7 @@ export function withHost(
 }
 // <!-- END RBP GENERATED: admin-host-nav-v1 -->
 
-// <!-- BEGIN RBP GENERATED: admin-host-nav-v2 -->
+// <!-- BEGIN RBP GENERATED: admin-host-nav-v3 -->
 export function getParam(search: string | URLSearchParams, key: string) {
   const sp = typeof search === 'string' ? new URLSearchParams(search) : search;
   return sp.get(key) ?? undefined;
@@ -42,7 +42,9 @@ export function withShopHost(
   to: string | URL,
   opts: { search?: string | URLSearchParams; shop?: string; host?: string; ensureEmbedded?: boolean } = {}
 ): string {
-  const base = typeof to === 'string' ? new URL(to, 'https://app.local') : to;
+  // Create a URL object using a neutral origin so relative inputs are supported
+  const base = typeof to === 'string' ? new URL(to, 'https://app.local') : new URL(to.toString(), 'https://app.local');
+  // Guard: even if an absolute URL is provided, we will only ever output pathname+query (strip origin)
   const search = opts.search ?? base.search;
   const existing = typeof search === 'string' ? new URLSearchParams(search) : new URLSearchParams(search.toString());
 
@@ -59,4 +61,4 @@ export function withShopHost(
   const out = base.pathname + (base.searchParams.toString() ? `?${base.searchParams.toString()}` : '');
   return out;
 }
-// <!-- END RBP GENERATED: admin-host-nav-v2 -->
+// <!-- END RBP GENERATED: admin-host-nav-v3 -->

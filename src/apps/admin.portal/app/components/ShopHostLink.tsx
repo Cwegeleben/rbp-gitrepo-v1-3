@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Link, useLocation, type LinkProps } from 'react-router-dom';
 import { withShopHost, getParam } from '../utils/url';
 
-export default function ShopHostLink({ to, ...rest }: LinkProps) {
+export default function ShopHostLink({ to, as, ...rest }: LinkProps & { as?: string }) {
   const { search } = useLocation();
   const shop = getParam(search, 'shop');
   const host = getParam(search, 'host');

@@ -6,4 +6,5 @@ export const json = (data: any, init?: ResponseInit) =>
   });
 export const redirect = (url: string, init?: ResponseInit) =>
   new Response('', { status: init?.status ?? 302, headers: { Location: url, ...(init?.headers || {}) } });
+export type LoaderFunctionArgs = { request: Request; params?: any; context?: any };
 /* <!-- END RBP GENERATED: mock-remix-node --> */

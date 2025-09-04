@@ -1,0 +1,278 @@
+[
+  {
+    "method": "*",
+    "path": "/apps/proxy",
+    "source": "src/apps/admin.portal/app/components/settings/AdminSettings.tsx:137",
+    "note": "client reference"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/",
+    "source": "src/apps/gateway/api-gateway/app/proxy/modules/health.server.ts:38",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/:",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.$.ts:6",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/access/ctx",
+    "source": "src/apps/admin.portal/accessCtx.server.ts:20",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/access/ctx",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx.ts:9",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/access/ctx-debug",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx-debug.ts:7",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/builds",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.ts:17",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/proxy/api/builds",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.ts:39",
+    "note": "Shopify app Remix route action"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/builds?cursor=",
+    "source": "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx:45",
+    "note": "client reference"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/builds?limit=1",
+    "source": "src/apps/admin.portal/app/components/DashboardKPIs.tsx:29",
+    "note": "client reference"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/builds?status=in_progress&limit=5",
+    "source": "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx:80",
+    "note": "client reference"
+  },
+  {
+    "method": "DELETE",
+    "path": "/apps/proxy/api/builds/:id",
+    "source": "src/apps/admin.portal/mocks/handlers/buildsHandlers.ts:18",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/builds/:id",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.$id.ts:12",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/proxy/api/builds/:id",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.$id.ts:40",
+    "note": "Shopify app Remix route action"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/proxy/api/builds/:id/duplicate",
+    "source": "src/apps/admin.portal/mocks/handlers/buildsHandlers.ts:19",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/catalog/collections",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.catalog.collections.ts:5",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "PATCH",
+    "path": "/apps/proxy/api/catalog/product/:id",
+    "source": "src/apps/admin.portal/mocks/handlers/catalogHandlers.ts:19",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/catalog/products",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.catalog.products.ts:5",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/catalog/products?cursor=",
+    "source": "src/apps/admin.portal/app/components/DashboardKPIs.tsx:30",
+    "note": "client reference"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/catalog/products?enabled=false&cursor=",
+    "source": "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx:47",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/catalog/search",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.catalog.search.ts:21",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/checkout/package",
+    "source": "src/apps/admin.portal/app/lib/createPackagerApi.ts:17",
+    "note": "create*Api reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/checkout/package",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.checkout.package.ts:29",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/proxy/api/checkout/package",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.checkout.package.ts:36",
+    "note": "Shopify app Remix route action"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/checkout/package?shop={domain}",
+    "source": "src/apps/admin.portal/app/components/DevDebugPanel.tsx:68",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/inventory/sync",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.inventory.sync.ts:28",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/proxy/api/inventory/sync",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.inventory.sync.ts:9",
+    "note": "Gateway Remix route action"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/orders",
+    "source": "src/apps/admin.portal/mocks/handlers/dashboardHandlers.ts:30",
+    "note": "client reference"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/api/orders?date=today&countOnly=1",
+    "source": "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx:49",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/api/webhooks/orders/paid",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.webhooks.orders.paid.ts:43",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/proxy/api/webhooks/orders/paid",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.api.webhooks.orders.paid.ts:8",
+    "note": "Gateway Remix route action"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/boot[/]js",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.boot[.]js.ts:8",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/doctor",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.doctor.ts:4",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/modules/",
+    "source": "src/apps/gateway/api-gateway/app/proxy/modules/health.server.ts:58",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/modules/:name/:version/index[/]js",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.$name.$version.index[.]js.ts:4",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/modules/health",
+    "source": "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx:103",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/modules/health",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.modules.health.ts:9",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/modules/registry-debug",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.registry-debug.ts:11",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/modules/registry-health",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.registry-health.ts:1",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "*",
+    "path": "/apps/proxy/modules/registry.json",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.boot[.]js.ts:31",
+    "note": "client reference"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/modules/registry[/]json",
+    "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.registry[.]json.ts:7",
+    "note": "Shopify app Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/proxy/ping",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.proxy.ping.ts:5",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/rbp/api/access/ctx",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.access.ctx.ts:9",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/rbp/api/share/mint",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.share.mint.ts:20",
+    "note": "Gateway Remix route loader"
+  },
+  {
+    "method": "POST",
+    "path": "/apps/rbp/api/share/mint",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.share.mint.ts:34",
+    "note": "Gateway Remix route action"
+  },
+  {
+    "method": "GET",
+    "path": "/apps/rbp/api/share/resolve",
+    "source": "src/apps/gateway/api-gateway/app/routes/apps.rbp.api.share.resolve.ts:56",
+    "note": "Gateway Remix route loader"
+  }
+]

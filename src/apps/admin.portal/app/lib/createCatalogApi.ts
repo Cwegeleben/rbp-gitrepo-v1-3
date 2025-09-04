@@ -19,7 +19,7 @@ export type CatalogListResponse = {
 
 export function createCatalogApi(fetchImpl: typeof fetch = fetchProxy as any) {
   return {
-    async list(params: { vendor?: string[]; tags?: string[]; q?: string; priceBand?: string; cursor?: string }): Promise<CatalogListResponse> {
+  async list(params: { vendor?: string[]; tags?: string[]; q?: string; priceBand?: string; cursor?: string; enabled?: string }): Promise<CatalogListResponse> {
       // Use comma-delimited multi-selects per contract
       const sp = new URLSearchParams();
       const vend = (params.vendor || []).filter(Boolean);
@@ -28,7 +28,8 @@ export function createCatalogApi(fetchImpl: typeof fetch = fetchProxy as any) {
   if (tgs.length) sp.set('tag', tgs.join(','));
       if (params.q) sp.set('q', params.q);
       if (params.priceBand) sp.set('priceBand', params.priceBand);
-      if (params.cursor) sp.set('cursor', params.cursor);
+  if (params.cursor) sp.set('cursor', params.cursor);
+  if (params.enabled === 'true' || params.enabled === 'false') sp.set('enabled', params.enabled);
       const res = await fetchImpl(`/apps/proxy/api/catalog/products?${sp.toString()}`);
       if (!res.ok) throw new Error(`Failed to load products: ${res.status}`);
       return (await res.json()) as CatalogListResponse;

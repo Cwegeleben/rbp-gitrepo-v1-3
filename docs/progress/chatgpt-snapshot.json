@@ -1,0 +1,241 @@
+{
+  "generatedAt": "2025-08-26T00:58:08.557Z",
+  "missingFiles": [
+    "docs/progress/inventory/exports.json"
+  ],
+  "totals": {
+    "sentinels": 103,
+    "gaps": 170,
+    "ledgerEntries": 4
+  },
+  "lastUpdateIso": "2025-08-25T13:56:00.000Z",
+  "byApp": {
+    "shopify": 3,
+    "gateway": 1,
+    "scripts": 2,
+    "docs": 1
+  },
+  "byChangeType": {
+    "ADD": 4
+  },
+  "byKind": {
+    "TESTS": 60,
+    "PREFLIGHT": 94,
+    "STORIES": 16
+  },
+  "topGaps": [
+    {
+      "sentinel": "AccessV2",
+      "kind": "TESTS",
+      "reason": "No nearby tests detected for sentinel files",
+      "next": "BUILD: add tests near docs/adr/ACCESS-V2-MVP.md"
+    },
+    {
+      "sentinel": "AccessV2",
+      "kind": "PREFLIGHT",
+      "reason": "No preflight script detected",
+      "next": "BUILD: add scripts/preflight/<name>.ts for AccessV2"
+    },
+    {
+      "sentinel": "accessv2-preflight-v1",
+      "kind": "TESTS",
+      "reason": "No nearby tests detected for sentinel files",
+      "next": "BUILD: add tests near scripts/preflight/accessv2.sanity.ts"
+    },
+    {
+      "sentinel": "accessv2-tests-v1",
+      "kind": "PREFLIGHT",
+      "reason": "No preflight script detected",
+      "next": "BUILD: add scripts/preflight/<name>.ts for accessv2-tests-v1"
+    },
+    {
+      "sentinel": "admin-auth-guard-v1",
+      "kind": "STORIES",
+      "reason": "No Storybook stories detected",
+      "next": "BUILD: add stories for src/apps/admin.portal/app/__tests__/auth.guard.test.ts"
+    },
+    {
+      "sentinel": "admin-auth-guard-v1",
+      "kind": "PREFLIGHT",
+      "reason": "No preflight script detected",
+      "next": "BUILD: add scripts/preflight/<name>.ts for admin-auth-guard-v1"
+    },
+    {
+      "sentinel": "admin-builds-v1",
+      "kind": "PREFLIGHT",
+      "reason": "No preflight script detected",
+      "next": "BUILD: add scripts/preflight/<name>.ts for admin-builds-v1"
+    },
+    {
+      "sentinel": "admin-catalog-v2-2",
+      "kind": "PREFLIGHT",
+      "reason": "No preflight script detected",
+      "next": "BUILD: add scripts/preflight/<name>.ts for admin-catalog-v2-2"
+    },
+    {
+      "sentinel": "admin-dashboard-v1",
+      "kind": "PREFLIGHT",
+      "reason": "No preflight script detected",
+      "next": "BUILD: add scripts/preflight/<name>.ts for admin-dashboard-v1"
+    },
+    {
+      "sentinel": "admin-embed-fix-v3",
+      "kind": "TESTS",
+      "reason": "No nearby tests detected for sentinel files",
+      "next": "BUILD: add tests near scripts/preflight/admin-embed.sanity.v3.ts"
+    }
+  ],
+  "recommendedPrompts": [
+    {
+      "title": "BUILD: add tests near docs/adr/ACCESS-V2-MVP.md",
+      "sentinel": "AccessV2",
+      "reason": "No nearby tests detected for sentinel files",
+      "kind": "TESTS"
+    },
+    {
+      "title": "BUILD: add scripts/preflight/<name>.ts for AccessV2",
+      "sentinel": "AccessV2",
+      "reason": "No preflight script detected",
+      "kind": "PREFLIGHT"
+    },
+    {
+      "title": "BUILD: add tests near scripts/preflight/accessv2.sanity.ts",
+      "sentinel": "accessv2-preflight-v1",
+      "reason": "No nearby tests detected for sentinel files",
+      "kind": "TESTS"
+    },
+    {
+      "title": "BUILD: add scripts/preflight/<name>.ts for accessv2-tests-v1",
+      "sentinel": "accessv2-tests-v1",
+      "reason": "No preflight script detected",
+      "kind": "PREFLIGHT"
+    },
+    {
+      "title": "BUILD: add stories for src/apps/admin.portal/app/__tests__/auth.guard.test.ts",
+      "sentinel": "admin-auth-guard-v1",
+      "reason": "No Storybook stories detected",
+      "kind": "STORIES"
+    }
+  ],
+  "appCoverage": {
+    "admin.portal": {
+      "routes": 7,
+      "loaders": 2,
+      "actions": 0,
+      "components": 0
+    },
+    "shopify": {
+      "routes": 36,
+      "loaders": 27,
+      "actions": 10,
+      "components": 0
+    }
+  },
+  "topSentinels": [
+    {
+      "sentinel": "builds-gallery-bulk-v1",
+      "files": 26
+    },
+    {
+      "sentinel": "cart-drawer-v1",
+      "files": 24
+    },
+    {
+      "sentinel": "ui-command-palette-v1",
+      "files": 22
+    },
+    {
+      "sentinel": "tenant-admin-dashboard-v1",
+      "files": 20
+    },
+    {
+      "sentinel": "ui-toast-announcer-v1",
+      "files": 19
+    },
+    {
+      "sentinel": "builds-templates-v1",
+      "files": 18
+    },
+    {
+      "sentinel": "tenant-admin-shell",
+      "files": 18
+    },
+    {
+      "sentinel": "AccessV2",
+      "files": 17
+    },
+    {
+      "sentinel": "package-cta-v1",
+      "files": 16
+    },
+    {
+      "sentinel": "builds-gallery-v1",
+      "files": 13
+    }
+  ],
+  "endpoints": {
+    "total": 46,
+    "sample": [
+      {
+        "method": "*",
+        "path": "/apps/proxy",
+        "source": "src/apps/admin.portal/app/components/settings/AdminSettings.tsx:137",
+        "note": "client reference"
+      },
+      {
+        "method": "*",
+        "path": "/apps/proxy/",
+        "source": "src/apps/gateway/api-gateway/app/proxy/modules/health.server.ts:38",
+        "note": "client reference"
+      },
+      {
+        "method": "GET",
+        "path": "/apps/proxy/:",
+        "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.$.ts:6",
+        "note": "Shopify app Remix route loader"
+      },
+      {
+        "method": "*",
+        "path": "/apps/proxy/api/access/ctx",
+        "source": "src/apps/admin.portal/accessCtx.server.ts:20",
+        "note": "client reference"
+      },
+      {
+        "method": "GET",
+        "path": "/apps/proxy/api/access/ctx",
+        "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx.ts:9",
+        "note": "Shopify app Remix route loader"
+      },
+      {
+        "method": "GET",
+        "path": "/apps/proxy/api/access/ctx-debug",
+        "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx-debug.ts:7",
+        "note": "Shopify app Remix route loader"
+      },
+      {
+        "method": "GET",
+        "path": "/apps/proxy/api/builds",
+        "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.ts:17",
+        "note": "Shopify app Remix route loader"
+      },
+      {
+        "method": "POST",
+        "path": "/apps/proxy/api/builds",
+        "source": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.ts:39",
+        "note": "Shopify app Remix route action"
+      },
+      {
+        "method": "*",
+        "path": "/apps/proxy/api/builds?cursor=",
+        "source": "src/apps/admin.portal/app/components/dashboard/AdminDashboard.tsx:45",
+        "note": "client reference"
+      },
+      {
+        "method": "*",
+        "path": "/apps/proxy/api/builds?limit=1",
+        "source": "src/apps/admin.portal/app/components/DashboardKPIs.tsx:29",
+        "note": "client reference"
+      }
+    ]
+  }
+}

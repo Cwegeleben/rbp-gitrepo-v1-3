@@ -1,0 +1,408 @@
+[
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/app._index.tsx",
+    "routeId": "app._index",
+    "pathGuess": "/app/_index",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "DashboardRoute"
+  },
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/app.builds.tsx",
+    "routeId": "app.builds",
+    "pathGuess": "/app/builds",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "BuildsRoute"
+  },
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/app.catalog.tsx",
+    "routeId": "app.catalog",
+    "pathGuess": "/app/catalog",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "CatalogRoute"
+  },
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/app.doctor.tsx",
+    "routeId": "app.doctor",
+    "pathGuess": "/app/doctor",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "Doctor"
+  },
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/app.settings.tsx",
+    "routeId": "app.settings",
+    "pathGuess": "/app/settings",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "SettingsRoute"
+  },
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/dashboard.contract.ts",
+    "routeId": "dashboard.contract",
+    "pathGuess": "/dashboard/contract",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "admin.portal",
+    "file": "src/apps/admin.portal/app/routes/index.route.tsx",
+    "routeId": "index.route",
+    "pathGuess": "/index/route",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/__tests__/__mocks__/paths.server.ts",
+    "routeId": "__tests__.__mocks__.paths.server",
+    "pathGuess": "/__tests__/__mocks__/paths/server",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/_index/route.tsx",
+    "routeId": "_index.route",
+    "pathGuess": "/_index/route",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "App"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app._index.tsx",
+    "routeId": "app._index",
+    "pathGuess": "/app/_index",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "DashboardIndex"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.additional.tsx",
+    "routeId": "app.additional",
+    "pathGuess": "/app/additional",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "AdditionalPage"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.builds._index.tsx",
+    "routeId": "app.builds._index",
+    "pathGuess": "/app/builds/_index",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "BuildsIndex"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.catalog._index.tsx",
+    "routeId": "app.catalog._index",
+    "pathGuess": "/app/catalog/_index",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "CatalogIndex"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.devtools._index.tsx",
+    "routeId": "app.devtools._index",
+    "pathGuess": "/app/devtools/_index",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": true,
+    "componentName": "DevToolsIndex"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.doctor.tsx",
+    "routeId": "app.doctor",
+    "pathGuess": "/app/doctor",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "Doctor"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.settings._index.tsx",
+    "routeId": "app.settings._index",
+    "pathGuess": "/app/settings/_index",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "SettingsIndex"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/app.tsx",
+    "routeId": "app",
+    "pathGuess": "/app",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "App",
+    "hasOutlet": true
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.$.tsx",
+    "routeId": "apps.$",
+    "pathGuess": "/apps/:",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.$.ts",
+    "routeId": "apps.proxy.$",
+    "pathGuess": "/apps/proxy/:",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx-debug.ts",
+    "routeId": "apps.proxy.api.access.ctx-debug",
+    "pathGuess": "/apps/proxy/api/access/ctx-debug",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.access.ctx.ts",
+    "routeId": "apps.proxy.api.access.ctx",
+    "pathGuess": "/apps/proxy/api/access/ctx",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.$id.ts",
+    "routeId": "apps.proxy.api.builds.$id",
+    "pathGuess": "/apps/proxy/api/builds/:id",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.builds.ts",
+    "routeId": "apps.proxy.api.builds",
+    "pathGuess": "/apps/proxy/api/builds",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.catalog.collections.ts",
+    "routeId": "apps.proxy.api.catalog.collections",
+    "pathGuess": "/apps/proxy/api/catalog/collections",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.catalog.products.ts",
+    "routeId": "apps.proxy.api.catalog.products",
+    "pathGuess": "/apps/proxy/api/catalog/products",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.catalog.search.ts",
+    "routeId": "apps.proxy.api.catalog.search",
+    "pathGuess": "/apps/proxy/api/catalog/search",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.api.checkout.package.ts",
+    "routeId": "apps.proxy.api.checkout.package",
+    "pathGuess": "/apps/proxy/api/checkout/package",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.boot[.]js.ts",
+    "routeId": "apps.proxy.boot[.]js",
+    "pathGuess": "/apps/proxy/boot[/]js",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.doctor.ts",
+    "routeId": "apps.proxy.doctor",
+    "pathGuess": "/apps/proxy/doctor",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.$name.$version.index[.]js.ts",
+    "routeId": "apps.proxy.modules.$name.$version.index[.]js",
+    "pathGuess": "/apps/proxy/modules/:name/:version/index[/]js",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.registry-debug.ts",
+    "routeId": "apps.proxy.modules.registry-debug",
+    "pathGuess": "/apps/proxy/modules/registry-debug",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.registry-health.ts",
+    "routeId": "apps.proxy.modules.registry-health",
+    "pathGuess": "/apps/proxy/modules/registry-health",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.modules.registry[.]json.ts",
+    "routeId": "apps.proxy.modules.registry[.]json",
+    "pathGuess": "/apps/proxy/modules/registry[/]json",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/apps.proxy.ping.ts",
+    "routeId": "apps.proxy.ping",
+    "pathGuess": "/apps/proxy/ping",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/auth.$.tsx",
+    "routeId": "auth.$",
+    "pathGuess": "/auth/:",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/auth.login/error.server.tsx",
+    "routeId": "auth.login.error.server",
+    "pathGuess": "/auth/login/error/server",
+    "hasLoader": false,
+    "hasAction": false,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/auth.login/route.tsx",
+    "routeId": "auth.login.route",
+    "pathGuess": "/auth/login/route",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": true,
+    "componentName": "Auth"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/dev-login.tsx",
+    "routeId": "dev-login",
+    "pathGuess": "/dev-login",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": true,
+    "componentName": "DevLogin"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/dev-logout.tsx",
+    "routeId": "dev-logout",
+    "pathGuess": "/dev-logout",
+    "hasLoader": true,
+    "hasAction": true,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/doctor.tsx",
+    "routeId": "doctor",
+    "pathGuess": "/doctor",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "DoctorRoute"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/ping.tsx",
+    "routeId": "ping",
+    "pathGuess": "/ping",
+    "hasLoader": true,
+    "hasAction": false,
+    "hasDefaultExport": true,
+    "componentName": "PingRoute"
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/webhooks.app.scopes_update.tsx",
+    "routeId": "webhooks.app.scopes_update",
+    "pathGuess": "/webhooks/app/scopes_update",
+    "hasLoader": false,
+    "hasAction": true,
+    "hasDefaultExport": false
+  },
+  {
+    "app": "shopify",
+    "file": "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/webhooks.app.uninstalled.tsx",
+    "routeId": "webhooks.app.uninstalled",
+    "pathGuess": "/webhooks/app/uninstalled",
+    "hasLoader": false,
+    "hasAction": true,
+    "hasDefaultExport": false
+  }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "date": "2025-08-25",
+    "feature": "Admin Preflight Runner v1",
+    "change": "ADD",
+    "sentinel": "admin-preflight-runner-v1",
+    "apps": [
+      "shopify"
+    ],
+    "files": [
+      "scripts/preflight/admin-all.ts",
+      "scripts/preflight/utils/sleep.ts",
+      "package.json"
+    ],
+    "tests": "PASS",
+    "preflight": "PASS",
+    "notes": "Deterministic sequential runner; embedded smoke optional via DEV_EMBED_BASE_URL."
+  },
+  {
+    "date": "2025-08-25",
+    "feature": "Admin Links Hardening v1",
+    "change": "ADD",
+    "sentinel": "admin-links-hardening-v1",
+    "apps": [
+      "shopify"
+    ],
+    "files": [
+      "scripts/migrate/admin-links.wrap.ts",
+      "scripts/preflight/admin-links.scan.ts",
+      "src/apps/rbp-shopify-app/rod-builder-pro/app/components/HostLink.tsx",
+      "src/apps/rbp-shopify-app/rod-builder-pro/app/root.tsx",
+      "package.json"
+    ],
+    "tests": "PASS",
+    "preflight": "PASS",
+    "notes": "Codemod wrapped Links/Navigate; externals marked; embedded nav preserved."
+  },
+  {
+    "date": "2025-08-25T00:00:00.000Z",
+    "feature": "AccessV2 — Tests v1",
+    "change": "ADD",
+    "sentinel": "accessv2-tests-v1",
+    "apps": [
+      "gateway",
+      "shopify",
+      "scripts"
+    ],
+    "files": [
+      "src/apps/gateway/api-gateway/app/proxy/__tests__/access.server.test.ts",
+      "src/apps/gateway/api-gateway/app/proxy/__tests__/requireAccess.server.test.ts",
+      "src/apps/gateway/api-gateway/app/routes/__tests__/apps.rbp.api.access.ctx.test.ts",
+      "src/apps/rbp-shopify-app/rod-builder-pro/app/routes/__tests__/apps.proxy.api.access.ctx.test.ts"
+    ],
+    "tests": "PASS",
+    "preflight": "N/A",
+    "notes": "Happy+edge coverage for AccessV2 helpers and ctx routes; no network."
+  },
+  {
+    "date": "2025-08-25T13:56:00.000Z",
+    "feature": "Progress Ledger v1",
+    "change": "ADD",
+    "sentinel": "rbp-progress-ledger-v1",
+    "apps": [
+      "scripts",
+      "docs"
+    ],
+    "files": [
+      "scripts/progress/*",
+      "docs/progress/*",
+      "package.json"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Initial audit + ledger"
+  }
+]

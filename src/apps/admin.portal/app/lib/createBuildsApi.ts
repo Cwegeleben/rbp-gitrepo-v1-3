@@ -8,6 +8,9 @@ export type BuildListItem = {
   title?: string;
   createdAt?: string;
   itemsCount?: number;
+  status?: 'in_progress' | 'queued' | 'completed';
+  customer?: string;
+  total?: number;
 };
 
 export type BuildDetail = {
@@ -24,10 +27,13 @@ export type BuildsListResponse = {
 
 export function createBuildsApi(fetchImpl: typeof fetch = fetchProxy as any) {
   return {
-    async list(params: { q?: string; cursor?: string }): Promise<BuildsListResponse> {
+    async list(params: { q?: string; cursor?: string; status?: 'in_progress'|'queued'|'completed'; page?: number; perPage?: number }): Promise<BuildsListResponse> {
       const sp = new URLSearchParams();
       if (params.q) sp.set('q', params.q);
       if (params.cursor) sp.set('cursor', params.cursor);
+      if (params.status) sp.set('status', params.status);
+      if (params.page) sp.set('page', String(params.page));
+      if (params.perPage) sp.set('perPage', String(params.perPage));
       const res = await fetchImpl(`/apps/proxy/api/builds?${sp.toString()}`);
       if (!res.ok) throw new Error(`Failed to load builds: ${res.status}`);
       return (await res.json()) as BuildsListResponse;
@@ -59,6 +65,11 @@ export function createBuildsApi(fetchImpl: typeof fetch = fetchProxy as any) {
       }
       if (!res.ok) throw new Error(`Failed to duplicate: ${res.status}`);
       return (await res.json()) as BuildDetail;
+    },
+    async delete(id: string): Promise<{ ok: true }> {
+      const res = await fetchImpl(`/apps/proxy/api/builds/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error(`Failed to delete: ${res.status}`);
+      return { ok: true };
     },
   };
 }
