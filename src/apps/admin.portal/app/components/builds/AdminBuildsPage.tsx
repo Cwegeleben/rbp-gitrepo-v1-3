@@ -69,7 +69,7 @@ export default function AdminBuildsPage({ api }: { api?: ReturnType<typeof creat
   );
 
   return (
-    <div>
+    <div data-testid="admin-builds-ready">
       <h1>Builds</h1>
       <div role="tablist" aria-label="Build status" style={{ display: 'flex', gap: 8 }}>
         {tab('in_progress', 'In progress')}

@@ -3,6 +3,9 @@
 */
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { TenantContext } from '../../TenantContext';
+// <!-- BEGIN RBP GENERATED: admin-ssr-storage-guard-v1-0 -->
+import { useClientStorage } from '../../../rbp-shopify-app/rod-builder-pro/app/lib/ssrStorage';
+// <!-- END RBP GENERATED: admin-ssr-storage-guard-v1-0 -->
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -18,13 +21,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export const DevDebugPanel: React.FC = () => {
   const ctx = useContext(TenantContext);
   const [open, setOpen] = useState(false);
-  const [shop, setShop] = useState<string>(() => localStorage.getItem('rbp.dev.shop') || '');
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('rbp.dev.shop', shop || '');
-    } catch {}
-  }, [shop]);
+  const [shop, setShop] = useClientStorage('rbp.dev.shop', '');
 
   const prettyCtx = useMemo(() => {
     const obj = ctx || {};
@@ -75,7 +72,7 @@ export const DevDebugPanel: React.FC = () => {
               <input
                 type="text"
                 placeholder="demo.myshopify.com"
-                value={shop}
+                value={shop ?? ''}
                 onChange={(e) => setShop(e.target.value)}
                 className="flex-1 rounded border px-2 py-1 text-sm"
               />

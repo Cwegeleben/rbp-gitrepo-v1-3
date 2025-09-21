@@ -1,10 +1,14 @@
 // <!-- BEGIN RBP GENERATED: inventory-sync -->
-import { PrismaClient } from "@prisma/client";
+// Lazy-load Prisma to avoid bundling browser shims
+async function getPrisma() {
+  const { PrismaClient } = await import("@prisma/client");
+  return new PrismaClient() as any;
+}
 // <!-- BEGIN RBP GENERATED: mode-a -->
 import { getTenantInventoryMode } from "../../access/config/tenant.inventory.mode";
 // <!-- END RBP GENERATED: mode-a -->
 
-const prisma: any = new PrismaClient();
+let prisma: any;
 
 export type Tenant = string; // myshopify domain
 
@@ -20,6 +24,7 @@ export async function fetchInventoryLevels(tenant: Tenant, after?: string): Prom
 }
 
 export async function upsertInventoryLocations(locations: Array<{ id: string; name: string; tenant?: string }>) {
+  if (!prisma) prisma = await getPrisma();
   for (const loc of locations) {
   const kind = loc.tenant ? "TENANT" : "RBP";
     await prisma.inventoryLocation.upsert({
@@ -31,6 +36,7 @@ export async function upsertInventoryLocations(locations: Array<{ id: string; na
 }
 
 export async function upsertInventoryLevels(levels: Array<{ sku: string; shopifyLocationId: string; available: number }>): Promise<number> {
+  if (!prisma) prisma = await getPrisma();
   let updated = 0;
   for (const lvl of levels) {
     const item = await prisma.inventoryItem.upsert({

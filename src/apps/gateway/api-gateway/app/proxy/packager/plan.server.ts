@@ -1,14 +1,18 @@
 // <!-- BEGIN RBP GENERATED: inventory-commit-phase2 -->
-import { PrismaClient } from "@prisma/client";
+async function getPrisma() {
+  const { PrismaClient } = await import("@prisma/client");
+  return new PrismaClient() as any;
+}
 import { getVariantInventoryItemId } from "../../../../../../packages/shopify/admin";
 
-const prisma: any = new PrismaClient();
+let prisma: any;
 
 export type PlannedLine = { sku?: string; variantId?: string; qty: number; source: "RBP" | "SUPPLIER" | "TENANT"; locationId?: string };
 
 export async function getPlannedLinesForOrder(tenant: string, buildId?: string, sourcingPlanId?: string, correlationId?: string): Promise<PlannedLine[]> {
   // Prefer sourcing plan if present for buildId
   try {
+  if (!prisma) prisma = await getPrisma();
     if (buildId) {
       const rec = await prisma.sourcingPlan.findUnique({ where: { buildId } });
       const rows: any[] = Array.isArray(rec?.plan) ? rec!.plan : [];

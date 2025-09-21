@@ -1,5 +1,4 @@
 {
-  // <!-- BEGIN RBP GENERATED: tsconfig-root -->
   "compilerOptions": {
     "target": "ES2022",
     "module": "esnext",
@@ -26,5 +25,4 @@
     "**/__tests__/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "build"]
-  // <!-- END RBP GENERATED: tsconfig-root -->
 }

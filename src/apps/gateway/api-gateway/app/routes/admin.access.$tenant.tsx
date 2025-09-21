@@ -1,12 +1,15 @@
 // <!-- BEGIN RBP GENERATED: AccessV2 -->
 import { json } from "@remix-run/node";
-import { PrismaClient } from "@prisma/client";
 // <!-- BEGIN RBP GENERATED: AccessV2 -->
 import { FEATURE_KEYS } from "../proxy/features.registry";
 import { getAccessForUser } from "../proxy/access.server";
 // <!-- END RBP GENERATED: AccessV2 -->
 
-const prisma = new PrismaClient();
+// NOTE: Avoid top-level Prisma imports to keep browser bundle clean
+async function getPrisma() {
+  const { PrismaClient } = await import("@prisma/client");
+  return new PrismaClient() as any;
+}
 
 export async function loader({ request, params }: any) {
   const tenant = params.tenant as string;
@@ -16,7 +19,8 @@ export async function loader({ request, params }: any) {
   const isAdmin = access.roles.includes("RBP_ADMIN") || access.roles.includes("TENANT_ADMIN");
   if (!isAdmin) return new Response("forbidden", { status: 403 });
   // <!-- END RBP GENERATED: AccessV2 -->
-  const rows = await (prisma as any).tenantFeatureAllow.findMany({ where: { tenantId: tenant } });
+  const prisma = await getPrisma();
+  const rows = await prisma.tenantFeatureAllow.findMany({ where: { tenantId: tenant } });
   const features: Record<string, boolean> = {};
   for (const k of FEATURE_KEYS) features[k] = false;
   for (const r of rows) features[r.featureKey] = !!r.enabled;
@@ -50,6 +54,7 @@ export async function action({ request, params }: any) {
   }
   // <!-- END RBP GENERATED: AccessV2 -->
   const form = await request.formData();
+  const prisma = await getPrisma();
   for (const k of FEATURE_KEYS) {
     const enabled = form.has(k);
     await (prisma as any).tenantFeatureAllow.upsert({

@@ -1,17 +1,20 @@
 // <!-- BEGIN RBP GENERATED: AccessV2 -->
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+// Lazy-load Prisma to avoid bundling client browser shims
+async function getPrisma() {
+  const { PrismaClient } = await import("@prisma/client");
+  return new PrismaClient();
+}
 
 export type AccessForUser = { roles: string[]; features: Record<string, boolean> };
 
 export async function getAccessForUser(tenantId: string, userId: string | null): Promise<AccessForUser> {
+  const prisma = await getPrisma();
   const roles: string[] = [];
   const features: Record<string, boolean> = {};
 
   // Roles
   if (userId) {
-    const r = await (prisma as any).userRole.findMany({ where: { tenantId, userId } });
+  const r = await (prisma as any).userRole.findMany({ where: { tenantId, userId } });
     for (const row of r) roles.push(String(row.role));
   }
 
@@ -21,7 +24,7 @@ export async function getAccessForUser(tenantId: string, userId: string | null):
 
   // User overrides
   if (userId) {
-    const ufa = await (prisma as any).userFeatureAllow.findMany({ where: { tenantId, userId } });
+  const ufa = await (prisma as any).userFeatureAllow.findMany({ where: { tenantId, userId } });
     for (const row of ufa) features[row.featureKey] = !!row.enabled;
   }
 

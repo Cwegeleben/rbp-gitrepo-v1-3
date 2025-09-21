@@ -6,6 +6,9 @@ import { useLocation } from 'react-router-dom';
 import ShopHostLink from '../ShopHostLink';
 import { getParam } from '../../utils/url';
 import { fetchProxy } from '../../../fetchProxy';
+// <!-- BEGIN RBP GENERATED: admin-ssr-storage-guard-v1-0 -->
+import { ssrLocalStorage, useClientStorage, useHydrated } from '../../../../rbp-shopify-app/rod-builder-pro/app/lib/ssrStorage';
+// <!-- END RBP GENERATED: admin-ssr-storage-guard-v1-0 -->
 
 type AccessCtx = {
   tenant?: { domain?: string };
@@ -21,16 +24,17 @@ type Props = {
 const FLAG_KEYS = ['newCatalog', 'betaBuilds', 'debugToasts'] as const;
 type FlagKey = typeof FLAG_KEYS[number];
 
-function readFlags(): Record<string, boolean> {
+function readFlagsSSR(): Record<string, boolean> {
+  // Render-time: do not touch window; assume all false until hydrated.
   const out: Record<string, boolean> = {};
-  for (const k of FLAG_KEYS) out[k] = localStorage.getItem(`rbp.flags.${k}`) === '1';
+  for (const k of FLAG_KEYS) out[k] = false;
   return out;
 }
 
 function writeFlag(key: FlagKey, value: boolean) {
   const storageKey = `rbp.flags.${key}`;
-  if (value) localStorage.setItem(storageKey, '1');
-  else localStorage.removeItem(storageKey);
+  if (value) ssrLocalStorage.setItem(storageKey, '1');
+  else ssrLocalStorage.removeItem(storageKey);
 }
 
 export default function AdminSettings({ loadCtx }: Props) {
@@ -42,8 +46,19 @@ export default function AdminSettings({ loadCtx }: Props) {
   const [ctx, setCtx] = useState<AccessCtx | null>(null);
   const [ctxError, setCtxError] = useState<string | null>(null);
 
-  const [flags, setFlags] = useState<Record<string, boolean>>(() => readFlags());
+  const [flags, setFlags] = useState<Record<string, boolean>>(() => readFlagsSSR());
   const isDev = process.env.NODE_ENV !== 'production';
+
+  // Hydrate flags from storage on client
+  // <!-- BEGIN RBP GENERATED: admin-ssr-storage-guard-v1-0 -->
+  const hydrated = useHydrated();
+  useEffect(() => {
+    if (!hydrated) return;
+    const next: Record<string, boolean> = {};
+    for (const k of FLAG_KEYS) next[k] = ssrLocalStorage.getItem(`rbp.flags.${k}`) === '1';
+    setFlags(next);
+  }, [hydrated]);
+  // <!-- END RBP GENERATED: admin-ssr-storage-guard-v1-0 -->
 
   useEffect(() => {
     let alive = true;
@@ -138,7 +153,7 @@ export default function AdminSettings({ loadCtx }: Props) {
         <Field id="hmac-status" label="HMAC verification" value={hmacStatus === 'ok' ? 'OK' : 'Unknown'} help="Reported by access context" />
       </section>
 
-      {isDev ? (
+  {isDev && hydrated ? (
         <section aria-labelledby="dev-flags-h">
           <h2 id="dev-flags-h">Feature flags (local)</h2>
           <div style={{ display: 'grid', gap: 8 }}>
@@ -146,7 +161,7 @@ export default function AdminSettings({ loadCtx }: Props) {
               <label key={k} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <input
                   type="checkbox"
-                  checked={!!flags[k]}
+      checked={!!flags[k]}
                   onChange={(e) => {
                     const next = { ...flags, [k]: e.target.checked };
                     setFlags(next);

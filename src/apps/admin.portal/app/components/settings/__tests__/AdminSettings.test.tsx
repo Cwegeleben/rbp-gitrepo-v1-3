@@ -18,14 +18,13 @@ test('renders context and doctor link', async () => {
   expect((link as HTMLAnchorElement).getAttribute('href')).toMatch(/\/app\/doctor\?(.+&)?embedded=1/);
 });
 
-test('flags persist in localStorage', async () => {
+test('flags persist in localStorage (via wrapper)', async () => {
   renderWithRouter(<AdminSettings loadCtx={async () => ({ shopDomain: 'rbp-dev.myshopify.com' })} />);
-  const toggle = screen.getByLabelText('newCatalog') as HTMLInputElement;
+  const toggle = await screen.findByLabelText('newCatalog');
   fireEvent.click(toggle);
-  expect(localStorage.getItem('rbp.flags.newCatalog')).toBe('1');
-  // toggle off
+  expect(window.localStorage.getItem('rbp.flags.newCatalog')).toBe('1');
   fireEvent.click(toggle);
-  expect(localStorage.getItem('rbp.flags.newCatalog')).toBeNull();
+  expect(window.localStorage.getItem('rbp.flags.newCatalog')).toBeNull();
 });
 
 test('shows error banner on ctx failure', async () => {

@@ -1,14 +1,19 @@
 // <!-- BEGIN RBP GENERATED: inventory-commit-phase2 -->
-import { PrismaClient } from "@prisma/client";
+// Lazy-load Prisma at call time to avoid bundling browser client
+async function getPrisma() {
+  const { PrismaClient } = await import("@prisma/client");
+  return new PrismaClient() as any;
+}
 import { getVariantInventoryItemId, adjustAvailableDelta } from "../../../../../../packages/shopify/admin";
 import { log } from "../logger.server";
 
-const prisma: any = new PrismaClient();
+let prisma: any;
 
 export type PlannedLine = { sku?: string; variantId?: string; qty: number; source: "RBP" | "SUPPLIER" | "TENANT"; locationId?: string };
 
 export async function commitOrderPaid(args: { tenant: string; orderId: string; lines: PlannedLine[]; correlationId: string }) {
   const { tenant, orderId, lines, correlationId } = args;
+  if (!prisma) prisma = await getPrisma();
 
   // Idempotency check
   const existing = await prisma.orderCommit.findUnique({ where: { tenantDomain_orderId: { tenantDomain: tenant, orderId } } }).catch(() => null);
