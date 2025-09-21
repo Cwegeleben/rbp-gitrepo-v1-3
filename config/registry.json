@@ -8,34 +8,23 @@
         "0.2.0": { "path": "/apps/proxy/modules/rbp-shell/0.2.0/index.js" }
       }
     },
-    /* <!-- BEGIN RBP GENERATED: builds-panel-v2 --> */
     "rbp-builds": {
-      /* <!-- BEGIN RBP GENERATED: builds-undo-redo-v1 --> */
       "version": "1.4.0",
       "path": "/apps/proxy/modules/rbp-builds/1.4.0/index.js",
       "default": "1.4.0",
-      /* <!-- END RBP GENERATED: builds-undo-redo-v1 --> */
       "versions": {
         "0.1.0": { "path": "/apps/proxy/modules/rbp-builds/0.1.0/index.js" },
         "0.2.0": { "path": "/apps/proxy/modules/rbp-builds/0.2.0/index.js" },
         "1.1.0": { "path": "/apps/proxy/modules/rbp-builds/1.1.0/index.js" },
-        /* <!-- BEGIN RBP GENERATED: builds-readiness-v1 --> */
         "1.2.0": { "path": "/apps/proxy/modules/rbp-builds/1.2.0/index.js" }
-        /* <!-- END RBP GENERATED: builds-readiness-v1 --> */
         ,
-        /* <!-- BEGIN RBP GENERATED: builds-share-links-v1 --> */
         "1.3.0": { "path": "/apps/proxy/modules/rbp-builds/1.3.0/index.js" }
-        /* <!-- END RBP GENERATED: builds-share-links-v1 --> */
         ,
-        /* <!-- BEGIN RBP GENERATED: builds-undo-redo-v1 --> */
         "1.4.0": { "path": "/apps/proxy/modules/rbp-builds/1.4.0/index.js" }
-        /* <!-- END RBP GENERATED: builds-undo-redo-v1 --> */
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: builds-panel-v2 --> */
     ,
-    /* <!-- BEGIN RBP GENERATED: catalog-picker-v2 --> */
     "rbp-catalog": {
       "version": "1.1.0",
       "path": "/apps/proxy/modules/rbp-catalog/1.1.0/index.js",
@@ -46,9 +35,7 @@
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: catalog-picker-v2 --> */
     ,
-    /* <!-- BEGIN RBP GENERATED: package-cta-v1 --> */
     "rbp-package": {
       "version": "1.1.0",
       "path": "/apps/proxy/modules/rbp-package/1.1.0/index.js",
@@ -59,9 +46,7 @@
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: package-cta-v1 --> */
     ,
-    // <!-- BEGIN RBP GENERATED: cart-drawer-v1 -->
     "rbp-cart": {
       "version": "1.0.0",
       "path": "/apps/proxy/modules/rbp-cart/1.0.0/index.js",
@@ -71,9 +56,7 @@
       },
       "enabled": true
     }
-    // <!-- END RBP GENERATED: cart-drawer-v1 -->
     ,
-    /* <!-- BEGIN RBP GENERATED: builds-share-links-v1 --> */
     "rbp-share": {
       "version": "1.0.0",
       "path": "/apps/proxy/modules/rbp-share/1.0.0/index.js",
@@ -83,9 +66,7 @@
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: builds-share-links-v1 --> */
     ,
-    /* <!-- BEGIN RBP GENERATED: builds-gallery-bulk-v1 --> */
     "rbp-builds-gallery": {
       "version": "1.1.0",
       "path": "/apps/proxy/modules/rbp-builds-gallery/1.1.0/index.js",
@@ -97,7 +78,6 @@
       "enabled": true
     }
     ,
-    /* <!-- BEGIN RBP GENERATED: builds-templates-v1 --> */
     "rbp-templates": {
       "version": "1.0.0",
       "path": "/apps/proxy/modules/rbp-templates/1.0.0/index.js",
@@ -107,10 +87,7 @@
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: builds-templates-v1 --> */
-    /* <!-- END RBP GENERATED: builds-gallery-bulk-v1 --> */
     ,
-    /* <!-- BEGIN RBP GENERATED: ui-toast-announcer-v1 --> */
     "rbp-ui": {
       "version": "1.0.0",
       "path": "/apps/proxy/modules/rbp-ui/1.0.0/index.js",
@@ -120,9 +97,7 @@
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: ui-toast-announcer-v1 --> */
     ,
-    /* <!-- BEGIN RBP GENERATED: ui-command-palette-v1 --> */
     "rbp-command": {
       "version": "1.0.0",
       "path": "/apps/proxy/modules/rbp-command/1.0.0/index.js",
@@ -132,6 +107,5 @@
       },
       "enabled": true
     }
-    /* <!-- END RBP GENERATED: ui-command-palette-v1 --> */
   }
 }

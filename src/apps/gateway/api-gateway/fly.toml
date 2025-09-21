@@ -1,0 +1,36 @@
+# <!-- BEGIN RBP GENERATED: hosting-staging-fly-v1-1 -->
+app = "rbp-app-staging"
+primary_region = "sea"
+
+[env]
+  RBP_PROXY_HMAC_BYPASS = "1"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 50
+    soft_limit = 25
+  [[http_service.checks]]
+    interval = "10s"
+    timeout = "2s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/healthz"
+# <!-- END RBP GENERATED: hosting-staging-fly-v1-1 -->
+
+# <!-- BEGIN RBP GENERATED: fly-volume-reconcile-v1-0 -->
+[[mounts]]
+  source = "data"
+  destination = "/data"
+# <!-- END RBP GENERATED: fly-volume-reconcile-v1-0 -->
+
+# <!-- BEGIN RBP GENERATED: fly-build-path-fix-v1-0 -->
+[build]
+  dockerfile = "Dockerfile"
+  context = "."
+# <!-- END RBP GENERATED: fly-build-path-fix-v1-0 -->

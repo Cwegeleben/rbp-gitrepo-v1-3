@@ -129,7 +129,15 @@ async function main() {
     { name: 'local: catalog.products', url: `${localBase}/apps/proxy/api/catalog/products?limit=5`, pred: r => r.status === 200 && Array.isArray(r.body) },
     // Catalog search endpoint
     { name: 'local: catalog.search (q=test, limit=5)', url: `${localBase}/apps/proxy/api/catalog/search?q=test&limit=5`, pred: r => r.status === 200 && Array.isArray(r.body) && r.body.length <= 5 },
-    { name: 'local: catalog.search (q empty)', url: `${localBase}/apps/proxy/api/catalog/search?q=`, pred: r => r.status === 200 && Array.isArray(r.body) && r.body.length === 0 },
+  { name: 'local: catalog.search (q empty)', url: `${localBase}/apps/proxy/api/catalog/search?q=`, pred: r => r.status === 200 && Array.isArray(r.body) && r.body.length === 0 },
+  // <!-- BEGIN RBP GENERATED: storefront-proxy-e2e-v1-0 -->
+  // RBP Storefront sample endpoints
+  { name: 'local: rbp.catalog', url: `${localBase}/apps/proxy/rbp/catalog`, pred: r => r.status === 200 && r.body?.ok === true && Array.isArray(r.body.parts) },
+  // <!-- END RBP GENERATED: storefront-proxy-e2e-v1-0 -->
+  // <!-- BEGIN RBP GENERATED: storefront-cart-e2e-v1-1 -->
+  { name: 'local: rbp.modules', url: `${localBase}/apps/proxy/rbp/modules`, pred: r => r.status === 200 && r.body?.ok === true && Array.isArray(r.body.modules) },
+  { name: 'local: rbp.variantsBySku', url: `${localBase}/apps/proxy/rbp/variantsBySku`, pred: r => r.status === 200 && r.body?.ok === true && r.body.map && typeof r.body.map === 'object' },
+  // <!-- END RBP GENERATED: storefront-cart-e2e-v1-1 -->
   ];
   for (const ep of localEndpoints) {
     const r = await check(ep.name, ep.url, ep.pred);

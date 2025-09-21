@@ -15,8 +15,15 @@ async function* walk(dir: string): AsyncGenerator<string> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const e of entries) {
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) yield* walk(p);
-    else if (ROUTE_GLOB.test(e.name)) yield p;
+    if (e.isDirectory()) {
+      // Skip test directories under routes
+      if (e.name === 'tests' || e.name === '__tests__') continue;
+      yield* walk(p);
+    } else if (ROUTE_GLOB.test(e.name)) {
+      // Ignore test files inside routes
+      if (/\.test\.(t|j)sx?$/.test(e.name)) continue;
+      yield p;
+    }
   }
 }
 

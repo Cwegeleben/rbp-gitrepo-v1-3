@@ -630,6 +630,203 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run preflight:admin-storage",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-storage"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run preflight:admin-storage",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-storage"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run preflight absolute origins",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-absolute-origins"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run remix-server-only and cross-app preflights",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:remix-server-only",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:cross-app-imports"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run remix preflights again",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:remix-server-only",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:cross-app-imports"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run smoke:staging",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"smoke:staging"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run preflights for cross-app and server-only",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:cross-app-imports",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:remix-server-only"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run preflights for cross-app and server-only",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:cross-app-imports",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:remix-server-only"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Final preflight cross-app and server-only",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:cross-app-imports",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:remix-server-only"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run cross-app preflight after purge",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:cross-app-imports"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run no-jsx-in-ts preflight and build Shopify app",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-jsx-in-ts",
+				"&&",
+				"pnpm",
+				"-w",
+				"-r",
+				"--filter",
+				"./src/apps/rbp-shopify-app/rod-builder-pro",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run no-jsx-in-ts preflight and build",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-jsx-in-ts",
+				"&&",
+				"pnpm",
+				"-w",
+				"-r",
+				"--filter",
+				"./src/apps/rbp-shopify-app/rod-builder-pro",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run no-jsx-in-ts preflight and app build (retry)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-jsx-in-ts",
+				"&&",
+				"pnpm",
+				"-w",
+				"-r",
+				"--filter",
+				"./src/apps/rbp-shopify-app/rod-builder-pro",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Build gateway Docker image (local)",
+			"type": "shell",
+			"command": "docker",
+			"args": [
+				"build",
+				"-f",
+				"src/apps/gateway/api-gateway/Dockerfile",
+				"-t",
+				"rbp-gateway:test",
+				"."
+			]
 		}
 	]
 }

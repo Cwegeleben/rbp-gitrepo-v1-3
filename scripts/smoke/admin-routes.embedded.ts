@@ -28,7 +28,9 @@ async function fetchPath(p: string) {
     const p = `${base}?embedded=1&shop=${encodeURIComponent(shop)}&host=${encodeURIComponent(hostParam)}`;
     try {
       const html = await fetchPath(p);
-      const ok = /<h1>|role="main"|Polaris-Page|TitleBar/.test(html);
+      const ok = base === '/app/builds'
+        ? /data-testid="admin-builds-ready"/.test(html)
+        : /<h1>|role="main"|Polaris-Page|TitleBar/.test(html);
       if (!ok) failures.push(`${base} missing landmarks`);
     } catch (e: any) {
       failures.push(`${base} fetch failed: ${e?.message}`);

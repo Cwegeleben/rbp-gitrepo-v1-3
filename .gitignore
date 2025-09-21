@@ -4,6 +4,10 @@ node_modules
 dist
 build
 
+# Remix build/cache in gateway app
+src/apps/gateway/api-gateway/build/
+src/apps/gateway/api-gateway/.cache/
+
 # <!-- BEGIN RBP GENERATED: mode-a -->
 .env
 **/.env
