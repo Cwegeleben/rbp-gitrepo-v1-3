@@ -25,6 +25,7 @@
     "dev:down": "echo \"Stop with Ctrl+C (Shopify CLI runs in foreground)\" && exit 0",
     "preflight": "pnpm -s preflight:app-proxy",
   "preflight:shopify-admin": "node scripts/preflight/shopify-admin-embed.mjs",
+  "preflight:admin-nav": "node scripts/preflight/admin-nav-menu.mjs",
   "preflight:registry": "node scripts/preflight/registry-check.mjs",
   "deploy:staging": "fly deploy -c src/apps/gateway/api-gateway/fly.toml",
     "smoke:staging": "node scripts/smoke.staging.mjs",
