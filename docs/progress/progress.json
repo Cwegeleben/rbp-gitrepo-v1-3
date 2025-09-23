@@ -129,4 +129,25 @@
     "preflight": "PASS",
     "notes": "Full stepper, live compat, Saved Builds rail, shareable URLs; 1-line bundle cart."
   }
+  ,
+  {
+    "date": "2025-09-23",
+    "feature": "Storefront Builder M2 v1.0",
+    "change": "ADD",
+    "sentinel": "storefront-builder-m2-v1-0",
+    "apps": [
+      "theme-extension",
+      "gateway",
+      "rbp-shell"
+    ],
+    "files": [
+      "recent, ladder, weight modules",
+      "optional upsell route",
+      "SEO section",
+      "preflight"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Compare foundations present; light integrations for upsells, price ladder, and weight summary injected into theme builder."
+  }
 ]

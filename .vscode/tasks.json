@@ -1099,6 +1099,20 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Run M2 preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:storefront-builder-m2"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
 		}
 	]
 }
