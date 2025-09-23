@@ -17,7 +17,6 @@
     "notes": "Deterministic sequential runner; embedded smoke optional via DEV_EMBED_BASE_URL."
   },
   {
-    "date": "2025-08-25",
     "feature": "Admin Links Hardening v1",
     "change": "ADD",
     "sentinel": "admin-links-hardening-v1",
@@ -175,5 +174,57 @@
     "tests": "N/A",
     "preflight": "N/A",
     "notes": "Define interim file-backed saved builds via App Proxy; flags and limits set; migration path to HQ."
+  }
+  ,
+  {
+    "date": "2025-09-23",
+    "feature": "RBP HQ app v0.1 scaffold",
+    "change": "ADD",
+    "sentinel": "rbp-hq-app-v0-1",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/**",
+      "scripts/smoke/hq.smoke.ts",
+      "package.json"
+    ],
+    "tests": "N/A",
+    "preflight": "N/A",
+    "notes": "New embedded HQ app with doctor/healthz, stub control-plane APIs, OpenAPI, and Fly staging plan."
+  }
+  ,
+  {
+    "date": "2025-09-23",
+    "feature": "RBP HQ Catalog & Product Ingestion v0.2",
+    "change": "ADD",
+    "sentinel": "rbp-hq-catalog-v0-2",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/hq.api.products.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/hq.api.products.approved.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.catalog.tsx",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/ui/HQCatalogTable.tsx",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/products.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/scripts/import:hq.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/public/openapi.json"
+    ],
+    "tests": "N/A",
+    "preflight": "N/A",
+    "notes": "HQ catalog ingestion stub: bulk import, approve flow, APIs, and catalog UI."
+  }
+  ,
+  {
+    "date": "2025-09-23",
+    "feature": "RBP HQ Docker build fix v1.0",
+    "change": "MODIFY",
+    "sentinel": "rbp-hq-docker-build-v1",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/Dockerfile",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/package.json",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/.dockerignore"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Multi-stage Docker with devDeps at build and pruned runtime; Fly build unblocked."
   }
 ]

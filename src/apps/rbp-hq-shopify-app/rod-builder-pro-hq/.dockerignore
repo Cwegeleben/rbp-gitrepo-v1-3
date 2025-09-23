@@ -1,0 +1,10 @@
+# <!-- BEGIN RBP GENERATED: rbp-hq-docker-build-v1 -->
+node_modules
+.git
+.gitignore
+.DS_Store
+.pnpm-store
+tmp
+build
+dist
+# <!-- END RBP GENERATED: rbp-hq-docker-build-v1 -->

@@ -147,6 +147,87 @@ importers:
         specifier: ^2.17.0
         version: 2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1)
 
+  src/apps/hq.admin: {}
+
+  src/apps/hq.api:
+    dependencies:
+      '@remix-run/serve':
+        specifier: ^2.17.0
+        version: 2.17.0(typescript@5.9.2)
+
+  src/apps/rbp-hq-shopify-app/rod-builder-pro-hq:
+    dependencies:
+      '@remix-run/fs-routes':
+        specifier: ^2.16.1
+        version: 2.17.0(@remix-run/dev@2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1))(@remix-run/route-config@2.17.0(@remix-run/dev@2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1))(typescript@5.9.2))(typescript@5.9.2)
+      '@remix-run/serve':
+        specifier: ^2.17.0
+        version: 2.17.0(typescript@5.9.2)
+      '@shopify/app-bridge-react':
+        specifier: ^4.2.1
+        version: 4.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@shopify/polaris':
+        specifier: ^12.0.0
+        version: 12.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@shopify/shopify-app-remix':
+        specifier: ^3.7.0
+        version: 3.8.5(@remix-run/node@2.17.0(typescript@5.9.2))(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@shopify/polaris@12.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
+      '@shopify/shopify-app-session-storage-memory':
+        specifier: ^3.0.3
+        version: 3.0.5(@shopify/shopify-api@11.14.1)(@shopify/shopify-app-session-storage@3.0.20(@shopify/shopify-api@11.14.1))
+      isbot:
+        specifier: ^5.1.0
+        version: 5.1.30
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      vite-tsconfig-paths:
+        specifier: ^5.0.1
+        version: 5.1.4(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))
+    devDependencies:
+      '@remix-run/dev':
+        specifier: ^2.17.0
+        version: 2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1)
+      '@remix-run/eslint-config':
+        specifier: ^2.16.1
+        version: 2.17.0(eslint@8.57.1)(jest@30.0.5(@types/node@22.17.2)(esbuild-register@3.6.0(esbuild@0.25.9)))(react@18.3.1)(typescript@5.9.2)
+      '@remix-run/node':
+        specifier: ^2.17.0
+        version: 2.17.0(typescript@5.9.2)
+      '@remix-run/react':
+        specifier: ^2.17.0
+        version: 2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
+      '@remix-run/route-config':
+        specifier: ^2.16.1
+        version: 2.17.0(@remix-run/dev@2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1))(typescript@5.9.2)
+      '@types/node':
+        specifier: ^22.17.2
+        version: 22.17.2
+      '@types/react':
+        specifier: ^18.3.23
+        version: 18.3.23
+      '@types/react-dom':
+        specifier: ^18.3.7
+        version: 18.3.7(@types/react@18.3.23)
+      eslint:
+        specifier: ^8.42.0
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^10.0.1
+        version: 10.1.8(eslint@8.57.1)
+      prettier:
+        specifier: ^3.2.4
+        version: 3.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.9.2
+      vite:
+        specifier: ^6.2.2
+        version: 6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1)
+
   src/apps/rbp-shopify-app/rod-builder-pro:
     dependencies:
       '@prisma/client':
@@ -1804,6 +1885,12 @@ packages:
         optional: true
       '@shopify/polaris':
         optional: true
+
+  '@shopify/shopify-app-session-storage-memory@3.0.5':
+    resolution: {integrity: sha512-4kxuJgp/DclqdN1FH5wpUs+rdV2Oz8e6izDNjnHmcODRqheVMZxCvEDjRuz+kDGNRF7sgyuQ71Qe04PAAJ5EWw==}
+    peerDependencies:
+      '@shopify/shopify-api': ^9.7.2 || ^10.0.0
+      '@shopify/shopify-app-session-storage': ^2.1.4
 
   '@shopify/shopify-app-session-storage-prisma@6.0.9':
     resolution: {integrity: sha512-ntwRgptt9WIwdoalJusKY1PSdBXk6NgrCKLwapeW+OUzBkzCMdsG1OwKbGfQkP34xwQQPaeD8zTTeRcyA+Y0dw==}
@@ -8285,6 +8372,11 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - typescript
+
+  '@shopify/shopify-app-session-storage-memory@3.0.5(@shopify/shopify-api@11.14.1)(@shopify/shopify-app-session-storage@3.0.20(@shopify/shopify-api@11.14.1))':
+    dependencies:
+      '@shopify/shopify-api': 11.14.1
+      '@shopify/shopify-app-session-storage': 3.0.20(@shopify/shopify-api@11.14.1)
 
   '@shopify/shopify-app-session-storage-prisma@6.0.9(@prisma/client@6.14.0(prisma@6.14.0(typescript@5.9.2))(typescript@5.9.2))(@shopify/shopify-api@11.14.1)(@shopify/shopify-app-session-storage@3.0.20(@shopify/shopify-api@11.14.1))(prisma@6.14.0(typescript@5.9.2))':
     dependencies:

@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+  "hq:dev": "cross-env-shell PORT=${PORT:-8083} SHOPIFY_APP_URL=http://localhost:$PORT pnpm -C src/apps/rbp-hq-shopify-app/rod-builder-pro-hq dev",
+  "hq:openapi": "pnpm --filter ./src/apps/rbp-hq-shopify-app/rod-builder-pro-hq openapi",
+  "hq:import": "pnpm --filter ./src/apps/rbp-hq-shopify-app/rod-builder-pro-hq import:hq --",
+    "smoke:hq": "tsx scripts/smoke/hq.smoke.ts",
   "dev:hq.api": "pnpm --filter ./src/apps/hq.api dev",
   "dev:hq.admin": "pnpm --filter ./src/apps/hq.admin dev",
   "openapi:hq": "tsx scripts/openapi/generate-hq.ts",

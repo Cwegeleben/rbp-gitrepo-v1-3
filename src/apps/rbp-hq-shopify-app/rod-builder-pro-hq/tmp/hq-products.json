@@ -1,0 +1,16 @@
+[
+  {
+    "id": "p-1001",
+    "title": "Graphite Spinning Rod",
+    "vendor": "Acme Co",
+    "image": "",
+    "approved": true
+  },
+  {
+    "id": "p-1002",
+    "title": "Carbon Fiber Casting Rod",
+    "vendor": "RodWorks",
+    "image": "",
+    "approved": false
+  }
+]

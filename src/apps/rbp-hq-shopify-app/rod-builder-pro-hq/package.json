@@ -1,0 +1,48 @@
+{
+  "name": "rod-builder-pro-hq",
+  "private": true,
+  "version": "0.1.0",
+  "description": "RBP HQ Shopify app (embedded) — v0.2",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm exec remix vite:dev",
+    "build": "pnpm exec remix vite:build",
+    "start": "pnpm exec remix-serve build/server/index.js",
+    "openapi": "tsx app/libs/openapi.ts",
+    "import:hq": "tsx app/scripts/import:hq.ts"
+  },
+  "engines": {
+    "node": "^18.20 || ^20.10 || >=21.0.0"
+  },
+  "dependencies": {
+    "@remix-run/fs-routes": "^2.16.1",
+    "@remix-run/serve": "^2.17.0",
+    "@shopify/app-bridge-react": "^4.2.1",
+    "@shopify/polaris": "^12.0.0",
+    "@shopify/shopify-app-remix": "^3.7.0",
+    "@shopify/shopify-app-session-storage-memory": "^3.0.3",
+    "isbot": "^5.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite-tsconfig-paths": "^5.0.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.17.0",
+    "@remix-run/eslint-config": "^2.16.1",
+    "@remix-run/node": "^2.17.0",
+    "@remix-run/react": "^2.17.0",
+    "@remix-run/route-config": "^2.16.1",
+    "@types/node": "^22.17.2",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^10.0.1",
+    "prettier": "^3.2.4",
+    "typescript": "^5.2.2",
+    "vite": "^6.3.5"
+  },
+  "x-rbp-generated": [
+    "<!-- BEGIN RBP GENERATED: rbp-hq-app-v0-1 -->package.json<!-- END RBP GENERATED: rbp-hq-app-v0-1 -->",
+    "<!-- BEGIN RBP GENERATED: rbp-hq-docker-build-v1 -->package.json<!-- END RBP GENERATED: rbp-hq-docker-build-v1 -->"
+  ]
+}

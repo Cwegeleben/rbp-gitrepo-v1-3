@@ -1,0 +1,22 @@
+# <!-- BEGIN RBP GENERATED: rbp-hq-app-v0-1 -->
+app = "rbp-hq-staging"
+primary_region = "sea"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[mounts]]
+  source = "data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8083
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  size = "shared-cpu-1x"
+# <!-- END RBP GENERATED: rbp-hq-app-v0-1 -->

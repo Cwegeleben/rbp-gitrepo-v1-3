@@ -1,0 +1,25 @@
+# <!-- BEGIN RBP GENERATED: rbp-hq-app-v0-1 -->
+name = "Rod Builder Pro — HQ"
+application_url = "http://localhost:8083"
+embedded = true
+
+[auth]
+redirect_urls = [
+  "http://localhost:8083/auth/callback",
+  "http://localhost:8083/auth/shopify/callback"
+]
+
+[access_scopes]
+scopes = "write_products,read_products,write_customers,read_customers"
+
+[webhooks]
+api_version = "2025-01"
+
+[app_proxy]
+url = "apps/hq-proxy"
+subpath = "hq"
+prefix = "/apps"
+
+[pos]
+embedded = false
+# <!-- END RBP GENERATED: rbp-hq-app-v0-1 -->
