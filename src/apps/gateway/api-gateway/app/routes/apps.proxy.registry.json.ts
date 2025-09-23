@@ -20,6 +20,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const tenant = getTenantFromRequest ? getTenantFromRequest(request).tenant : (url.searchParams.get('shop') || 'unknown');
   try {
     const reg = await getRegistryForTenant(String(tenant));
+    // <!-- BEGIN RBP GENERATED: proxy-registry-shell-v1-1 -->
+    // Enforce shell presence per v1.1 design (tenant-scoped override + env disable)
+    const disabled = process.env.RBP_SHELL_DISABLED === "1" || process.env.RBP_SHELL_DISABLED === "true";
+    const ver = "0.1.0";
+    reg.modules["rbp-shell"] = reg.modules["rbp-shell"] || ({} as any);
+    if (disabled) {
+      (reg.modules["rbp-shell"] as any).enabled = false;
+    } else {
+      (reg.modules["rbp-shell"] as any).enabled = true;
+      (reg.modules["rbp-shell"] as any).default = ver;
+      (reg.modules["rbp-shell"] as any).versions = {
+        ...((reg.modules["rbp-shell"] as any).versions || {}),
+        [ver]: { path: `/apps/proxy/modules/rbp-shell/${ver}/index.js` },
+      };
+    }
+    // <!-- END RBP GENERATED: proxy-registry-shell-v1-1 -->
     const d = getProxyDiag(url);
     const diagHeader = `p=${d.path};ten=${encodeURIComponent(String(tenant))};e=${d.enforce ? 1 : 0}`;
     return json(reg, {

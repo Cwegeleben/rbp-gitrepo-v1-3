@@ -44,6 +44,42 @@ if (!reg.headers['x-rbp-proxy-diag']) throw new Error('registry missing x-rbp-pr
 console.log('Registry smoke OK');
 // <!-- END RBP GENERATED: proxy-registry-endpoint-v1-0 -->
 
+// <!-- BEGIN RBP GENERATED: proxy-registry-shell-v1-1 -->
+// Fetch registry JSON to locate rbp-shell module
+const regBody = JSON.parse(execSync(`curl -sS ${regUrl}`).toString());
+const shell = regBody?.modules?.['rbp-shell'];
+if (!shell || !shell.versions || !shell.default) throw new Error('rbp-shell missing in registry');
+const shellPath = shell.versions[shell.default]?.path;
+if (!shellPath) throw new Error('rbp-shell default path missing');
+const modUrl = signed.replace(/\/apps\/proxy\/[^?]*/, shellPath);
+const mod = curl(modUrl);
+if (mod.status !== 200) throw new Error('shell module not 200: ' + mod.status);
+if (!/text\/javascript/i.test(mod.headers['content-type'] || '')) throw new Error('shell module content-type incorrect');
+if (!mod.headers['x-rbp-proxy']) throw new Error('module missing x-rbp-proxy');
+if (!mod.headers['x-rbp-proxy-diag']) throw new Error('module missing x-rbp-proxy-diag');
+console.log('Shell module smoke OK');
+// <!-- END RBP GENERATED: proxy-registry-shell-v1-1 -->
+
+// <!-- BEGIN RBP GENERATED: proxy-mini-views-v1-0 -->
+// Exercise mini views via signed URLs
+const base = signed.replace(/\/(apps\/proxy)\/.*/, '/$1');
+function curlText(url) {
+  const out = execSync(`curl -sS -D - -o /dev/null -w "status:%{http_code}\ncontent-type:%{content_type}\n" ${url}`).toString();
+  const lines = out.trim().split(/\r?\n/);
+  const status = Number((lines.find(l=>l.startsWith('status:'))||'status:0').split(':')[1]);
+  const ctype = (lines.find(l=>l.startsWith('content-type:'))||'content-type:').split(':')[1] || '';
+  return { status, ctype };
+}
+
+const mv1 = curlText(base + '?view=builder');
+if (mv1.status !== 200) throw new Error('mini-view builder not 200');
+if (!/text\/html/i.test(mv1.ctype)) throw new Error('mini-view builder content-type');
+const mv2 = curlText(base + '?view=catalog');
+if (mv2.status !== 200) throw new Error('mini-view catalog not 200');
+if (!/text\/html/i.test(mv2.ctype)) throw new Error('mini-view catalog content-type');
+console.log('Proxy mini views smoke OK');
+// <!-- END RBP GENERATED: proxy-mini-views-v1-0 -->
+
 console.log('Proxy smoke OK');
 // <!-- END RBP GENERATED: app-proxy-diagnostics-v1-1 -->
 // <!-- BEGIN RBP GENERATED: ci-proxy-smoke-v1 -->
