@@ -30,7 +30,10 @@
   "deploy:staging": "fly deploy -c src/apps/gateway/api-gateway/fly.toml",
     "smoke:staging": "node scripts/smoke.staging.mjs",
     "preflight:no-absolute-origins": "tsx scripts/preflight/preflight:no-absolute-origins.ts",
-    "preflight:admin-storage": "tsx scripts/preflight/preflight:no-raw-browser-storage.ts",
+  "preflight:admin-storage": "tsx scripts/preflight/preflight:no-raw-browser-storage.ts",
+  "preflight:tenant-dashboard": "node scripts/preflight/tenant-dashboard-wiring.mjs",
+    "preflight:storefront-builder-m1": "node scripts/preflight/storefront-builder-m1.mjs",
+    "preflight:storefront-builder-m0": "node scripts/preflight/storefront-builder-m0.mjs",
     "preflight:no-jsx-in-ts": "tsx scripts/preflight/preflight:no-jsx-in-ts.ts",
     "preflight:fly-mounts-consistency": "tsx scripts/preflight/preflight:fly-mounts-consistency.ts",
     "preflight:gateway-healthz": "tsx scripts/preflight/preflight:gateway-healthz.ts",
@@ -54,11 +57,13 @@
     "migrate:admin-links:dry": "tsx scripts/migrate/admin-links.wrap.ts --dry",
     "migrate:admin-links": "tsx scripts/migrate/admin-links.wrap.ts",
     "preflight:admin-all": "tsx scripts/preflight/admin-all.ts",
-    "preflight:admin-dashboard": "node scripts/preflight/admin-dashboard.mjs",
+  "preflight:admin-dashboard": "node scripts/preflight/admin-dashboard.mjs",
+  "preflight:one-admin-surface": "node scripts/preflight/one-admin-surface.mjs",
   "preflight:proxy": "node scripts/preflight/proxy-preflight.mjs",
   "preflight:proxy-registry": "node scripts/preflight/proxy-registry.mjs && node scripts/preflight/proxy-registry-shell.mjs",
   "preflight:registry-shell": "node scripts/preflight/registry-shell.mjs",
   "preflight:proxy-mini-views": "node scripts/preflight/proxy-mini-views.mjs",
+  "preflight:no-stub-ok": "node scripts/preflight/no-stub-ok.mjs",
   "smoke:proxy": "node ./scripts/smoke/proxy-smoke.mjs",
     "preflight:shopify-admin-links": "tsx scripts/preflight/shopify-admin.links.ts",
     "preflight:no-stub-routes": "tsx scripts/preflight/no-stub-routes.ts",
@@ -89,7 +94,10 @@
   },
   "x-rbp-generated": {
     "scripts": [
-  "<!-- BEGIN RBP GENERATED: hq-skeleton-v0-1 -->dev:hq.api, dev:hq.admin, openapi:hq, preflight:hq<!-- END RBP GENERATED: hq-skeleton-v0-1 -->"
+  "<!-- BEGIN RBP GENERATED: hq-skeleton-v0-1 -->dev:hq.api, dev:hq.admin, openapi:hq, preflight:hq<!-- END RBP GENERATED: hq-skeleton-v0-1 -->",
+  "<!-- BEGIN RBP GENERATED: admin-consolidation-embedded-only-v1-0 -->preflight:one-admin-surface<!-- END RBP GENERATED: admin-consolidation-embedded-only-v1-0 -->",
+  "<!-- BEGIN RBP GENERATED: storefront-builder-m0-v1-0 -->preflight:storefront-builder-m0<!-- END RBP GENERATED: storefront-builder-m0-v1-0 -->",
+  "<!-- BEGIN RBP GENERATED: storefront-builder-m1-v1-0 -->preflight:storefront-builder-m1<!-- END RBP GENERATED: storefront-builder-m1-v1-0 -->"
     ],
     "root-redirect-preflight-v1": [
       "preflight:shopify-admin"

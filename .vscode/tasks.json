@@ -1046,6 +1046,59 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run tenant dashboard preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:tenant-dashboard"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run preflight storefront builder",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:storefront-builder-m0"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run preflight storefront builder (dynamic import wired)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:storefront-builder-m0"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run preflight storefront builder M1",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:storefront-builder-m1"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
 		}
 	]
 }

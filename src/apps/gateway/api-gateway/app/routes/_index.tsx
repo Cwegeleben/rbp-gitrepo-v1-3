@@ -1,18 +1,12 @@
-// <!-- BEGIN RBP GENERATED: gateway-remix-root-v1-0 -->
+// <!-- BEGIN RBP GENERATED: gateway-remove-ok-placeholder-v1-0 -->
 import * as React from "react";
-// <!-- BEGIN RBP GENERATED: root-redirect-preflight-v1 -->
+
 export async function loader() {
-  // Fast server redirect from "/" to "/app" to avoid SSR 500s at root
-  return new Response(null, { status: 302, headers: { Location: "/app" } });
+  const msg = 'Admin UI is embedded in Shopify. Open Apps → RBP.';
+  return new Response(msg, { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } });
 }
-// <!-- END RBP GENERATED: root-redirect-preflight-v1 -->
 
 export default function Index() {
-  return (
-    <main style={{ font: "16px/1.4 system-ui, sans-serif", padding: 16 }}>
-      <h1>RBP Gateway</h1>
-      <p>OK</p>
-    </main>
-  );
+  return null;
 }
-// <!-- END RBP GENERATED: gateway-remix-root-v1-0 -->
+// <!-- END RBP GENERATED: gateway-remove-ok-placeholder-v1-0 -->

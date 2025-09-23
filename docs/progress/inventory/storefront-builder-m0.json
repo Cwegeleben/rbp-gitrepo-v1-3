@@ -1,0 +1,23 @@
+{
+  "date": "2025-09-22",
+  "feature": "Storefront Builder M0 v1.0",
+  "themeAssets": {
+    "rbp-bootstrap.js": "present",
+    "registry.mock.json": "present",
+    "rbp-builder.css": "present",
+    "rbp-builder.js": "present",
+    "rbp-builder.block": "present"
+  },
+  "proxyEndpoints": {
+    "/apps/proxy/ping": "present",
+    "/apps/proxy/api/access/ctx": "present",
+    "/apps/proxy/registry.json": "present",
+    "/apps/proxy/modules/rbp-shell/*": "present"
+  },
+  "catalogAndPackager": {
+    "/apps/proxy/catalog/:type.json": "stub",
+    "/apps/proxy/builds/validate": "stub",
+    "/apps/proxy/builds/price": "stub",
+    "/apps/proxy/checkout/bundle": "stub"
+  }
+}

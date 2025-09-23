@@ -73,4 +73,60 @@
     "preflight": "PASS",
     "notes": "Initial audit + ledger"
   }
+  ,
+  {
+    "date": "2025-09-22",
+    "feature": "Tenant Feature Inventory + Admin Dashboard Wiring v1.0",
+    "change": "ADD",
+    "sentinel": "tenant-dashboard-wiring-v1-0",
+    "apps": ["rbp-shopify-app (embedded)"],
+    "files": [
+      "docs/progress/inventory/tenant-app.json",
+      "app/routes/app._index.tsx",
+      "scripts/preflight/tenant-dashboard-wiring.mjs"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Inventory written; embedded Dashboard surfaces proxy, registry, catalog, builds, settings, doctor."
+  },
+  {
+    "date": "2025-09-22",
+    "feature": "Storefront Builder M0 v1.0",
+    "change": "ADD",
+    "sentinel": "storefront-builder-m0-v1-0",
+    "apps": [
+      "theme-extension",
+      "gateway",
+      "rbp-shell"
+    ],
+    "files": [
+      "assets",
+      "block",
+      "gateway routes",
+      "preflight"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Blank and Reel Seat steps, Review, bundle add to cart."
+  }
+  ,
+  {
+    "date": "2025-09-22",
+    "feature": "Storefront Builder M1 v1.0",
+    "change": "ADD",
+    "sentinel": "storefront-builder-m1-v1-0",
+    "apps": [
+      "theme-extension",
+      "gateway",
+      "rbp-shell"
+    ],
+    "files": [
+      "builder steps+rail+codec",
+      "optional guides-sets route",
+      "preflight"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Full stepper, live compat, Saved Builds rail, shareable URLs; 1-line bundle cart."
+  }
 ]

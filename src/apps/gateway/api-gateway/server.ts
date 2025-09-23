@@ -34,27 +34,10 @@ const handler = createRequestHandler(build, process.env.NODE_ENV);
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url || "", `http://${req.headers.host}`);
-    // <!-- BEGIN RBP GENERATED: staging-app-entry-preflight-v1 (/app route) -->
-    if (req.method === "GET" && url.pathname === "/app") {
-      const html = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>RBP Gateway — App Embed</title>
-  </head>
-  <body>
-    <div id="root">
-      <div data-testid="app-embed-ok">ok</div>
-    </div>
-  </body>
-</html>`;
-      res.statusCode = 200;
-      res.setHeader("content-type", "text/html; charset=utf-8");
-      res.end(html);
-      return;
-    }
-    // <!-- END RBP GENERATED: staging-app-entry-preflight-v1 (/app route) -->
+  // <!-- BEGIN RBP GENERATED: admin-consolidation-embedded-only-v1-0 -->
+  // Consolidation: Remove gateway '/app' placeholder. Embedded admin is served only by the Shopify app.
+  // All '/app' requests should flow through Remix handlers or Shopify app hosting; no stub HTML here.
+  // <!-- END RBP GENERATED: admin-consolidation-embedded-only-v1-0 -->
     const request = new Request(url, {
       method: req.method,
       headers: req.headers as any,

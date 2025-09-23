@@ -72,7 +72,27 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   `      host.appendChild(el);\n` +
   `      // wire simple clicks (no SPA dependency):\n` +
   `      const go = (path)=>{ try { window.location.href = path; } catch {} };\n` +
-  `      el.querySelector('#rbp-start-build')?.addEventListener('click', ()=>go('/apps/proxy?view=builder'));\n` +
+  `      // On Start, dynamically import rbp-builder.js if needed, then call window.RBP.startBuilder\n` +
+  `      async function startBuilder(){\n` +
+  `        try {\n` +
+  `          // If already present (block loaded the asset), just call it\n` +
+  `          if (!(window.RBP && window.RBP.startBuilder)) {\n` +
+  `            // Find theme asset URL from the CSS link and swap to .js\n` +
+  `            const link = document.querySelector('link[href*="rbp-builder.css"]');\n` +
+  `            const href = link && link.getAttribute('href');\n` +
+  `            if (href) {\n` +
+  `              const jsUrl = href.replace(/rbp-builder\\.css(\\?.*)?$/, 'rbp-builder.js$1');\n` +
+  `              await import(jsUrl);\n` +
+  `            }\n` +
+  `          }\n` +
+  `          if (window.RBP && typeof window.RBP.startBuilder === 'function') {\n` +
+  `            window.RBP.startBuilder('#rbp-builder-root');\n` +
+  `          } else {\n` +
+  `            console.warn('[RBP] startBuilder not available after dynamic import');\n` +
+  `          }\n` +
+  `        } catch (e) { console.warn('[RBP] failed to start builder', e); }\n` +
+  `      }\n` +
+  `      el.querySelector('#rbp-start-build')?.addEventListener('click', startBuilder);\n` +
   `      el.querySelector('#rbp-browse')?.addEventListener('click', ()=>go('/apps/proxy?view=catalog'));\n` +
   `    },\n` +
   `    unmount(){\n` +

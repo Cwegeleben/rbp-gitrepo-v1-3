@@ -1,0 +1,16 @@
+{
+  "routes": [
+    { "path": "/app", "title": "Dashboard", "polarisPage": true },
+    { "path": "/app/catalog", "title": "Catalog", "polarisPage": true },
+    { "path": "/app/builds", "title": "Builds", "polarisPage": true },
+    { "path": "/app/settings", "title": "Settings", "polarisPage": true },
+    { "path": "/app/doctor", "title": "Doctor", "polarisPage": true }
+  ],
+  "proxyEndpoints": {
+    "/apps/proxy/ping": "present",
+    "/apps/proxy/api/access/ctx": "present",
+    "/apps/proxy/registry.json": "present",
+    "/apps/proxy/modules/rbp-shell/*": "present",
+    "/apps/proxy?view=...": "present"
+  }
+}
