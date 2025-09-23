@@ -15,8 +15,12 @@ export async function loader({ request }: { request: Request }){
   const { tenant } = getTenantFromRequest(request);
   const tenantId = String(tenant||'default');
   if (!customerId || !id) return new Response("bad request", { status: 400, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": diagHeader }});
-  const item = get({ tenantId, customerId }, id);
-  if (!item) return new Response("not found", { status: 404, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": diagHeader }});
-  return json(item, { headers: { "cache-control":"no-store","X-RBP-Proxy":"ok","X-RBP-Proxy-Diag": diagHeader }});
+  try {
+    const item = get({ tenantId, customerId }, id);
+    if (!item) return new Response("not found", { status: 404, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": diagHeader }});
+    return json(item, { headers: { "cache-control":"no-store","X-RBP-Proxy":"ok","X-RBP-Proxy-Diag": diagHeader }});
+  } catch (err: any) {
+    return json({ ok:false, error: 'store.read_failed' }, { status: 500, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": `${diagHeader}&e=${encodeURIComponent(String(err?.code||'read'))}` }});
+  }
 }
 // <!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->

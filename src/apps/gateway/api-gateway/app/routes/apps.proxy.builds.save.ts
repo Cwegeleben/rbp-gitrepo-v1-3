@@ -16,7 +16,11 @@ export async function action({ request }: { request: Request }){
   const { tenant } = getTenantFromRequest(request);
   const tenantId = String(tenant||'default');
   if (JSON.stringify(body||{}).length > 16*1024) return json({ ok:false, error:'payload too large' }, { status: 413, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": diagHeader }});
-  const { id } = save({ tenantId, customerId }, { id: body?.id, name: body?.name, slots: body?.slots, totals: body?.totals });
-  return json({ ok:true, id }, { headers: { "cache-control":"no-store","X-RBP-Proxy":"ok","X-RBP-Proxy-Diag": diagHeader }});
+  try {
+    const { id } = save({ tenantId, customerId }, { id: body?.id, name: body?.name, slots: body?.slots, totals: body?.totals });
+    return json({ ok:true, id }, { headers: { "cache-control":"no-store","X-RBP-Proxy":"ok","X-RBP-Proxy-Diag": diagHeader }});
+  } catch (err: any) {
+    return json({ ok:false, error: 'store.write_failed' }, { status: 500, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": `${diagHeader}&e=${encodeURIComponent(String(err?.code||'write'))}` }});
+  }
 }
 // <!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->

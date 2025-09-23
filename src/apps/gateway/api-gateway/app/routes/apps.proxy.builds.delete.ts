@@ -14,7 +14,11 @@ export async function action({ request }: { request: Request }){
   const customerId = String(body?.customerId||'').slice(0,128);
   const { tenant } = getTenantFromRequest(request);
   const tenantId = String(tenant||'default');
-  const ok = customerId && body?.id ? remove({ tenantId, customerId }, String(body.id)) : false;
-  return json({ ok: !!ok }, { headers: { "cache-control":"no-store","X-RBP-Proxy":"ok","X-RBP-Proxy-Diag": diagHeader }});
+  try {
+    const ok = customerId && body?.id ? remove({ tenantId, customerId }, String(body.id)) : false;
+    return json({ ok: !!ok }, { headers: { "cache-control":"no-store","X-RBP-Proxy":"ok","X-RBP-Proxy-Diag": diagHeader }});
+  } catch (err: any) {
+    return json({ ok:false, error: 'store.write_failed' }, { status: 500, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": `${diagHeader}&e=${encodeURIComponent(String(err?.code||'write'))}` }});
+  }
 }
 // <!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->

@@ -8,10 +8,23 @@ export type Key = { tenantId: string; customerId: string };
 const ROOT = process.env.RBP_VOLUME_PATH || '/data';
 const DIR = path.join(ROOT, 'rbp-saves');
 
-function ensureDir(){ try { fs.mkdirSync(DIR, { recursive: true }); } catch {} }
+function ensureDir(){
+  try {
+    fs.mkdirSync(DIR, { recursive: true });
+  } catch {}
+}
 function fileFor(k: Key){ const safeTenant = (k.tenantId||'tenant').replace(/[^a-z0-9-_]/gi,'_'); const safeCust = (k.customerId||'anon').replace(/[^a-z0-9-_]/gi,'_'); return path.join(DIR, `${safeTenant}__${safeCust}.json`); }
 function readList(k: Key): SavedBuild[]{ ensureDir(); const f=fileFor(k); try{ const raw=fs.readFileSync(f,'utf8'); const arr=JSON.parse(raw); return Array.isArray(arr)? arr: []; }catch{ return []; } }
-function atomicWrite(f: string, data: string){ const tmp = f+`.tmp.${Date.now()}`; fs.writeFileSync(tmp, data); fs.renameSync(tmp, f); }
+function atomicWrite(f: string, data: string){
+  // Ensure the destination directory exists before writing
+  try {
+    const dir = path.dirname(f);
+    fs.mkdirSync(dir, { recursive: true });
+  } catch {}
+  const tmp = f + `.tmp.${Date.now()}`;
+  fs.writeFileSync(tmp, data);
+  fs.renameSync(tmp, f);
+}
 
 export function list(k: Key): Array<Pick<SavedBuild,'id'|'name'|'updatedAt'>>{
   const arr = readList(k).sort((a,b)=> b.updatedAt - a.updatedAt).slice(0, 20);
