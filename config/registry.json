@@ -4,6 +4,7 @@
       "version": "0.2.0",
       "path": "/apps/proxy/modules/rbp-shell/0.2.0/index.js",
       "default": "0.2.0",
+  "enabled": true,
       "versions": {
         "0.2.0": { "path": "/apps/proxy/modules/rbp-shell/0.2.0/index.js" }
       }

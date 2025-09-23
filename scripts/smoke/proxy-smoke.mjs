@@ -1,3 +1,40 @@
+// <!-- BEGIN RBP GENERATED: app-proxy-diagnostics-v1-1 -->
+import { execSync } from 'node:child_process';
+
+function curl(url) {
+  const out = execSync(`curl -sS -D - -o /dev/null -w "status:%{http_code}\n" ${url}`).toString();
+  const lines = out.trim().split(/\r?\n/);
+  const statusLine = lines.find(l => l.startsWith('status:')) || 'status:000';
+  const status = parseInt(statusLine.split(':')[1], 10);
+  const headers = Object.fromEntries(lines
+    .filter(l => /:/g.test(l) && !/^status:/.test(l))
+    .map(l => { const idx = l.indexOf(':'); return [l.slice(0, idx).trim().toLowerCase(), l.slice(idx+1).trim()]; }));
+  return { status, headers };
+}
+
+let signed = '';
+try {
+  signed = execSync('pnpm -s proxy:sign').toString().trim();
+} catch (e) {
+  console.log('Proxy smoke SKIP: cannot sign without SHOPIFY_API_SECRET');
+  process.exit(0);
+}
+
+const pingUrl = signed.replace(/\/apps\/proxy\/[^?]*/, '/apps/proxy/ping');
+const ctxUrl = signed.replace(/\/apps\/proxy\/[^?]*/, '/apps/proxy/api/access/ctx');
+
+const ping = curl(pingUrl);
+if (ping.status !== 200) throw new Error('ping not 200: ' + ping.status);
+if (!ping.headers['x-rbp-proxy'] || !/ok|fail/.test(ping.headers['x-rbp-proxy'])) throw new Error('ping missing x-rbp-proxy');
+if (!ping.headers['x-rbp-proxy-diag']) throw new Error('ping missing x-rbp-proxy-diag');
+
+const ctx = curl(ctxUrl);
+if (ctx.status !== 200) throw new Error('ctx not 200: ' + ctx.status);
+if (!ctx.headers['x-rbp-proxy']) throw new Error('ctx missing x-rbp-proxy');
+if (!ctx.headers['x-rbp-proxy-diag']) throw new Error('ctx missing x-rbp-proxy-diag');
+
+console.log('Proxy smoke OK');
+// <!-- END RBP GENERATED: app-proxy-diagnostics-v1-1 -->
 // <!-- BEGIN RBP GENERATED: ci-proxy-smoke-v1 -->
 /**
  * CI proxy smoke against staging

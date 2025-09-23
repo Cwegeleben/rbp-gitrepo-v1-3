@@ -29,6 +29,8 @@ jobs:
           version: 10
       - name: Install dependencies (workspace)
         run: pnpm -w install --frozen-lockfile
+      - name: Preflight registry
+        run: pnpm -s preflight:registry -- --url ./config/registry.json
 
   tests:
     name: tests
