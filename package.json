@@ -34,6 +34,7 @@
   "preflight:tenant-dashboard": "node scripts/preflight/tenant-dashboard-wiring.mjs",
   "preflight:storefront-builder-m1": "node scripts/preflight/storefront-builder-m1.mjs",
   "preflight:storefront-builder-m2": "node scripts/preflight/storefront-builder-m2.mjs",
+  "preflight:storefront-builder-m3": "node scripts/preflight/storefront-builder-m3.mjs",
     "preflight:storefront-builder-m0": "node scripts/preflight/storefront-builder-m0.mjs",
     "preflight:no-jsx-in-ts": "tsx scripts/preflight/preflight:no-jsx-in-ts.ts",
     "preflight:fly-mounts-consistency": "tsx scripts/preflight/preflight:fly-mounts-consistency.ts",
@@ -99,7 +100,8 @@
   "<!-- BEGIN RBP GENERATED: admin-consolidation-embedded-only-v1-0 -->preflight:one-admin-surface<!-- END RBP GENERATED: admin-consolidation-embedded-only-v1-0 -->",
   "<!-- BEGIN RBP GENERATED: storefront-builder-m0-v1-0 -->preflight:storefront-builder-m0<!-- END RBP GENERATED: storefront-builder-m0-v1-0 -->",
   "<!-- BEGIN RBP GENERATED: storefront-builder-m1-v1-0 -->preflight:storefront-builder-m1<!-- END RBP GENERATED: storefront-builder-m1-v1-0 -->",
-  "<!-- BEGIN RBP GENERATED: storefront-builder-m2-v1-0 -->preflight:storefront-builder-m2<!-- END RBP GENERATED: storefront-builder-m2-v1-0 -->"
+  "<!-- BEGIN RBP GENERATED: storefront-builder-m2-v1-0 -->preflight:storefront-builder-m2<!-- END RBP GENERATED: storefront-builder-m2-v1-0 -->",
+  "<!-- BEGIN RBP GENERATED: storefront-builder-m3-v1-0 -->preflight:storefront-builder-m3<!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->"
     ],
     "root-redirect-preflight-v1": [
       "preflight:shopify-admin"

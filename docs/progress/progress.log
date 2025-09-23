@@ -1,3 +1,6 @@
+<!-- BEGIN RBP GENERATED: storefront-builder-m3-v1-0 -->
+2025-09-22: Added M3 features: server-side saved builds via app proxy (file-backed), inline video tips per step, compare presets, theme wiring, and M3 preflight. All fetches under /apps/proxy.
+<!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->
 <!-- BEGIN RBP GENERATED: storefront-builder-m2-v1-0 -->
 2025-09-23: Added M2 client modules (RecentlyViewed, PriceLadder, WeightEstimator), optional gateway upsell route, theme SEO section, wired light integrations into builder.js, and added preflight:storefront-builder-m2.
 <!-- END RBP GENERATED: storefront-builder-m2-v1-0 -->
@@ -16,3 +19,5 @@ RBP_PROGRESS: { "date": "2025-09-22", "feature": "Storefront Builder M0 v1.0", "
 <!-- BEGIN RBP GENERATED: storefront-builder-m1-v1-0 -->
 RBP_PROGRESS: { "date": "2025-09-22", "feature": "Storefront Builder M1 v1.0", "change": "ADD", "sentinel": "storefront-builder-m1-v1-0", "apps": ["theme-extension","gateway","rbp-shell"], "files": ["builder steps+rail+codec","optional guides-sets route","preflight"], "tests": "N/A", "preflight": "PASS", "notes": "Full stepper, live compat, Saved Builds rail, shareable URLs; 1-line bundle cart." }
 <!-- END RBP GENERATED: storefront-builder-m1-v1-0 -->
+
+RBP_PROGRESS: { "date": "2025-09-22", "feature": "ADR — Server-side Saved Builds v1", "change": "ADD", "sentinel": "server-side-saved-builds-v1-0", "apps": ["docs"], "files": ["docs/adr/2025-09-22-server-side-saved-builds-v1.md"], "tests": "N/A", "preflight": "N/A", "notes": "Define interim file-backed saved builds via App Proxy; flags and limits set; migration path to HQ." }

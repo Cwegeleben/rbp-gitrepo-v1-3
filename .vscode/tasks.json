@@ -1113,6 +1113,28 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Run M3 preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:storefront-builder-m3"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run proxy preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:proxy"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

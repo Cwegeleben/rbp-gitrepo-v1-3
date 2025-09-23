@@ -150,4 +150,30 @@
     "preflight": "PASS",
     "notes": "Compare foundations present; light integrations for upsells, price ladder, and weight summary injected into theme builder."
   }
+  ,
+  {
+    "date": "2025-09-22",
+    "feature": "Storefront Builder M3 v1.0",
+    "change": "ADD",
+    "sentinel": "storefront-builder-m3-v1-0",
+    "apps": ["theme-extension","gateway","rbp-shell"],
+    "files": ["server saves API","tips asset","compare presets asset","builder wiring","preflight"],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Server-side saves tied to customer, video tips per step, compare presets; no absolute origins."
+  }
+  ,
+  {
+    "date": "2025-09-22",
+    "feature": "ADR — Server-side Saved Builds v1",
+    "change": "ADD",
+    "sentinel": "server-side-saved-builds-v1-0",
+    "apps": ["docs"],
+    "files": [
+      "docs/adr/2025-09-22-server-side-saved-builds-v1.md"
+    ],
+    "tests": "N/A",
+    "preflight": "N/A",
+    "notes": "Define interim file-backed saved builds via App Proxy; flags and limits set; migration path to HQ."
+  }
 ]
