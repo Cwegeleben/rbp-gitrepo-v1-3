@@ -22,6 +22,9 @@ try {
 
 const pingUrl = signed.replace(/\/apps\/proxy\/[^?]*/, '/apps/proxy/ping');
 const ctxUrl = signed.replace(/\/apps\/proxy\/[^?]*/, '/apps/proxy/api/access/ctx');
+// <!-- BEGIN RBP GENERATED: proxy-registry-endpoint-v1-0 -->
+const regUrl = signed.replace(/\/apps\/proxy\/[^?]*/, '/apps/proxy/registry.json');
+// <!-- END RBP GENERATED: proxy-registry-endpoint-v1-0 -->
 
 const ping = curl(pingUrl);
 if (ping.status !== 200) throw new Error('ping not 200: ' + ping.status);
@@ -32,6 +35,14 @@ const ctx = curl(ctxUrl);
 if (ctx.status !== 200) throw new Error('ctx not 200: ' + ctx.status);
 if (!ctx.headers['x-rbp-proxy']) throw new Error('ctx missing x-rbp-proxy');
 if (!ctx.headers['x-rbp-proxy-diag']) throw new Error('ctx missing x-rbp-proxy-diag');
+
+// <!-- BEGIN RBP GENERATED: proxy-registry-endpoint-v1-0 -->
+const reg = curl(regUrl);
+if (reg.status !== 200) throw new Error('registry not 200: ' + reg.status);
+if (!reg.headers['x-rbp-proxy']) throw new Error('registry missing x-rbp-proxy');
+if (!reg.headers['x-rbp-proxy-diag']) throw new Error('registry missing x-rbp-proxy-diag');
+console.log('Registry smoke OK');
+// <!-- END RBP GENERATED: proxy-registry-endpoint-v1-0 -->
 
 console.log('Proxy smoke OK');
 // <!-- END RBP GENERATED: app-proxy-diagnostics-v1-1 -->

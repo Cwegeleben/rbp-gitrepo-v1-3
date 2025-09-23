@@ -55,6 +55,7 @@
     "migrate:admin-links": "tsx scripts/migrate/admin-links.wrap.ts",
     "preflight:admin-all": "tsx scripts/preflight/admin-all.ts",
   "preflight:proxy": "node scripts/preflight/proxy-preflight.mjs",
+  "preflight:proxy-registry": "node scripts/preflight/proxy-registry.mjs",
   "preflight:registry-shell": "node scripts/preflight/registry-shell.mjs",
   "smoke:proxy": "node ./scripts/smoke/proxy-smoke.mjs",
     "preflight:shopify-admin-links": "tsx scripts/preflight/shopify-admin.links.ts",
