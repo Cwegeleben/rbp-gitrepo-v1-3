@@ -90,7 +90,15 @@ export async function loader({ request }: { request: Request }): Promise<Dashboa
 export default function DashboardRoute() {
   /* <!-- BEGIN RBP GENERATED: admin-dashboard-v1 --> */
   // Render the lean Admin Dashboard (client-fetch with skeletons + aggregated error banner)
-  return <AdminDashboard />;
+  // <!-- BEGIN RBP GENERATED: ui-polish-v1 -->
+  const Header = require('../components/common/AdminHeader').default as React.ComponentType<{ title: string; subtitle?: string }>;
+  return (
+    <div>
+      <Header title="Dashboard" subtitle="Overview" />
+      <AdminDashboard />
+    </div>
+  );
+  // <!-- END RBP GENERATED: ui-polish-v1 -->
   /* <!-- END RBP GENERATED: admin-dashboard-v1 --> */
 }
 /*

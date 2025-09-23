@@ -1,5 +1,5 @@
 # <!-- BEGIN RBP GENERATED: hosting-staging-fly-v1-1 -->
-app = "rbp-app-staging"
+app = "rbp-rod-builder-pro-staging"
 primary_region = "sea"
 
 [env]
@@ -32,5 +32,5 @@ primary_region = "sea"
 # <!-- BEGIN RBP GENERATED: fly-build-path-fix-v1-0 -->
 [build]
   dockerfile = "Dockerfile"
-  context = "."
+  context = "../../../../"
 # <!-- END RBP GENERATED: fly-build-path-fix-v1-0 -->

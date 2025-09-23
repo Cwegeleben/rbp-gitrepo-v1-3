@@ -1,0 +1,10 @@
+{
+  "name": "@rbp/hq.admin",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "RBP HQ Admin (control plane UI)",
+  "scripts": {
+    "dev": "shopify app dev"
+  }
+}

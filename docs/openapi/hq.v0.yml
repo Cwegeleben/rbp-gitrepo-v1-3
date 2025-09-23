@@ -1,0 +1,156 @@
+# <!-- BEGIN RBP GENERATED: hq-skeleton-v0-1 -->
+openapi: 3.0.0
+info:
+  title: RBP HQ API
+  version: 0.0.1
+paths:
+  /hq/api/modules:
+    get:
+      summary: List all modules
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+  /hq/api/tenants/{id}/modules:
+    get:
+      summary: List modules configured for a tenant
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantModules'
+  /hq/api/catalog/master:
+    get:
+      summary: Get the master catalog components
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogMaster'
+  /hq/api/pricing/books/{id}:
+    get:
+      summary: Get a pricing book by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingBook'
+  /hq/api/usage/{tenantId}:
+    get:
+      summary: Get usage counters for a tenant
+      parameters:
+        - in: path
+          name: tenantId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usage'
+components:
+  schemas:
+    Module:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        enabledByDefault:
+          type: boolean
+      required: [id, key, name, enabledByDefault]
+    TenantModules:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Module'
+      required: [tenantId, modules]
+    Component:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+      required: [id, type, name]
+    CatalogMaster:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        updatedAt:
+          type: string
+          format: date-time
+      required: [components, updatedAt]
+    Rule:
+      type: object
+      properties:
+        condition:
+          type: string
+        value:
+          type: number
+      required: [condition, value]
+    PricingBook:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+      required: [id, name, currency, rules]
+    Usage:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        period:
+          type: string
+        counters:
+          type: object
+          additionalProperties:
+            type: number
+      required: [tenantId, period, counters]
+# <!-- END RBP GENERATED: hq-skeleton-v0-1 -->

@@ -1,19 +1,53 @@
 // <!-- BEGIN RBP GENERATED: hosting-staging-fly-v1-1 -->
 import assert from 'node:assert';
+import crypto from 'node:crypto';
 import { setTimeout as delay } from 'node:timers/promises';
 
 const BASE = process.env.STAGING_BASE || 'https://rbp-rod-builder-pro-staging.fly.dev';
 const SHOP = process.env.SHOP || 'demo.myshopify.com';
 const HOST_B64 = process.env.HOST_B64 || Buffer.from('demo.myshopify.com/admin').toString('base64');
 
-async function get(path) {
-  const res = await fetch(BASE + path, { headers: { 'accept': 'application/json' } });
-  return { status: res.status, json: await res.json().catch(() => ({})), text: await res.text().catch(() => '') };
+async function get(path, tries = 3) {
+  let lastErr;
+  for (let i = 0; i < Math.max(1, tries); i++) {
+    try {
+      const res = await fetch(BASE + path, { headers: { accept: 'application/json' } });
+      // Retry on transient gateway errors
+      if (res.status >= 500 && res.status < 600 && i + 1 < tries) {
+        await delay(250);
+        continue;
+      }
+      return {
+        status: res.status,
+        json: await res.json().catch(() => ({})),
+        text: await res.text().catch(() => ''),
+      };
+    } catch (e) {
+      lastErr = e;
+      if (i + 1 < tries) {
+        await delay(250);
+        continue;
+      }
+      throw e;
+    }
+  }
+  throw lastErr || new Error('get() failed');
 }
 
 async function getText(path) {
   const res = await fetch(BASE + path, { headers: { 'accept': 'text/html' } });
   return { status: res.status, text: await res.text() };
+}
+
+function signProxyPath(path, params = {}) {
+  const secret = process.env.SHOPIFY_API_SECRET || process.env.SHOPIFY_API_SECRET_KEY || '';
+  if (!secret) return null;
+  if (!path.startsWith('/apps/proxy')) throw new Error('signProxyPath requires /apps/proxy path');
+  const qp = new URLSearchParams(params);
+  const base = qp.toString() ? `${path}?${qp.toString()}` : path;
+  const signature = crypto.createHmac('sha256', secret).update(base).digest('hex');
+  qp.set('signature', signature);
+  return `${path}?${qp.toString()}`;
 }
 
 async function main() {
@@ -24,14 +58,28 @@ async function main() {
   assert.equal(r.json.ok, true, 'healthz.ok true');
 
   // catalog
-  r = await get('/apps/proxy/rbp/catalog');
-  assert.equal(r.status, 200, 'catalog 200');
+  {
+    const path = signProxyPath('/apps/proxy/rbp/catalog', { shop: SHOP, ts: Math.floor(Date.now() / 1000) }) || '/apps/proxy/rbp/catalog';
+    r = await get(path);
+    if (path.includes('signature=')) {
+      assert.equal(r.status, 200, 'catalog 200 (signed)');
+    } else {
+      assert.ok(r.status === 200 || r.status === 401, `catalog 200/401 (got ${r.status})`);
+    }
+  }
   assert.equal(r.json.ok, true, 'catalog.ok true');
   assert.ok(Array.isArray(r.json.parts), 'catalog.parts array');
 
   // modules
-  r = await get('/apps/proxy/rbp/modules');
-  assert.equal(r.status, 200, 'modules 200');
+  {
+    const path = signProxyPath('/apps/proxy/rbp/modules', { shop: SHOP, ts: Math.floor(Date.now() / 1000) }) || '/apps/proxy/rbp/modules';
+    r = await get(path);
+    if (path.includes('signature=')) {
+      assert.equal(r.status, 200, 'modules 200 (signed)');
+    } else {
+      assert.ok(r.status === 200 || r.status === 401, `modules 200/401 (got ${r.status})`);
+    }
+  }
   assert.equal(r.json.ok, true, 'modules.ok true');
   assert.ok(Array.isArray(r.json.modules), 'modules.modules array');
 

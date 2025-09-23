@@ -1,0 +1,9 @@
+# <!-- BEGIN RBP GENERATED: hq-skeleton-v0-1 -->
+app = "rbp-hq-api-staging"
+
+[http_service]
+  internal_port = 8083
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+# <!-- END RBP GENERATED: hq-skeleton-v0-1 -->

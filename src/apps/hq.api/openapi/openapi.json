@@ -1,0 +1,7 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "RBP HQ API", "version": "0.0.1" },
+  "paths": {
+    "/hq/healthz": { "get": { "responses": { "200": { "description": "ok" } } } }
+  }
+}

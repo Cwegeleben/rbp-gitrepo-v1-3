@@ -827,6 +827,188 @@
 				"rbp-gateway:test",
 				"."
 			]
+		},
+		{
+			"label": "Run targeted jest for getDataSource",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--",
+				"getDataSource.test.ts"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run jest -t getDataSource",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"-t",
+				"getDataSource"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run jest -t getDataSource",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"-t",
+				"getDataSource"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run HQ preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run HQ preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Generate HQ OpenAPI types",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"openapi:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run HQ preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run HQ preflight (import check)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run HQ preflight after relaxing UI import regex",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "HQ smoke: openapi + preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-w",
+				"-s",
+				"openapi:hq",
+				"&&",
+				"pnpm",
+				"-w",
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run HQ preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:gateway-healthz"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Run remix preflights again",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:remix-server-only",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:cross-app-imports"
+			]
+		},
+		{
+			"label": "Run preflight absolute origins",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:no-absolute-origins"
+			]
+		},
+		{
+			"label": "Run HQ preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:hq"
+			]
+		},
+		{
+			"label": "Run preflight:admin-storage",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-storage"
+			]
 		}
 	]
 }

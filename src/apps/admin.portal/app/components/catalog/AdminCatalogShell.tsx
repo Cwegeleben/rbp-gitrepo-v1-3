@@ -10,6 +10,13 @@ import { Toolbar } from '../Toolbar';
 import { toast } from '../../../../../shared/ui/toast';
 import { LoadingSkeleton } from '../../../LoadingSkeleton';
 import { ErrorState } from '../../../ErrorState';
+// <!-- BEGIN RBP GENERATED: ui-polish-v1 -->
+import AdminHeader from '../common/AdminHeader';
+import { useLiveRegion } from '../../../../../packages/ui/live-region/LiveRegion';
+// <!-- END RBP GENERATED: ui-polish-v1 -->
+// <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+import { useCallback } from 'react';
+// <!-- END RBP GENERATED: admin-acceptance-v1 -->
 
 function useSearchParamsState() {
   const { search, pathname } = useLocation();
@@ -22,12 +29,18 @@ function useSearchParamsState() {
 }
 
 export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof createCatalogApi> }) {
+  // <!-- BEGIN RBP GENERATED: ui-polish-v1 -->
+  const { announce } = useLiveRegion();
+  // <!-- END RBP GENERATED: ui-polish-v1 -->
   const [sp, setSp] = useSearchParamsState();
   const apiImpl = useMemo(() => api || createCatalogApi(), [api]);
 
   const q = sp.get('q') || '';
   const enabledParam = sp.get('enabled'); // 'true' | 'false' | null
   const sortParam = sp.get('sort') || '';
+  // <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+  const cursor = sp.get('cursor') || '';
+  // <!-- END RBP GENERATED: admin-acceptance-v1 -->
   const [sort, setSort] = useState<{ key: SortKey; dir: SortDir }>(() => {
     const [k, d] = sortParam.split(':');
     if ((k === 'vendor' || k === 'title' || k === 'priceBand' || k === 'enabled') && (d === 'asc' || d === 'desc')) return { key: k, dir: d } as any;
@@ -62,9 +75,12 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
     setError(null);
     (async () => {
       try {
-        const res = await apiImpl.list({ q: q || undefined, enabled: enabledParam || undefined });
+        const res = await apiImpl.list({ q: q || undefined, enabled: enabledParam || undefined, cursor: cursor || undefined });
         if (!alive) return;
         setData(res);
+    // <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+    announce(`${res.items.length} results`);
+    // <!-- END RBP GENERATED: admin-acceptance-v1 -->
       } catch (e: any) {
         if (!alive) return;
         setError(e?.message || 'Failed to load catalog');
@@ -73,7 +89,7 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
       }
     })();
     return () => { alive = false; };
-  }, [apiImpl, q, enabledParam]);
+  }, [apiImpl, q, enabledParam, cursor, announce]);
 
   // Derived sorted rows (stable)
   const rows = useMemo(() => {
@@ -128,6 +144,9 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
       }));
       toast(failed > 0 ? 'error' : 'success', failed > 0 ? `Enabled ${ids.length - failed}/${ids.length}` : `Enabled ${ids.length}`);
       requestAnimationFrame(() => last?.focus());
+      // <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+      announce(failed > 0 ? `Enabled ${ids.length - failed} of ${ids.length}` : `Enabled ${ids.length}`);
+      // <!-- END RBP GENERATED: admin-acceptance-v1 -->
     },
     disable: async () => {
       if (selected.size === 0) return;
@@ -140,14 +159,19 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
       }));
       toast(failed > 0 ? 'error' : 'success', failed > 0 ? `Disabled ${ids.length - failed}/${ids.length}` : `Disabled ${ids.length}`);
       requestAnimationFrame(() => last?.focus());
+      // <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+      announce(failed > 0 ? `Disabled ${ids.length - failed} of ${ids.length}` : `Disabled ${ids.length}`);
+      // <!-- END RBP GENERATED: admin-acceptance-v1 -->
     }
   };
 
   return (
     <div>
-      <h1>Catalog</h1>
+      {/* <!-- BEGIN RBP GENERATED: ui-polish-v1 --> */}
+      <AdminHeader title="Catalog" subtitle="Manage product availability" />
+      {/* <!-- END RBP GENERATED: ui-polish-v1 --> */}
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', margin: '8px 0' }}>
-        <input
+    <input
           aria-label="Search"
           placeholder="Search"
           value={qInput}
@@ -157,6 +181,9 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
             if (debounceRef.current) window.clearTimeout(debounceRef.current);
             debounceRef.current = window.setTimeout(() => {
               updateSP(n => { if (val) n.set('q', val); else n.delete('q'); n.delete('cursor'); });
+      // <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+      announce(`Search ${val ? 'applied' : 'cleared'}`);
+      // <!-- END RBP GENERATED: admin-acceptance-v1 -->
             }, 300);
           }}
         />
@@ -164,6 +191,10 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
           const [k, d] = e.target.value.split(':');
           setSort({ key: k as SortKey, dir: d as SortDir });
           updateSP(n => { n.set('sort', e.target.value); });
+          // <!-- BEGIN RBP GENERATED: ui-polish-v1 -->
+          const [sk, sd] = e.target.value.split(':');
+          announce(`Sorted by ${sk} ${sd}`);
+          // <!-- END RBP GENERATED: ui-polish-v1 -->
         }}>
           <option value="vendor:asc">Vendor ↑</option>
           <option value="vendor:desc">Vendor ↓</option>
@@ -175,10 +206,10 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
           <option value="enabled:desc">Enabled ↓</option>
         </select>
         <div style={{ display: 'inline-flex', gap: 6 }} aria-label="Enabled filter">
-          <button type="button" onClick={() => updateSP(n => { n.set('enabled', 'true'); })} aria-pressed={enabledParam === 'true'}>Enabled</button>
-          <button type="button" onClick={() => updateSP(n => { n.set('enabled', 'false'); })} aria-pressed={enabledParam === 'false'}>Disabled</button>
+          <button type="button" onClick={() => { updateSP(n => { n.set('enabled', 'true'); }); announce('Filter applied: enabled'); }} aria-pressed={enabledParam === 'true'}>Enabled</button>
+          <button type="button" onClick={() => { updateSP(n => { n.set('enabled', 'false'); }); announce('Filter applied: disabled'); }} aria-pressed={enabledParam === 'false'}>Disabled</button>
           {(enabledParam === 'true' || enabledParam === 'false') && (
-            <button type="button" onClick={() => updateSP(n => { n.delete('enabled'); })}>Clear</button>
+            <button type="button" onClick={() => { updateSP(n => { n.delete('enabled'); }); announce('Filter cleared'); }}>Clear</button>
           )}
         </div>
       </div>
@@ -187,7 +218,7 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
         {selected.size} selected
       </div>
 
-      {loading && <LoadingSkeleton rows={6} />}
+  {loading && <LoadingSkeleton rows={6} />}
       {error && <ErrorState message={error} />}
       {!loading && !error && (
         data && data.items.length > 0 ? (
@@ -196,8 +227,8 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
               selectedCount={selected.size}
               totalCount={data.pageInfo?.total ?? data.items.length}
               sortLabel={`${sort.key} ${sort.dir}`}
-              onEnable={bulk.enable}
-              onDisable={bulk.disable}
+      onEnable={async () => { await bulk.enable(); /* <!-- BEGIN RBP GENERATED: ui-polish-v1 --> */ announce(`Enabled ${selected.size} items`); /* <!-- END RBP GENERATED: ui-polish-v1 --> */ }}
+      onDisable={async () => { await bulk.disable(); /* <!-- BEGIN RBP GENERATED: ui-polish-v1 --> */ announce(`Disabled ${selected.size} items`); /* <!-- END RBP GENERATED: ui-polish-v1 --> */ }}
               onClear={() => setSelected(new Set())}
             />
             <DataTable
@@ -223,7 +254,7 @@ export default function AdminCatalogShell({ api }: { api?: ReturnType<typeof cre
                 });
               }}
               pageInfo={data.pageInfo}
-              onPage={() => { /* preserve, but page not implemented in shell */ }}
+              onPage={(c) => { updateSP(n => { if (c) n.set('cursor', c); else n.delete('cursor'); }); /* <!-- BEGIN RBP GENERATED: admin-acceptance-v1 --> */ announce('Page changed'); /* <!-- END RBP GENERATED: admin-acceptance-v1 --> */ }}
             />
           </>
         ) : (

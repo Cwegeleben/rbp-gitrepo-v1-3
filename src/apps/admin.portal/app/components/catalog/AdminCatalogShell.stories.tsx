@@ -5,6 +5,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import AdminCatalogShell from './AdminCatalogShell';
 import { http, HttpResponse } from 'msw';
+// <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+import { LiveRegion } from '../../../../../packages/ui/live-region/LiveRegion';
+import { within, userEvent } from '@storybook/test';
+// <!-- END RBP GENERATED: admin-acceptance-v1 -->
 
 const meta: Meta<typeof AdminCatalogShell> = {
   title: 'Admin/Catalog/AdminCatalogShell',
@@ -30,7 +34,12 @@ export const Default: Story = {
       ],
     },
   },
-  render: () => <AdminCatalogShell />,
+  render: () => (<>
+    {/* <!-- BEGIN RBP GENERATED: admin-acceptance-v1 --> */}
+    <LiveRegion />
+    {/* <!-- END RBP GENERATED: admin-acceptance-v1 --> */}
+    <AdminCatalogShell />
+  </>),
 };
 
 export const Filtered: Story = {
@@ -47,12 +56,22 @@ export const Filtered: Story = {
       ],
     },
   },
-  render: () => <AdminCatalogShell />,
+  render: () => (<>
+    {/* <!-- BEGIN RBP GENERATED: admin-acceptance-v1 --> */}
+    <LiveRegion />
+    {/* <!-- END RBP GENERATED: admin-acceptance-v1 --> */}
+    <AdminCatalogShell />
+  </>),
 };
 
 export const BulkSelected: Story = {
   parameters: { msw: { handlers: [ http.get('/apps/proxy/api/catalog/products', () => HttpResponse.json({ items: [ { id: 'p1', title: 'Alpha', enabled: true }, { id: 'p2', title: 'Beta', enabled: false } ] })) ] } },
-  render: () => <AdminCatalogShell />,
+  render: () => (<>
+    {/* <!-- BEGIN RBP GENERATED: admin-acceptance-v1 --> */}
+    <LiveRegion />
+    {/* <!-- END RBP GENERATED: admin-acceptance-v1 --> */}
+    <AdminCatalogShell />
+  </>),
 };
 
 export const RollbackError: Story = {
@@ -64,7 +83,22 @@ export const RollbackError: Story = {
       ],
     },
   },
-  render: () => <AdminCatalogShell />,
+  render: () => (<>
+    {/* <!-- BEGIN RBP GENERATED: admin-acceptance-v1 --> */}
+    <LiveRegion />
+    {/* <!-- END RBP GENERATED: admin-acceptance-v1 --> */}
+    <AdminCatalogShell />
+  </>),
+  // <!-- BEGIN RBP GENERATED: admin-acceptance-v1 -->
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const rowCheckboxes = (await canvas.findAllByRole('checkbox')).filter(el => (el as HTMLInputElement).type === 'checkbox');
+    // select first row
+    await userEvent.click(rowCheckboxes[1]);
+    const disable = await canvas.findByRole('button', { name: /disable/i });
+    await userEvent.click(disable);
+  }
+  // <!-- END RBP GENERATED: admin-acceptance-v1 -->
 };
 /*
 <!-- END RBP GENERATED: admin-catalog-v2-2 -->

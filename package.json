@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+  "dev:hq.api": "pnpm --filter ./src/apps/hq.api dev",
+  "dev:hq.admin": "pnpm --filter ./src/apps/hq.admin dev",
+  "openapi:hq": "tsx scripts/openapi/generate-hq.ts",
+  "preflight:hq": "tsx scripts/preflight/preflight:hq.ts",
     "fly:secrets:staging": "fly secrets set DATABASE_URL='file:/data/dev.sqlite'",
     "fly:smoke": "bash ./scripts/fly/curl-smoke.sh",
     "db:migrate:inventory": "prisma migrate dev --name inventory_phase1",
@@ -20,14 +24,15 @@
     "dev:up": "pnpm dev:shopify-cli",
     "dev:down": "echo \"Stop with Ctrl+C (Shopify CLI runs in foreground)\" && exit 0",
     "preflight": "pnpm -s preflight:app-proxy",
-    "preflight:shopify-admin": "tsx scripts/preflight/preflight:shopify-admin.ts",
-    "deploy:staging": "cd src/apps/gateway/api-gateway && fly deploy -c fly.toml",
+  "preflight:shopify-admin": "tsx scripts/preflight/preflight:shopify-admin.ts",
+  "deploy:staging": "fly deploy -c src/apps/gateway/api-gateway/fly.toml",
     "smoke:staging": "node scripts/smoke.staging.mjs",
     "preflight:no-absolute-origins": "tsx scripts/preflight/preflight:no-absolute-origins.ts",
     "preflight:admin-storage": "tsx scripts/preflight/preflight:no-raw-browser-storage.ts",
     "preflight:no-jsx-in-ts": "tsx scripts/preflight/preflight:no-jsx-in-ts.ts",
     "preflight:fly-mounts-consistency": "tsx scripts/preflight/preflight:fly-mounts-consistency.ts",
     "preflight:gateway-healthz": "tsx scripts/preflight/preflight:gateway-healthz.ts",
+  "preflight:staging": "tsx src/apps/gateway/api-gateway/scripts/preflight/staging.ts",
     "preflight:fly-build-pin": "tsx scripts/preflight/preflight:fly-build-pin.ts",
     "preflight:remix-resource-routes": "tsx scripts/preflight/preflight:remix-resource-routes.ts",
     "preflight:docker-gateway-only": "tsx scripts/preflight/preflight:docker-gateway-only.ts",
@@ -47,7 +52,7 @@
     "migrate:admin-links:dry": "tsx scripts/migrate/admin-links.wrap.ts --dry",
     "migrate:admin-links": "tsx scripts/migrate/admin-links.wrap.ts",
     "preflight:admin-all": "tsx scripts/preflight/admin-all.ts",
-    "smoke:proxy": "node scripts/smoke.mjs",
+  "smoke:proxy": "node ./scripts/smoke/proxy-smoke.mjs",
     "preflight:shopify-admin-links": "tsx scripts/preflight/shopify-admin.links.ts",
     "preflight:no-stub-routes": "tsx scripts/preflight/no-stub-routes.ts",
     "preflight:remix-server-only": "tsx scripts/preflight/preflight:remix-server-only.ts",
@@ -76,7 +81,12 @@
     "test:admin": "jest --passWithNoTests --runInBand --runTestsByPath src/apps/admin.portal/__tests__/catalog.filters.test.tsx src/apps/admin.portal/__tests__/catalog.pagination.test.tsx src/apps/admin.portal/__tests__/catalog.toggle.retry.test.tsx src/apps/admin.portal/__tests__/proxy.enforcement.test.ts src/apps/admin.portal/__tests__/proxy.enforcement.test.tsx src/apps/admin.portal/__tests__/builds.focus.test.tsx src/apps/admin.portal/__tests__/gating.test.tsx"
   },
   "x-rbp-generated": {
-    "scripts": [],
+    "scripts": [
+  "<!-- BEGIN RBP GENERATED: hq-skeleton-v0-1 -->dev:hq.api, dev:hq.admin, openapi:hq, preflight:hq<!-- END RBP GENERATED: hq-skeleton-v0-1 -->"
+    ],
+    "root-redirect-preflight-v1": [
+      "preflight:shopify-admin"
+    ],
     "qa-validate-v1": [],
     "react-router-dom NavLink import fix": [],
     "Fly staging proxy": []
