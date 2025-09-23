@@ -32,6 +32,7 @@
     "preflight:no-absolute-origins": "tsx scripts/preflight/preflight:no-absolute-origins.ts",
   "preflight:admin-storage": "tsx scripts/preflight/preflight:no-raw-browser-storage.ts",
   "preflight:tenant-dashboard": "node scripts/preflight/tenant-dashboard-wiring.mjs",
+  "preflight:admin-dashboard-tenant": "node scripts/preflight/admin-dashboard-tenant.mjs",
   "preflight:storefront-builder-m1": "node scripts/preflight/storefront-builder-m1.mjs",
   "preflight:storefront-builder-m2": "node scripts/preflight/storefront-builder-m2.mjs",
   "preflight:storefront-builder-m3": "node scripts/preflight/storefront-builder-m3.mjs",

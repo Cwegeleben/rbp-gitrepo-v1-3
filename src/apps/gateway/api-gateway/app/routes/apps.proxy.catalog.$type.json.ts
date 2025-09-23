@@ -25,7 +25,11 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   try {
     const data: any = await readCatalogJson();
     products = Array.isArray(data?.products) ? data.products : [];
-  } catch {}
+  } catch (err: any) {
+    const d = getProxyDiag(url);
+    const diagHeader = `p=${d.path};t=${encodeURIComponent(type)};e=read_failed`;
+    return json({ items: [], total: 0, page: 1, per: 24, error: 'catalog.read_failed' }, { status: 500, headers: { "cache-control":"no-store","X-RBP-Proxy":"fail","X-RBP-Proxy-Diag": diagHeader }});
+  }
 
   // Heuristic filter by type and query
   const itemsAll = products.filter((p) => {

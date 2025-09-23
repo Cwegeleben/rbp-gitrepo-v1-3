@@ -1135,6 +1135,28 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run preflight:admin-dashboard-tenant",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-dashboard-tenant"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run preflight:admin-dashboard-tenant (retry)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-dashboard-tenant"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }
