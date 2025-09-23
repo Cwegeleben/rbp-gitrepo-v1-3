@@ -18,15 +18,24 @@ function pageHtml(title: string, body: string) {
   </style></head><body><div class="container">${body}<footer>Served via App Proxy</footer></div></body></html>`;
 }
 
-function viewBody(view: string) {
+// <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
+function adminAppUrl(shop: string, slug = 'rod-builder-pro') {
+  // admin.shopify.com canonical deep link to the embedded app
+  return `https://admin.shopify.com/store/${encodeURIComponent(shop)}/apps/${encodeURIComponent(slug)}`;
+}
+// <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
+
+function viewBody(view: string, shop: string | null) {
   if (view === "builder") {
     return pageHtml(
       "Rod Builder — Start a Build",
       `<div class="card"><h1>Rod Builder — Start a Build</h1><p class="caption">Quick launch for the storefront.</p>
         <div class="grid">
           <div>
+            <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
             <div>Open the embedded admin builder.</div>
-            <a class="cta primary" href="/app/builds">Open Embedded Admin Builder</a>
+            <a class="cta primary" href="${shop ? adminAppUrl(shop) : '#'}" target="_blank" rel="noopener">Open in Shopify Admin</a>
+            <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
           </div>
           <div>
             <div>Prefer browsing parts?</div>
@@ -73,6 +82,10 @@ function viewBody(view: string) {
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const v = (url.searchParams.get("view") || "").toLowerCase();
+  // <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
+  // shop param is present on app proxy requests; used only to render admin.shopify.com deep links
+  const shop = url.searchParams.get('shop');
+  // <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
 
   if (shouldEnforceProxySignature()) {
     if (!verifyShopifyProxySignature(url)) {
@@ -89,7 +102,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
   }
 
-  const html = viewBody(v);
+  const html = viewBody(v, shop);
   return new Response(html, {
     headers: {
       "cache-control": "no-store",
