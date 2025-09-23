@@ -19,7 +19,7 @@ function pageHtml(title: string, body: string) {
 }
 
 // <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
-function adminAppUrl(shop: string, slug = 'rod-builder-pro') {
+function adminAppUrl(shop: string, slug = 'rod-builder-pro-2') {
   // admin.shopify.com canonical deep link to the embedded app
   return `https://admin.shopify.com/store/${encodeURIComponent(shop)}/apps/${encodeURIComponent(slug)}`;
 }
@@ -34,7 +34,7 @@ function viewBody(view: string, shop: string | null) {
           <div>
             <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
             <div>Open the embedded admin builder.</div>
-            <a class="cta primary" href="${shop ? adminAppUrl(shop) + '/app' : '#'}" target="_blank" rel="noopener noreferrer">Open in Shopify Admin</a>
+            <a class="cta primary" href="${shop ? adminAppUrl(shop) : '#'}" target="_blank" rel="noopener noreferrer">Open in Shopify Admin</a>
             <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
           </div>
           <div>
@@ -52,7 +52,7 @@ function viewBody(view: string, shop: string | null) {
         <div class="grid">
           <div>
             <div>Open the embedded admin catalog.</div>
-            <a class="cta primary" href="${shop ? adminAppUrl(shop) + '/app/catalog' : '#'}" target="_blank" rel="noopener noreferrer">Open Embedded Admin Catalog</a>
+            <a class="cta primary" href="${shop ? adminAppUrl(shop) + '/catalog' : '#'}" target="_blank" rel="noopener noreferrer">Open Embedded Admin Catalog</a>
           </div>
           <div>
             <div>Want to build instead?</div>

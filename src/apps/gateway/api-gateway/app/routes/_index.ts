@@ -19,7 +19,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 
   if (store) {
-    const target = `https://admin.shopify.com/store/${store}/apps/rod-builder-pro/app`;
+    const target = `https://admin.shopify.com/store/${store}/apps/rod-builder-pro-2`;
     return new Response(null, { status: 302, headers: { Location: target, 'cache-control': 'no-store' } });
   }
 
