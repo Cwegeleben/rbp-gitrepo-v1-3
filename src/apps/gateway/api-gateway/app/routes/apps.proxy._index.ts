@@ -95,6 +95,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
         headers: {
           "cache-control": "no-store",
           "content-type": "text/html; charset=utf-8",
+          "content-security-policy": "frame-ancestors https://admin.shopify.com https://*.myshopify.com",
           "X-RBP-Proxy": "fail",
           "X-RBP-Proxy-Diag": `p=${url.pathname};v=${encodeURIComponent(v)}`,
         },
@@ -107,6 +108,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     headers: {
       "cache-control": "no-store",
       "content-type": "text/html; charset=utf-8",
+      "content-security-policy": "frame-ancestors https://admin.shopify.com https://*.myshopify.com",
       "X-RBP-Proxy": "ok",
       "X-RBP-Proxy-Diag": `p=${url.pathname};v=${encodeURIComponent(v)}`,
     },

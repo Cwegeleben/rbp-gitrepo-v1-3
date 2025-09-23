@@ -25,6 +25,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   // Otherwise, show a clear message (no document rendering at root)
   const msg = 'Admin UI is embedded in Shopify. Open Apps → RBP.';
-  return new Response(msg, { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } });
+  return new Response(msg, { status: 404, headers: {
+    'content-type': 'text/plain; charset=utf-8',
+    'cache-control': 'no-store',
+    'content-security-policy': "frame-ancestors https://admin.shopify.com https://*.myshopify.com"
+  } });
 }
 // <!-- END RBP GENERATED: gateway-remove-ok-placeholder-v1-0 -->
