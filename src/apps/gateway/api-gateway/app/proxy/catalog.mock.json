@@ -1,0 +1,10 @@
+{
+  "products": [
+    { "id": "BLK-100", "title": "Blank 100", "handle": "blank-100", "price": 9999, "vendor": "RBP", "tags": ["blank"] },
+    { "id": "RS-A", "title": "Reel Seat A", "handle": "reel-seat-a", "price": 2499, "vendor": "RBP", "tags": ["reel-seat"] },
+    { "id": "RG-A", "title": "Rear Grip A", "handle": "rear-grip-a", "price": 1499, "vendor": "RBP", "tags": ["rear-grip"] },
+    { "id": "FG-A", "title": "Foregrip A", "handle": "foregrip-a", "price": 1299, "vendor": "RBP", "tags": ["foregrip"] },
+    { "id": "GSET-A", "title": "Guides Set A", "handle": "guides-sets-a", "price": 3999, "vendor": "RBP", "tags": ["guides","guides-sets"] },
+    { "id": "TT-A", "title": "Tip Top A", "handle": "tip-top-a", "price": 799, "vendor": "RBP", "tags": ["tip-top"] }
+  ]
+}
