@@ -67,8 +67,10 @@ async function main() {
       assert.ok(r.status === 200 || r.status === 401, `catalog 200/401 (got ${r.status})`);
     }
   }
-  assert.equal(r.json.ok, true, 'catalog.ok true');
-  assert.ok(Array.isArray(r.json.parts), 'catalog.parts array');
+  if (r.status === 200) {
+    assert.equal(r.json.ok, true, 'catalog.ok true');
+    assert.ok(Array.isArray(r.json.parts), 'catalog.parts array');
+  }
 
   // modules
   {
@@ -80,8 +82,10 @@ async function main() {
       assert.ok(r.status === 200 || r.status === 401, `modules 200/401 (got ${r.status})`);
     }
   }
-  assert.equal(r.json.ok, true, 'modules.ok true');
-  assert.ok(Array.isArray(r.json.modules), 'modules.modules array');
+  if (r.status === 200) {
+    assert.equal(r.json.ok, true, 'modules.ok true');
+    assert.ok(Array.isArray(r.json.modules), 'modules.modules array');
+  }
 
   // <!-- BEGIN RBP GENERATED: admin-smoke-auth-aware-v1-0 -->
   // doctor page: pass if 200 with embed marker OR 3xx redirect to auth (no session)

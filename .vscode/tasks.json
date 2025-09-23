@@ -1009,6 +1009,17 @@
 				"-s",
 				"preflight:admin-storage"
 			]
+		},
+		{
+			"label": "Re-run smoke:staging after tolerant assertions",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"smoke:staging"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }
