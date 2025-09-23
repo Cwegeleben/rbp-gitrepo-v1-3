@@ -1212,6 +1212,17 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run admin-embed-ssr-safe preflight (v1.1)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-ssr-safe"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

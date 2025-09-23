@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 /*
 <!-- BEGIN RBP GENERATED: admin-embed-500-harden-v1-0 -->
+<!-- BEGIN RBP GENERATED: admin-embed-500-harden-v1-1 -->
 Preflight: admin-embed-ssr-safe
 - Fails if /app index imports Node-only modules or references process.env in component render.
 - Fails if any route under app/routes contains a literal '>ok<' or tiny constant SSR HTML (<200 chars).
 - Passes if index contains title "Dashboard" and headings Catalog/Builds/Settings.
+<!-- END RBP GENERATED: admin-embed-500-harden-v1-1 -->
 <!-- END RBP GENERATED: admin-embed-500-harden-v1-0 -->
 */
 import fs from 'node:fs';
