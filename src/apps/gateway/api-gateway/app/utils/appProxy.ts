@@ -42,3 +42,28 @@ export function shouldEnforceProxySignature() {
 }
 // <!-- END RBP GENERATED: proxy-bypass-v1 -->
 // <!-- END RBP GENERATED: proxy-hardening-v1 -->
+
+// <!-- BEGIN RBP GENERATED: proxy-misroute-detect-v1 -->
+export type ProxyDiag = {
+  path: string;
+  bypass: boolean;
+  enforce: boolean;
+  signaturePresent: boolean;
+  signatureValid: boolean;
+  secretUsed: "SHOPIFY_API_SECRET" | "PROXY_HMAC_SECRET" | "none";
+};
+
+export function getProxyDiag(url: URL): ProxyDiag {
+  const path = url.pathname;
+  const bypass = process.env.RBP_PROXY_BYPASS === "1";
+  const enforce = shouldEnforceProxySignature();
+  const signaturePresent = Boolean(url.searchParams.get("signature") ?? url.searchParams.get("hmac"));
+  const secretUsed = process.env.SHOPIFY_API_SECRET
+    ? "SHOPIFY_API_SECRET"
+    : process.env.PROXY_HMAC_SECRET
+    ? "PROXY_HMAC_SECRET"
+    : "none";
+  const signatureValid = signaturePresent ? verifyShopifyProxySignature(url) : false;
+  return { path, bypass, enforce, signaturePresent, signatureValid, secretUsed };
+}
+// <!-- END RBP GENERATED: proxy-misroute-detect-v1 -->

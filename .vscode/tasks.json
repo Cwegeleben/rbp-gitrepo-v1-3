@@ -1020,6 +1020,32 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run preflight:app-proxy-mapping",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"-F",
+				"./src/apps/gateway/api-gateway",
+				"preflight:app-proxy-mapping"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run gateway preflight:app-proxy-mapping",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"-F",
+				"./src/apps/gateway/api-gateway",
+				"preflight:app-proxy-mapping"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

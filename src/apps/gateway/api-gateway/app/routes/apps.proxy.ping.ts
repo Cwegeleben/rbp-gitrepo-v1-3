@@ -1,23 +1,35 @@
 // <!-- BEGIN RBP GENERATED: proxy-hardening-v1 -->
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { shouldEnforceProxySignature, verifyShopifyProxySignature } from "../utils/appProxy";
+import { shouldEnforceProxySignature, verifyShopifyProxySignature, getProxyDiag } from "../utils/appProxy";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
 
   // Bypass on staging
   if (!shouldEnforceProxySignature()) {
-    return json({ ok: true }, { headers: { "cache-control": "no-store" } });
+    // <!-- BEGIN RBP GENERATED: proxy-misroute-detect-v1 -->
+    const d = getProxyDiag(url);
+    const diagHeader = `p=${d.path};b=${d.bypass ? 1 : 0};e=${d.enforce ? 1 : 0};sp=${d.signaturePresent ? 1 : 0};sv=${d.signatureValid ? 1 : 0};s=${d.secretUsed === "SHOPIFY_API_SECRET" ? "API" : d.secretUsed === "PROXY_HMAC_SECRET" ? "FALLBACK" : "NONE"}`;
+    // <!-- END RBP GENERATED: proxy-misroute-detect-v1 -->
+    return json({ ok: true }, { headers: { "cache-control": "no-store", "X-RBP-Proxy-Diag": diagHeader } });
   }
 
   // Enforce in production
   if (!verifyShopifyProxySignature(url)) {
+    // <!-- BEGIN RBP GENERATED: proxy-misroute-detect-v1 -->
+    const d = getProxyDiag(url);
+    const diagHeader = `p=${d.path};b=${d.bypass ? 1 : 0};e=${d.enforce ? 1 : 0};sp=${d.signaturePresent ? 1 : 0};sv=${d.signatureValid ? 1 : 0};s=${d.secretUsed === "SHOPIFY_API_SECRET" ? "API" : d.secretUsed === "PROXY_HMAC_SECRET" ? "FALLBACK" : "NONE"}`;
+    // <!-- END RBP GENERATED: proxy-misroute-detect-v1 -->
     return json(
       { ok: false, error: "unauthorized" },
-      { status: 401, headers: { "cache-control": "no-store" } }
+      { status: 401, headers: { "cache-control": "no-store", "X-RBP-Proxy-Diag": diagHeader } }
     );
   }
 
-  return json({ ok: true }, { headers: { "cache-control": "no-store" } });
+  // <!-- BEGIN RBP GENERATED: proxy-misroute-detect-v1 -->
+  const d = getProxyDiag(url);
+  const diagHeader = `p=${d.path};b=${d.bypass ? 1 : 0};e=${d.enforce ? 1 : 0};sp=${d.signaturePresent ? 1 : 0};sv=${d.signatureValid ? 1 : 0};s=${d.secretUsed === "SHOPIFY_API_SECRET" ? "API" : d.secretUsed === "PROXY_HMAC_SECRET" ? "FALLBACK" : "NONE"}`;
+  // <!-- END RBP GENERATED: proxy-misroute-detect-v1 -->
+  return json({ ok: true }, { headers: { "cache-control": "no-store", "X-RBP-Proxy-Diag": diagHeader } });
 }
 // <!-- END RBP GENERATED: proxy-hardening-v1 -->

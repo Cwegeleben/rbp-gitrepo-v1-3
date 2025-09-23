@@ -10,7 +10,8 @@
   "scripts": {
   "build": "remix build",
   "start": "remix-serve ./build/index.cjs --host 0.0.0.0 --port ${PORT:-8080}",
-  "preflight:staging": "tsx scripts/preflight/staging.ts"
+  "preflight:staging": "tsx scripts/preflight/staging.ts",
+  "preflight:app-proxy-mapping": "node scripts/preflight/preflight-app-proxy-mapping.mjs"
   },
   "dependencies": {
     "@remix-run/node": "^2.17.0",
