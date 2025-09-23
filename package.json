@@ -52,6 +52,7 @@
     "preflight:admin": "tsx scripts/preflight/admin-embed.sanity.ts",
     "preflight:admin-links": "tsx scripts/preflight/admin-links.scan.ts",
     "preflight:admin-embed": "tsx scripts/preflight/admin-embed.sanity.v3.ts",
+  "preflight:admin-embed-ssr-safe": "node scripts/preflight/admin-embed-ssr-safe.mjs",
     "smoke:admin-embedded": "tsx scripts/smoke/admin-routes.embedded.ts",
     "smoke:admin-routes": "tsx scripts/smoke/admin-routes.embedded.ts",
     "preflight:lockfile": "tsx scripts/preflight/preflight:lockfile.ts",
@@ -90,7 +91,8 @@
     "progress:inventory:endpoints": "tsx scripts/progress/inventory-endpoints.ts",
     "progress:snapshot": "tsx scripts/progress/snapshot.ts",
     "preflight:progress:paths": "tsx scripts/preflight/progress-paths.ts",
-    "preflight:progress": "pnpm -s progress:scan && pnpm -s progress:gaps && pnpm -s progress:snapshot || true && pnpm -s preflight:progress:paths && pnpm -s preflight:accessv2 && test -s docs/progress/REPORT.md",
+  "preflight:progress": "pnpm -s progress:scan && pnpm -s progress:gaps && pnpm -s progress:snapshot || true && pnpm -s preflight:progress:paths && pnpm -s preflight:accessv2 && test -s docs/progress/REPORT.md",
+  "preflight:progress-ledger": "node scripts/preflight/progress-ledger-audit.mjs",
     "preflight:accessv2": "tsx scripts/preflight/accessv2.sanity.ts",
     "smoke:admin": "node scripts/smoke.admin.mjs",
     "test:admin": "jest --passWithNoTests --runInBand --runTestsByPath src/apps/admin.portal/__tests__/catalog.filters.test.tsx src/apps/admin.portal/__tests__/catalog.pagination.test.tsx src/apps/admin.portal/__tests__/catalog.toggle.retry.test.tsx src/apps/admin.portal/__tests__/proxy.enforcement.test.ts src/apps/admin.portal/__tests__/proxy.enforcement.test.tsx src/apps/admin.portal/__tests__/builds.focus.test.tsx src/apps/admin.portal/__tests__/gating.test.tsx"
@@ -102,7 +104,8 @@
   "<!-- BEGIN RBP GENERATED: storefront-builder-m0-v1-0 -->preflight:storefront-builder-m0<!-- END RBP GENERATED: storefront-builder-m0-v1-0 -->",
   "<!-- BEGIN RBP GENERATED: storefront-builder-m1-v1-0 -->preflight:storefront-builder-m1<!-- END RBP GENERATED: storefront-builder-m1-v1-0 -->",
   "<!-- BEGIN RBP GENERATED: storefront-builder-m2-v1-0 -->preflight:storefront-builder-m2<!-- END RBP GENERATED: storefront-builder-m2-v1-0 -->",
-  "<!-- BEGIN RBP GENERATED: storefront-builder-m3-v1-0 -->preflight:storefront-builder-m3<!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->"
+  "<!-- BEGIN RBP GENERATED: storefront-builder-m3-v1-0 -->preflight:storefront-builder-m3<!-- END RBP GENERATED: storefront-builder-m3-v1-0 -->",
+  "<!-- BEGIN RBP GENERATED: progress-ledger-audit-v1-0 -->preflight:progress-ledger<!-- END RBP GENERATED: progress-ledger-audit-v1-0 -->"
     ],
     "root-redirect-preflight-v1": [
       "preflight:shopify-admin"

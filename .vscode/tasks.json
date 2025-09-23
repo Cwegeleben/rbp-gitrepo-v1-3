@@ -1157,6 +1157,61 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run progress-ledger audit",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:progress-ledger"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run progress-ledger audit (retry)",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:progress-ledger"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Run admin-embed-ssr-safe preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-ssr-safe"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run admin-embed-ssr-safe preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-ssr-safe"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run admin-embed-ssr-safe after heuristic tweak",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-ssr-safe"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }
