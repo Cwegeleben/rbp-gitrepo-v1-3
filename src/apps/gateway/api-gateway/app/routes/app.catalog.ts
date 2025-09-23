@@ -1,5 +1,8 @@
 // <!-- BEGIN RBP GENERATED: gateway-remove-ok-placeholder-v1-0 -->
 import type { LoaderFunctionArgs } from "@remix-run/node";
+// <!-- BEGIN RBP GENERATED: admin-embed-fix-v1 -->
+import { withEmbedHeaders } from "../utils/embedHeaders";
+// <!-- END RBP GENERATED: admin-embed-fix-v1 -->
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
@@ -11,10 +14,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   <div ${isEmbedded ? 'data-testid="admin-catalog-ready"' : 'data-testid="admin-catalog-missing"'}></div>
   <pre>${JSON.stringify({ shop, host, embedded, pathname: url.pathname }, null, 2)}</pre>
   </body></html>`;
-  return new Response(html, { status: 200, headers: {
-    'content-type': 'text/html; charset=utf-8',
-    'cache-control': 'no-store',
-    'content-security-policy': "frame-ancestors https://admin.shopify.com https://*.myshopify.com"
+  const res = new Response(html, { status: 200, headers: {
+    'content-type': 'text/html; charset=utf-8'
   } });
+  return withEmbedHeaders(res);
 }
 // <!-- END RBP GENERATED: gateway-remove-ok-placeholder-v1-0 -->

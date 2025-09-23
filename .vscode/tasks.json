@@ -1223,6 +1223,78 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Run new admin embed preflights",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-headers"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run new admin embed preflights",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-headers"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run jest for embedHeaders test",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"test",
+				"--",
+				"src/apps/gateway/api-gateway/app/routes/__tests__/embedHeaders.test.ts"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run admin embed headers preflight with retry",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-headers"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Final run: admin embed headers preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:admin-embed-headers"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
 		}
 	]
 }

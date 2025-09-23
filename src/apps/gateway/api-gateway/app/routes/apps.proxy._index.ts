@@ -18,14 +18,7 @@ function pageHtml(title: string, body: string) {
   </style></head><body><div class="container">${body}<footer>Served via App Proxy</footer></div></body></html>`;
 }
 
-// <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
-function adminAppUrl(shop: string, slug = 'rod-builder-pro-2') {
-  // admin.shopify.com canonical deep link to the embedded app
-  return `https://admin.shopify.com/store/${encodeURIComponent(shop)}/apps/${encodeURIComponent(slug)}`;
-}
-// <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
-
-function viewBody(view: string, shop: string | null) {
+function viewBody(view: string) {
   if (view === "builder") {
     return pageHtml(
       "Rod Builder — Start a Build",
@@ -34,7 +27,7 @@ function viewBody(view: string, shop: string | null) {
           <div>
             <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
             <div>Open the embedded admin builder.</div>
-            <a class="cta primary" href="${shop ? adminAppUrl(shop) : '#'}" target="_blank" rel="noopener noreferrer">Open in Shopify Admin</a>
+            <a class="cta primary" href="/app">Open Embedded Admin</a>
             <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
           </div>
           <div>
@@ -52,7 +45,7 @@ function viewBody(view: string, shop: string | null) {
         <div class="grid">
           <div>
             <div>Open the embedded admin catalog.</div>
-            <a class="cta primary" href="${shop ? adminAppUrl(shop) + '/catalog' : '#'}" target="_blank" rel="noopener noreferrer">Open Embedded Admin Catalog</a>
+            <a class="cta primary" href="/app/catalog">Open Embedded Admin Catalog</a>
           </div>
           <div>
             <div>Want to build instead?</div>
@@ -82,10 +75,7 @@ function viewBody(view: string, shop: string | null) {
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const v = (url.searchParams.get("view") || "").toLowerCase();
-  // <!-- BEGIN RBP GENERATED: admin-embed-relocation-v1 -->
-  // shop param is present on app proxy requests; used only to render admin.shopify.com deep links
-  const shop = url.searchParams.get('shop');
-  // <!-- END RBP GENERATED: admin-embed-relocation-v1 -->
+  // Note: Do not deep-link to admin.shopify.com from proxy; use relative /app links.
 
   if (shouldEnforceProxySignature()) {
     if (!verifyShopifyProxySignature(url)) {
@@ -103,7 +93,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
   }
 
-  const html = viewBody(v, shop);
+  const html = viewBody(v);
   return new Response(html, {
     headers: {
       "cache-control": "no-store",
