@@ -15,8 +15,25 @@ const schema = {
     "/hq/api/products": { get: { responses: { 200: { description: "OK" } } } },
     "/hq/api/products/approved": { get: { responses: { 200: { description: "OK" } } } }
     // <!-- END RBP GENERATED: rbp-hq-catalog-v0-2 -->
+    ,
+    // <!-- BEGIN RBP GENERATED: rbp-hq-templates-ingest-v0-3 -->
+    "/hq/api/templates": {
+      get: { responses: { 200: { description: "OK" } } },
+      post: { responses: { 200: { description: "OK" } } }
+    },
+    "/hq/api/ingest/preview": { post: { responses: { 200: { description: "OK" } } } },
+    "/hq/api/ingest/commit": { post: { responses: { 200: { description: "OK" } } } },
+    // <!-- END RBP GENERATED: rbp-hq-templates-ingest-v0-3 -->
+    // <!-- BEGIN RBP GENERATED: rbp-hq-catalog-inventory-v0-4 -->
+    "/hq/api/inventory": { get: { responses: { 200: { description: "OK" } } } }
+    // <!-- END RBP GENERATED: rbp-hq-templates-ingest-v0-3 -->
   }
 };
+
+// <!-- BEGIN RBP GENERATED: rbp-hq-templates-ingest-v0-3 -->
+// bump version to 0.3.0 at write time
+(schema as any).info.version = "0.4.0";
+// <!-- END RBP GENERATED: rbp-hq-templates-ingest-v0-3 -->
 
 const out = resolve(process.cwd(), "public/openapi.json");
 mkdirSync(dirname(out), { recursive: true });

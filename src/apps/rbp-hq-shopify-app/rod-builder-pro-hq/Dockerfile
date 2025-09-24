@@ -22,6 +22,7 @@ RUN pnpm build
 
 FROM base AS prune
 COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./package.json
 RUN pnpm prune --prod
 
 FROM base AS runner
@@ -34,5 +35,5 @@ COPY --from=build /app/build ./build
 COPY package.json ./
 COPY .env.example ./.env.example
 EXPOSE 8083
-CMD ["pnpm","start"]
+CMD ["pnpm","exec","remix-serve","build/server/index.js","--host","0.0.0.0","--port","8083"]
 # <!-- END RBP GENERATED: rbp-hq-docker-build-v1 -->

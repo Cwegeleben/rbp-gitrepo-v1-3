@@ -17,8 +17,17 @@ export default function App() {
   return (
     <AppProvider isEmbeddedApp apiKey={apiKey}>
       <NavMenu>
+        {/* <!-- BEGIN RBP GENERATED: rbp-hq-admin-nav-v0-5 --> */}
         <ShopHostLink as="a" to="/app">HQ</ShopHostLink>
         <ShopHostLink as="a" to="/app/doctor">Doctor</ShopHostLink>
+        {/* <!-- BEGIN RBP GENERATED: rbp-hq-templates-ingest-v0-3 --> */}
+        <ShopHostLink as="a" to="/app/templates">Templates</ShopHostLink>
+        <ShopHostLink as="a" to="/app/import">Import</ShopHostLink>
+        {/* <!-- END RBP GENERATED: rbp-hq-templates-ingest-v0-3 --> */}
+        {/* <!-- BEGIN RBP GENERATED: rbp-hq-catalog-inventory-v0-4 --> */}
+        <ShopHostLink as="a" to="/app/catalog">Catalog</ShopHostLink>
+        {/* <!-- END RBP GENERATED: rbp-hq-catalog-inventory-v0-4 --> */}
+        {/* <!-- END RBP GENERATED: rbp-hq-admin-nav-v0-5 --> */}
       </NavMenu>
       <div style={{ padding: 16 }}>
         <TitleBar title="RBP HQ" />

@@ -17,6 +17,9 @@
   "dependencies": {
     "@remix-run/fs-routes": "^2.16.1",
     "@remix-run/serve": "^2.17.0",
+    "@remix-run/node": "^2.17.0",
+    "@remix-run/react": "^2.17.0",
+    "@shopify/app-bridge": "^3",
     "@shopify/app-bridge-react": "^4.2.1",
     "@shopify/polaris": "^12.0.0",
     "@shopify/shopify-app-remix": "^3.7.0",
@@ -29,8 +32,6 @@
   "devDependencies": {
     "@remix-run/dev": "^2.17.0",
     "@remix-run/eslint-config": "^2.16.1",
-    "@remix-run/node": "^2.17.0",
-    "@remix-run/react": "^2.17.0",
     "@remix-run/route-config": "^2.16.1",
     "@types/node": "^22.17.2",
     "@types/react": "^18.3.23",
@@ -43,6 +44,7 @@
   },
   "x-rbp-generated": [
     "<!-- BEGIN RBP GENERATED: rbp-hq-app-v0-1 -->package.json<!-- END RBP GENERATED: rbp-hq-app-v0-1 -->",
-    "<!-- BEGIN RBP GENERATED: rbp-hq-docker-build-v1 -->package.json<!-- END RBP GENERATED: rbp-hq-docker-build-v1 -->"
+    "<!-- BEGIN RBP GENERATED: rbp-hq-docker-build-v1 -->package.json<!-- END RBP GENERATED: rbp-hq-docker-build-v1 -->",
+    "<!-- BEGIN RBP GENERATED: rbp-hq-app-bridge-fix-v1 -->package.json<!-- END RBP GENERATED: rbp-hq-app-bridge-fix-v1 -->"
   ]
 }

@@ -160,9 +160,18 @@ importers:
       '@remix-run/fs-routes':
         specifier: ^2.16.1
         version: 2.17.0(@remix-run/dev@2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1))(@remix-run/route-config@2.17.0(@remix-run/dev@2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1))(typescript@5.9.2))(typescript@5.9.2)
+      '@remix-run/node':
+        specifier: ^2.17.0
+        version: 2.17.0(typescript@5.9.2)
+      '@remix-run/react':
+        specifier: ^2.17.0
+        version: 2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
       '@remix-run/serve':
         specifier: ^2.17.0
         version: 2.17.0(typescript@5.9.2)
+      '@shopify/app-bridge':
+        specifier: ^3
+        version: 3.7.10
       '@shopify/app-bridge-react':
         specifier: ^4.2.1
         version: 4.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -194,12 +203,6 @@ importers:
       '@remix-run/eslint-config':
         specifier: ^2.16.1
         version: 2.17.0(eslint@8.57.1)(jest@30.0.5(@types/node@22.17.2)(esbuild-register@3.6.0(esbuild@0.25.9)))(react@18.3.1)(typescript@5.9.2)
-      '@remix-run/node':
-        specifier: ^2.17.0
-        version: 2.17.0(typescript@5.9.2)
-      '@remix-run/react':
-        specifier: ^2.17.0
-        version: 2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
       '@remix-run/route-config':
         specifier: ^2.16.1
         version: 2.17.0(@remix-run/dev@2.17.0(@remix-run/react@2.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(@remix-run/serve@2.17.0(typescript@5.9.2))(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(typescript@5.9.2)(vite@6.3.5(@types/node@22.17.2)(jiti@2.5.1)(tsx@4.20.4)(yaml@2.8.1))(yaml@2.8.1))(typescript@5.9.2)

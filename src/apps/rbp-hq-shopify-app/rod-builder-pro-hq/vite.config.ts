@@ -10,5 +10,10 @@ export default defineConfig({
     host: true,
     strictPort: true,
   },
+  // <!-- BEGIN RBP GENERATED: rbp-hq-app-bridge-fix-v1 -->
+  optimizeDeps: {
+    include: ["@shopify/app-bridge", "@shopify/app-bridge/actions"],
+  },
+  // <!-- END RBP GENERATED: rbp-hq-app-bridge-fix-v1 -->
 });
 // <!-- END RBP GENERATED: rbp-hq-app-v0-1 -->

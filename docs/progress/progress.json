@@ -74,6 +74,48 @@
   }
   ,
   {
+    "date": "2025-09-23",
+    "feature": "RBP HQ Catalog Inventory + Admin Links v0.4",
+    "change": "ADD",
+    "sentinel": "rbp-hq-catalog-inventory-v0-4",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/inventory.server.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/settings.server.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/hq.api.inventory.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.catalog.tsx",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/openapi.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.tsx"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Shopify-style Catalog with inventory and filters; admin links to Import/Templates; new inventory API and OpenAPI entry."
+  }
+  ,
+  {
+    "date": "2025-09-23",
+    "feature": "RBP HQ Catalog Templates & Supplier Ingestion v0.3",
+    "change": "ADD",
+    "sentinel": "rbp-hq-templates-ingest-v0-3",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/templates.server.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/normalize.server.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/adapters.server.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/shopify-products.server.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/hq.api.templates.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/hq.api.ingest.preview.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/hq.api.ingest.commit.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.templates.tsx",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.import.tsx",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/libs/openapi.ts"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Editable canonical templates + per-supplier overrides; ingest Preview→Normalize→Commit; products + specs metafield in HQ store."
+  }
+  ,
+  {
     "date": "2025-09-22",
     "feature": "Tenant Feature Inventory + Admin Dashboard Wiring v1.0",
     "change": "ADD",
@@ -214,6 +256,21 @@
   ,
   {
     "date": "2025-09-23",
+    "feature": "RBP HQ Admin Navigation v0.5",
+    "change": "MODIFY",
+    "sentinel": "rbp-hq-admin-nav-v0-5",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.tsx",
+      "docs/progress/progress.json"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "App Bridge NavMenu visible in Admin sidebar with Catalog, Import, Templates, Doctor; relative embedded links via ShopHostLink."
+  }
+  ,
+  {
+    "date": "2025-09-23",
     "feature": "RBP HQ Docker build fix v1.0",
     "change": "MODIFY",
     "sentinel": "rbp-hq-docker-build-v1",
@@ -226,5 +283,22 @@
     "tests": "N/A",
     "preflight": "PASS",
     "notes": "Multi-stage Docker with devDeps at build and pruned runtime; Fly build unblocked."
+  }
+  ,
+  {
+    "date": "2025-09-23",
+    "feature": "RBP HQ App Bridge build fix v1.0",
+    "change": "MODIFY",
+    "sentinel": "rbp-hq-app-bridge-fix-v1",
+    "apps": ["rbp-hq-shopify-app"],
+    "files": [
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/package.json",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/app/routes/app.doctor.tsx",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/vite.config.ts",
+      "src/apps/rbp-hq-shopify-app/rod-builder-pro-hq/.env"
+    ],
+    "tests": "N/A",
+    "preflight": "PASS",
+    "notes": "Added @shopify/app-bridge dep; lazy client-only import of actions; Vite optimizeDeps include; removed NODE_ENV from .env."
   }
 ]

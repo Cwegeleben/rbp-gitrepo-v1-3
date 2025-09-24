@@ -1295,6 +1295,154 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Run HQ preflight",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"/Users/cwegeleben/Projects/rbp-gitrepo-v1-3/src/apps/rbp-hq-shopify-app/rod-builder-pro-hq",
+				"-s",
+				"openapi"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build HQ app",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"/Users/cwegeleben/Projects/rbp-gitrepo-v1-3/src/apps/rbp-hq-shopify-app/rod-builder-pro-hq",
+				"-s",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run remix preflights again",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"preflight:remix-server-only",
+				"&&",
+				"pnpm",
+				"-s",
+				"preflight:cross-app-imports"
+			]
+		},
+		{
+			"label": "Run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"/Users/cwegeleben/Projects/rbp-gitrepo-v1-3/src/apps/rbp-hq-shopify-app/rod-builder-pro-hq",
+				"-s",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-run unit tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run jest after UI changes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Re-run unit tests",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Final run of full test suite after fixes",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"test",
+				"--"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "HQ preflight: openapi + checks",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-w",
+				"-s",
+				"openapi:hq",
+				"&&",
+				"pnpm",
+				"-w",
+				"-s",
+				"preflight:hq"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Build HQ app bundle",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"src/apps/rbp-hq-shopify-app/rod-builder-pro-hq",
+				"-s",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

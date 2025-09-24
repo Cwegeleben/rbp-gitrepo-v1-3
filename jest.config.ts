@@ -23,6 +23,9 @@ const config: Config = {
     // Remap problematic server modules to safe mocks BEFORE Jest parses originals
     // Note: paths mirror the route's relative imports
     '^@remix-run/node$': '<rootDir>/src/test/mocks/remix-node.ts',
+  // Mock Shopify Remix/App Bridge packages for unit tests
+  '^@shopify/shopify-app-remix/react$': '<rootDir>/src/test/mocks/shopify-app-remix-react.tsx',
+  '^@shopify/app-bridge-react$': '<rootDir>/src/test/mocks/shopify-app-bridge-react.tsx',
     '^\\.\\./proxy/catalog\\.server$': '<rootDir>/src/test/mocks/catalog-server.ts',
     '^\\.\\./proxy/paths\\.server$': '<rootDir>/src/test/mocks/paths-server.ts',
     '^\\.\\./proxy/ranking\\.server$': '<rootDir>/src/test/mocks/ranking-server.ts',
